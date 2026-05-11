@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ethio-Sunshine Tech Solution</title>
+    <meta
+      name="description"
+      content="Ethio-Sunshine Tech Solution is an international technology partner delivering modern software, cloud services, and global talent solutions."
+    />
+    <meta name="author" content="Ethio-Sunshine Tech Solution" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#020617" media="(prefers-color-scheme: dark)" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Ethio-Sunshine Tech Solution" />
+    <meta
+      property="og:description"
+      content="International technology partner delivering modern software, cloud services, and security-focused engineering."
+    />
+    <meta property="og:site_name" content="Ethio-Sunshine Tech Solution" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ethio-Sunshine Tech Solution" />
+    <meta
+      name="twitter:description"
+      content="International technology partner delivering modern software, cloud services, and security-focused engineering."
+    />
+
+    <link rel="canonical" href="https://ethiosunshine.tech/" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          var theme =
+            saved === 'light' || saved === 'dark'
+              ? saved
+              : window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light';
+          if (theme === 'dark') document.documentElement.classList.add('dark');
+        } catch (e) {}
+      })();
+    </script>
+
+    <script type="text/javascript">
+      // GitHub Pages SPA support (react-router BrowserRouter)
+      // https://github.com/rafgraph/spa-github-pages
+      (function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search
+            .slice(1)
+            .split('&')
+            .map(function (s) {
+              return s.replace(/~and~/g, '&');
+            })
+            .join('?');
+          window.history.replaceState(null, null, decoded + l.hash);
+        }
+      })(window.location);
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Ethio-Sunshine Tech Solution",
+        "url": "https://ethiosunshine.tech/",
+        "email": "sunshinetechsolution4@gmail.com",
+        "telephone": "+2510704300069",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Addis Abeba",
+          "addressCountry": "ET"
+        },
+        "description": "International technology partner delivering modern software, cloud services, and security-focused engineering."
+      }
+    </script>
+  </head>
+  <body class="bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

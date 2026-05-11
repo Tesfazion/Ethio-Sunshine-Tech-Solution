@@ -1,0 +1,12 @@
+{
+  "name": "Ethio-Sunshine Tech Solution",
+  "short_name": "Ethio-Sunshine",
+  "description": "International technology partner delivering modern software, cloud services, and security-focused engineering.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

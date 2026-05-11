@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans',
+    'Noto Sans Ethiopic', 'Noto Sans Arabic', Arial, sans-serif;
+  background-color: #ffffff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+::selection {
+  background: rgba(16, 185, 129, 0.25);
+}
+
+@layer base {
+  :focus-visible {
+    outline: 2px solid rgba(16, 185, 129, 0.7);
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .bg-app {
+    background-image: radial-gradient(1400px circle at 8% 12%, rgba(16, 185, 129, 0.12), transparent 55%),
+      radial-gradient(1200px circle at 92% 18%, rgba(14, 165, 233, 0.12), transparent 55%),
+      radial-gradient(1000px circle at 50% 110%, rgba(250, 204, 21, 0.08), transparent 55%),
+      linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(248, 250, 252, 1));
+  }
+
+  .bg-app-dark {
+    background-image: radial-gradient(1400px circle at 8% 12%, rgba(16, 185, 129, 0.12), transparent 55%),
+      radial-gradient(1200px circle at 92% 18%, rgba(14, 165, 233, 0.12), transparent 55%),
+      radial-gradient(1000px circle at 50% 110%, rgba(250, 204, 21, 0.06), transparent 55%),
+      linear-gradient(180deg, rgba(2, 6, 23, 1), rgba(2, 6, 23, 1));
+  }
+
+  .bg-aurora {
+    background-image: radial-gradient(1200px circle at 10% 15%, rgba(16, 185, 129, 0.18), transparent 55%),
+      radial-gradient(1000px circle at 90% 25%, rgba(14, 165, 233, 0.14), transparent 55%),
+      radial-gradient(900px circle at 50% 100%, rgba(250, 204, 21, 0.12), transparent 55%);
+  }
+
+  .bg-aurora-dark {
+    background-image: radial-gradient(1200px circle at 10% 15%, rgba(16, 185, 129, 0.14), transparent 55%),
+      radial-gradient(1000px circle at 90% 25%, rgba(14, 165, 233, 0.12), transparent 55%),
+      radial-gradient(900px circle at 50% 100%, rgba(250, 204, 21, 0.08), transparent 55%);
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .glass-dark {
+    background: rgba(2, 6, 23, 0.62);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+}
