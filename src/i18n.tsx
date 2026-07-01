@@ -2,7 +2,7 @@
 // Keep translation keys centralized here for easier updates and locale support.
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 
-export type LocaleCode = 'en' | 'am' | 'fr' | 'es' | 'ar';
+export type LocaleCode = 'en' | 'am' | 'om' | 'fr' | 'es' | 'ar';
 
 type LocaleMeta = {
   code: LocaleCode;
@@ -13,6 +13,7 @@ type LocaleMeta = {
 export const LOCALES: readonly LocaleMeta[] = [
   { code: 'en', label: 'English', dir: 'ltr' },
   { code: 'am', label: 'አማርኛ', dir: 'ltr' },
+  { code: 'om', label: 'Afaan Oromoo', dir: 'ltr' },
   { code: 'fr', label: 'Français', dir: 'ltr' },
   { code: 'es', label: 'Español', dir: 'ltr' },
   { code: 'ar', label: 'العربية', dir: 'rtl' },
@@ -661,6 +662,277 @@ const MESSAGES: Record<LocaleCode, Messages> = {
     },
     language: { label: 'Idioma' },
     a11y: { skip: 'Saltar al contenido', toggleMenu: 'Alternar menú', toggleTheme: 'Cambiar tema' },
+  },
+  om: {
+    brand: {
+      name: 'Sunshine Tech Solution',
+      tagline: 'Hiriyaa oomisha, cloud, fi nageenya addunyaa',
+    },
+    nav: {
+      home: 'Mana',
+      services: 'Tajaajilawwan',
+      projects: 'Projektoota',
+      about: 'Waa’ee',
+      contact: 'Nu quunnamaa',
+    },
+    actions: {
+      getQuote: 'Raawwii gaafadhu',
+      viewWork: 'Dandeetti keenya ilaali',
+      send: 'Ergi',
+    },
+    hero: {
+      badge: 'Guddina Addunyaa · Injinerii Haaraa · Waggoota 5+',
+      title: 'Hiriyaa teeknoolojii keetiif web, ssoftweerii fi nageenya',
+      subtitle:
+        'Marsariitii, ijaarsa, fi nageenya oomisha dijitaalaa dhaabbilee addunyaa guutuu wajjin hojjennu — injinerii cimaa, qunnamtii ifaa, fi deeggarsa erga dhiheessine booda.',
+      highlight: 'Ifaa, haaraa, addunyaa guutuu',
+      note: 'Raabsaa amanamaa web, moobaayil, cloud, fi cyber nageenyaaf.',
+    },
+    services: {
+      eyebrow: 'Waan goonu',
+      title: 'Tajaajilawwan garee ammayyaaf qophaa’an',
+      subtitle:
+        'Sirna irraa hanga raabsutti design, injinerii, fi nageenya walitti makna—hojii amanamaa siif dhiyeessuuf.',
+      ctaTitle: 'Karoora siif madaalu barbaaddee?',
+      ctaSubtitle: 'Kaayyoo kee nuuf himi; tarkaanfii ifaa siif deebina.',
+      web: {
+        title: 'Design Marsariitii & Injiniringii UI',
+        description: 'Fakkiiwwan ammayyaa, hunda hammatu, fi saffisa qabu.',
+      },
+      software: {
+        title: 'Hojii Ssoftweerii',
+        description: 'Appii webii fi moobaayil guutuu kan qajeelfama qulqulluu qabuu fi saffisa saffisu.',
+      },
+      infrastructure: {
+        title: 'Bu’uura IT',
+        description: 'Neetworkii, sirna, fi too’annoo—bu’uura jabaa guddinaaf.',
+      },
+      iot: {
+        title: 'IoT & Sirna Qabeenya',
+        description: 'Meeshaalee wal qunnamtii gochuu, odeeffannoo funaanuu, fi muuxannoo yeroo dhugaa uumu.',
+      },
+      security: {
+        title: 'Nageenya Cyber',
+        description: 'Nageenya cimsuu fi mala gaarii hojii irra oolchuu appii fi bu’uura irratti.',
+      },
+    },
+    solutions: {
+      eyebrow: 'Maaliif nu filattu',
+      title: 'Qulqullina addunyaa, kunuunsa biyya keenyaaf',
+      bullets: {
+        one: 'Raabsaa design-dursee injinerii jabaa wajjin',
+        two: 'Qunnamtii ifaa fi yeroon dursee tilmaamamee',
+        three: 'Nageenya fi saffisa bu’uura ta’ani',
+        four: 'Sistemiwwan afaan hedduu fi RTL deeggaran',
+      },
+    },
+    engagement: {
+      eyebrow: 'Hirmaannaa',
+      title: 'Karoora hojmaata filatamuu',
+      subtitle: 'Haala hojmaa sa’a, baajata, fi deeggarsa keetiin walsimu filadhu.',
+      models: {
+        delivery: {
+          title: 'Raabsaa daangaa murtaa’e',
+          description:
+            'Daangaa ifaa, kallattiiwwan, fi yeroo qulqulluu—kanneen marsariitii, MVP, fi eebbaaf gaariidha.',
+        },
+        team: {
+          title: 'Garee addaa',
+          description:
+            'Garee kee design, injinerii, fi QA waliin babal’isuuf—sprintiiwwan torbee torbeeti fi haala ifaa.',
+        },
+        review: {
+          title: 'Qorannoo Nageenya & Saffisa',
+          description: 'Oddeeffannoo, cimsaa, fi sirreessaa muuxannoo bu’aa qabeessa fi qajeelfama qabuu.',
+        },
+      },
+    },
+    faq: {
+      eyebrow: 'Gaaffilee',
+      title: 'Gaaffilee fi deebiiwwan',
+      subtitle: 'Gaaffilee yeroo baay’ee gaafaman si gargaarruuf.',
+      items: {
+        one: {
+          q: 'Yeroo eenyu keessa hojii jalqabu dandeessu?',
+          a: 'Yeroo baay’ee torbee 1–2 keessatti, hanga kallattii fi argamsiistuu sirnaan irratti hundaa’uun.',
+        },
+        two: {
+          q: 'Idil-addunyaa irratti hojjetta?',
+          a: 'Eeyyee—fageenyaan hojjannu, sadarkaa yeroo fi afaan adda addaa keessatti, RTL dabalatee.',
+        },
+        three: {
+          q: 'Ergaa maaliin waliin dhiyaata?',
+          a: 'Koodii madda, waraqaa hojii, fi galmeewwan raabsaa. Deeggarsi itti fufu filannoo ta’a.',
+        },
+        four: {
+          q: 'NDA yookaan SLA mallatteessuu dandeessaa?',
+          a: 'Eeyyee. NDA fi gargaarsa tajaajila yeroodhaan siif kenne ni hayyamna.',
+        },
+      },
+    },
+    projects: {
+      featured: {
+        eyebrow: 'Projektoota',
+        title: 'Hojiiwwan filataman & dandeettii',
+        subtitle: 'Fakkeenya hojii keenya sirna qulqullina addunyaa, injinerii, fi nageenya waliin.',
+        viewAll: 'Projektoota hunda ilaali',
+      },
+      dashboard: {
+        title: 'Daashibooridii projektii',
+        subtitle: 'Ilaalcha ariifachiisaa dandeettii fi raabsaa irratti.',
+        cards: {
+          one: { label: 'Maddaa raabsaa', value: 'Fageenyaan dursee' },
+          two: { label: 'Qulqullina', value: 'Design + injinerii' },
+          three: { label: 'Argamsiistuu', value: 'Afriikaa / Awrooppaa' },
+        },
+      },
+      page: {
+        eyebrow: 'Projektoota',
+        title: 'Projektoota fi muuxannoo',
+        subtitle: 'Projektoota heddummina qabu — UX idil-addunyaa, injinerii, fi nageenya waliin barreeffame.',
+      },
+      filterAll: 'Hundaa',
+      readCaseStudy: 'Barreeffama dhugaa dubbisi',
+      caseStudy: 'Barreeffama dhugaa',
+      ctaTitle: 'Bu’aa akkanaa barbaaddaa?',
+      ctaSubtitle: 'Yaada gabaabaa nuuf ergi; tarkaanfii itti aanu murteessuuf.',
+      highlights: 'Ilaalcha',
+      metrics: 'Meetriiksii',
+      links: 'Liinkii',
+      backToProjects: 'Projektoota deebi’i',
+      notFound: {
+        eyebrow: 'Hin argamne',
+        title: 'Projektiin hin argamne',
+        subtitle: 'Projektiin barbaadde hin jiru yookaan liinkiin dogoggora qaba.',
+      },
+      nextStep: {
+        title: 'Tarkaanfii itti aanu',
+        subtitle: 'Maaltu ijaarramuu akka barbaadde nuuf himi; kallattii ifaa siif kennina.',
+      },
+    },
+    cta: {
+      eyebrow: 'Itti aanse',
+      title: 'Waliin waa ijaaruuf qophiidhaa?',
+      subtitle: 'Kaayyoo kee nuuf himi; yeroo, tilmaama, fi karoora ifaa siif deebina.',
+      viewProjects: 'Projektoota ilaali',
+    },
+    about: {
+      eyebrow: 'Waa’ee',
+      title: 'Qulqullina idil-addunyaa, kunuunsa waliin',
+      subtitle:
+        'Nuti hiriyaa oomisha, cloud, fi nageenya—UX ammayyaa, injinerii cimaa, fi raabsaa amansiisaa yeroo hundaa irratti xiyyeeffanna.',
+      cards: {
+        one: {
+          eyebrow: 'Kaayyoo',
+          title: 'Design-dursee',
+          body: 'Haala fayyadamtootaa fi milkaa’ina irraa jalqabna—sana booda sirna ijaarra.',
+        },
+        two: {
+          eyebrow: 'Shaakala',
+          title: 'Injinerii ciccimoo',
+          body: 'Mootummaa qulqulluu, koodii jiraachuu danda’u, fi saffisa bu’uuraan.',
+        },
+        three: {
+          eyebrow: 'Filannoo',
+          title: 'Nageenya irratti ijaarsaa',
+          body: 'Cimsaa, mala gaarii, fi yaalii hanqina dhorka irratti hundaa’e.',
+        },
+        four: {
+          eyebrow: 'Adda addummaa',
+          title: 'Qophii idil-addunyaa',
+          body: 'UX afaan hedduu fi RTL kan deeggaru jalqabumaa irraa kaa’ame.',
+        },
+        five: {
+          eyebrow: 'Raabsaa',
+          title: 'Proosesii ifaa',
+          body: 'Yaada ifaa, kallattii dursee, fi deebii ariifachiisaa.',
+        },
+        six: {
+          eyebrow: 'Guddataa',
+          title: 'Ijaarsa guddachuuf',
+          body: 'Sistemiwwan gara fuulduraatti jijjiiramaaf qophiidha.',
+        },
+      },
+      story: {
+        eyebrow: 'Seenaa',
+        title: 'Hiriyaa ammayyaa gareelee ammayyaaf',
+        body: 'Nu gargaarru gareelee hojii isaanii saffisaan fi amanamummaan hojjetan akka dhiheessan—dursa quubsaa, sirna sirrii, fi qabiyyee tajaajila qabu.',
+      },
+      founder: {
+        eyebrow: 'Bu’uura',
+        title: 'Bu’uuraan hogganame',
+        body: 'Bu’uuraan hogganamuun, milkaa’ina, iftoomina, fi bal’ina calaqqee irratti xiyyeeffata.',
+        cta: 'Nuti waliin hojjedhaa',
+      },
+      team: {
+        eyebrow: 'Garee',
+        title: 'Bu’uuraafi garee injinerii',
+        subtitle: 'Garee xiqqoo, qulqullinaaf kan qophaa’e—design, injinerii, fi raabsaa.',
+        founder: {
+          role: 'Bu’uura & CEO',
+          name: 'Tesfa',
+          body: 'Mul’ata, qulqullina raabsaa, fi milkaa’ina maamiltoota irratti xiyyeeffata.',
+        },
+        developer: {
+          role: 'Injinerii Itti Aanaa',
+          name: 'Sunshine Engineering',
+          body: 'Seerluga, saffisa, fi koodii qulqulluu—kan guddinaaf ijaarrame.',
+        },
+      },
+    },
+    notFound: {
+      eyebrow: '404',
+      title: 'Fuula hin argamne',
+      subtitle: 'Fuulli barbaadde hin jiru. Liinkii gadi jiran fayyadami.',
+      home: 'Deebi’i gara mana',
+    },
+    stats: {
+      projects: 'Projektoota raawwatan',
+      clients: 'Gammachuu maamilaa',
+      response: 'Yeroo deebii giddu galeessaa',
+      hours: 'Caqasaa sa’aa hojii',
+    },
+    process: {
+      eyebrow: 'Akka isaan hojjetan',
+      title: 'Proosesii salphaa, ifaa',
+      step1: { title: 'Barbaadu', desc: 'Kaayyoo, fayyadamaa, daangaa, fi safartuu.' },
+      step2: { title: 'Ijaaru', desc: 'Dursa UX, sirna UI, fi prototypes qulqulluu.' },
+      step3: { title: 'Hojjechuu', desc: 'Stack haaraa, koodii qulqulluu, qoratamuu, fi saffisa.' },
+      step4: { title: 'Gadi dhiisuu', desc: 'Raabsuu, hordoffii, fi fooyyeffama itti fufiinsa qabu.' },
+    },
+    contact: {
+      eyebrow: 'Nu quunnamaa',
+      title: 'Maaltu ijaarramuu akka barbaadde nuuf himi',
+      subtitle: 'Yaada gabaabaa ergi; tarkaanfii itti aanu ifaan, tilmaama, fi karoora siif kennina.',
+      name: 'Maqaa',
+      email: 'Imeeyilii',
+      brief: 'Gabaasa projektii',
+      namePlaceholder: 'Maqaa guutuu keeti',
+      emailPlaceholder: 'maqaa@example.com',
+      briefPlaceholder: 'Maaltu ijaarramuu barbaadde? Bu’aa maaliin barbaadda?',
+      success:
+        'Galatoomi! Appii imeeyilii kee ergaa akka ergu sirreessita. Yoo hin banne, sunshinetechsolution4@gmail.com dhaquu dandeessa.',
+      info: {
+        emailTitle: 'Imeeyilii',
+        phoneTitle: 'Bilbila',
+        locationTitle: 'Bakka',
+        locationValue: 'Finfinnee, Itoophiyaa',
+        timezoneTitle: 'Sa’aatii idilee',
+        timezoneValue: 'Afriikaa / Awrooppaa waliin mijataa',
+      },
+    },
+    footer: {
+      rights: '© 2026 Sunshine Tech Solution. Mirga hunda olkaa’e.',
+      line: 'Dubbifamuu hedduu fi RTL qopheeffame.',
+    },
+    language: {
+      label: 'Afaan',
+    },
+    a11y: {
+      skip: 'Gara qabiyyee ce’i',
+      toggleMenu: 'Menyuu jijjiiri',
+      toggleTheme: 'Faayila gocha',
+    },
   },
   ar: {
     brand: { name: 'صن شاين تك سوليوشن', tagline: 'شريك عالمي للمنتجات والسحابة والأمن' },

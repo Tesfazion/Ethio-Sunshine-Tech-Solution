@@ -162,7 +162,11 @@ export default function AppShell() {
 
           <div className="flex items-center gap-3">
             <div className="hidden items-center gap-2 sm:flex">
+              <label htmlFor="locale-select" className="text-sm font-medium text-slate-600 dark:text-slate-300">
+                {t('language.label')}
+              </label>
               <select
+                id="locale-select"
                 aria-label={t('language.label')}
                 value={locale}
                 onChange={(e) => setLocale(e.target.value as typeof locale)}

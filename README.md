@@ -1,6 +1,14 @@
 # Ethio-Sunshine Tech Solution
 
+![Homepage preview](README-screenshot.png)
+
+![Services page preview](README-services-screenshot.png)
+
 Professional technology solutions website built with React, TypeScript, Vite, and Tailwind CSS.
+
+Supported languages: English, Afaan Oromoo, Amharic, Español, Français, and العربية (Arabic).
+
+A language switcher is available in the top navigation so visitors can choose their preferred language directly on the live site.
 
 ## Getting Started
 
