@@ -1,9 +1,10 @@
+// Contact page view
+// Includes contact tiles, inquiry form validation, and direct email/phone links.
 import type { FormEvent } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useI18n } from '../i18n';
 import { IconClock, IconMail, IconMapPin, IconPhone } from '../components/icons';
-import { SITE } from '../data/site';
+import { useI18n } from '../i18n';
 import { cn } from '../lib/cn';
 
 const CONTACT_BG = 'https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&w=1920&q=80';

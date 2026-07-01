@@ -1,3 +1,5 @@
+// 404 page view
+// Shown when a route does not match; includes quick navigation actions.
 import { Link } from 'react-router-dom';
 import { useI18n } from '../i18n';
 
@@ -7,7 +9,9 @@ export default function NotFoundPage() {
   return (
     <section className="mx-auto max-w-screen-2xl px-5 py-16 sm:px-8 sm:py-20">
       <p className="text-sm font-semibold text-emerald-700">{t('notFound.eyebrow')}</p>
-      <h1 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 dark:text-slate-50">{t('notFound.title')}</h1>
+      <h1 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 dark:text-slate-50">
+        {t('notFound.title')}
+      </h1>
       <p className="mt-3 max-w-xl text-slate-600 dark:text-slate-300">{t('notFound.subtitle')}</p>
       <div className="mt-6 flex flex-wrap gap-3">
         <Link
@@ -26,4 +30,3 @@ export default function NotFoundPage() {
     </section>
   );
 }
-

@@ -1,3 +1,5 @@
+// Floating chat widget component.
+// Provides quick WhatsApp contact and support interactions.
 import { useState } from 'react';
 import { IconMail, IconPhone } from './icons';
 

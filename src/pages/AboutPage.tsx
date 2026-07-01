@@ -1,3 +1,5 @@
+// About page view
+// Contains the company story, values, and team sections for easy content updates.
 import { Link } from 'react-router-dom';
 import { IconCheck } from '../components/icons';
 import { useI18n } from '../i18n';

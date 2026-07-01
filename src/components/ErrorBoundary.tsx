@@ -1,3 +1,5 @@
+// Top-level error boundary for route-specific crash recovery.
+// Wrap pages and route branches so failures stay contained.
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -62,7 +64,9 @@ export default class ErrorBoundary extends React.Component<ErrorBoundaryProps, E
 
         {this.state.error ? (
           <details className="mt-8 rounded-[1.5rem] border border-slate-200 bg-white/70 p-6 text-sm text-slate-700 shadow-sm backdrop-blur dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-200 dark:shadow-none">
-            <summary className="cursor-pointer font-semibold text-slate-900 dark:text-slate-50">Technical details</summary>
+            <summary className="cursor-pointer font-semibold text-slate-900 dark:text-slate-50">
+              Technical details
+            </summary>
             <pre className="mt-4 overflow-auto whitespace-pre-wrap leading-relaxed">{this.state.error.message}</pre>
           </details>
         ) : null}
@@ -70,4 +74,3 @@ export default class ErrorBoundary extends React.Component<ErrorBoundaryProps, E
     );
   }
 }
-

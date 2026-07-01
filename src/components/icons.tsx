@@ -1,3 +1,5 @@
+// Shared icon components for the website.
+// Add new icon components here and reuse them across the UI.
 export type IconProps = { className?: string };
 
 export function IconSun({ className }: IconProps) {

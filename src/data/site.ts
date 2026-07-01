@@ -1,3 +1,5 @@
+// Site metadata and contact details.
+// Update company phone, email, and social links here for global use.
 export type SocialLink = {
   label: string;
   href: string;

@@ -1,7 +1,9 @@
+// Shared layout wrapper and site chrome.
+// This component owns top navigation, theme handling, metadata updates, and the footer.
 import { useEffect, useMemo, useState } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
-import { IconGitHub, IconMail, IconMapPin, IconMoon, IconPhone, IconSun } from '../components/icons';
 import ChatWidget from '../components/ChatWidget';
+import { IconGitHub, IconMail, IconMapPin, IconMoon, IconPhone, IconSun } from '../components/icons';
 import { getProjectBySlug } from '../data/projects';
 import { SITE } from '../data/site';
 import { useI18n } from '../i18n';
@@ -65,12 +67,18 @@ export default function AppShell() {
 
     const metaDescriptions: Record<string, string> = {
       '/': 'Sunshine Tech Solution — Web design, software development, IT infrastructure, IoT & cybersecurity for businesses worldwide. 30+ projects delivered.',
-      '/services': 'Professional tech services in Ethiopia: websites, custom software, cloud infrastructure, IoT systems & cybersecurity. Free consultation available.',
-      '/projects': 'Explore 30+ real case studies — websites, portals, e-commerce, cloud & security projects delivered for Ethiopian and international clients.',
-      '/pricing': 'Transparent website pricing in Ethiopian Birr (ETB). Basic, Standard & Advanced packages from 14,250 ETB. Free consultation included.',
-      '/about': 'Meet the Sunshine Tech team — Ethiopian tech experts delivering global-quality web, software & security solutions since 2021.',
-      '/contact': 'Contact Sunshine Tech Solution in Addis Ababa. Free project consultation via phone, email, WhatsApp or our contact form.',
-      '/privacy': 'Privacy policy for Sunshine Tech Solution — how we collect, use and protect your personal information.',
+      '/services':
+        'Professional tech services in Ethiopia: websites, custom software, cloud infrastructure, IoT systems & cybersecurity. Free consultation available.',
+      '/projects':
+        'Explore 30+ real case studies — websites, portals, e-commerce, cloud & security projects delivered for Ethiopian and international clients.',
+      '/pricing':
+        'Transparent website pricing in Ethiopian Birr (ETB). Basic, Standard & Advanced packages from 14,250 ETB. Free consultation included.',
+      '/about':
+        'Meet the Sunshine Tech team — Ethiopian tech experts delivering global-quality web, software & security solutions since 2021.',
+      '/contact':
+        'Contact Sunshine Tech Solution in Addis Ababa. Free project consultation via phone, email, WhatsApp or our contact form.',
+      '/privacy':
+        'Privacy policy for Sunshine Tech Solution — how we collect, use and protect your personal information.',
     };
 
     let pageTitle = brand;
@@ -94,9 +102,10 @@ export default function AppShell() {
 
     document.title = pageTitle;
 
-    const description = path.startsWith('/projects/') && getProjectBySlug(path.split('/')[2] ?? '')
-      ? getProjectBySlug(path.split('/')[2] ?? '')!.summary
-      : metaDescriptions[path] ?? metaDescriptions['/'];
+    const description =
+      path.startsWith('/projects/') && getProjectBySlug(path.split('/')[2] ?? '')
+        ? getProjectBySlug(path.split('/')[2] ?? '')!.summary
+        : (metaDescriptions[path] ?? metaDescriptions['/']);
 
     let metaTag = document.querySelector('meta[name="description"]');
     if (metaTag) {
@@ -129,9 +138,7 @@ export default function AppShell() {
             {navGroups.map((group, gi) => (
               <div key={group.label ?? `group-${gi}`} className="flex items-center gap-1">
                 {gi > 0 && <span className="mx-2 h-4 w-px bg-slate-200 dark:bg-slate-700" aria-hidden />}
-                {group.label && (
-                  <span className="sr-only">{group.label}</span>
-                )}
+                {group.label && <span className="sr-only">{group.label}</span>}
                 {group.links.map((link) => (
                   <NavLink
                     key={link.to}

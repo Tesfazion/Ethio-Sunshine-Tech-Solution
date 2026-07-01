@@ -1,15 +1,17 @@
+// Router configuration for the site.
+// Add new pages here and adjust AppShell navigation as needed.
 import { Route, Routes } from 'react-router-dom';
-import AppShell from './layout/AppShell';
 import ErrorBoundary from './components/ErrorBoundary';
+import AppShell from './layout/AppShell';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import HomePage from './pages/HomePage';
 import NotFoundPage from './pages/NotFoundPage';
 import PricingPage from './pages/PricingPage';
+import PrivacyPage from './pages/PrivacyPage';
 import ProjectDetailPage from './pages/ProjectDetailPage';
 import ProjectsPage from './pages/ProjectsPage';
 import ServicesPage from './pages/ServicesPage';
-import PrivacyPage from './pages/PrivacyPage';
 
 export default function App() {
   return (

@@ -1,3 +1,5 @@
+// Projects page view
+// Lists project case studies with spotlight cards and a call-to-action section.
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import ProjectSpotlight from '../components/ProjectSpotlight';
@@ -55,7 +57,11 @@ export default function ProjectsPage() {
                 key={stat.label}
                 className={cn(
                   'bg-white dark:bg-slate-800 rounded-xl border-2 p-5 text-center shadow-lg',
-                  idx === 0 ? 'border-brand-orange' : idx === 1 ? 'border-tech-blue' : 'border-slate-200 dark:border-slate-600'
+                  idx === 0
+                    ? 'border-brand-orange'
+                    : idx === 1
+                      ? 'border-tech-blue'
+                      : 'border-slate-200 dark:border-slate-600'
                 )}
               >
                 <p className="text-3xl font-bold text-brand-orange">{stat.value}</p>

@@ -1,3 +1,5 @@
+// Project detail page view
+// Shows a single project case study based on the URL slug.
 import { Link, useParams } from 'react-router-dom';
 import { getProjectBySlug } from '../data/projects';
 import { useI18n } from '../i18n';

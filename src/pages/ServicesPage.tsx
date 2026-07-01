@@ -1,3 +1,5 @@
+// Services page view
+// Highlights service offerings, key process steps, and featured case studies.
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { IconCheck } from '../components/icons';
@@ -26,7 +28,12 @@ export default function ServicesPage() {
         caseStudy: 'global-company-website',
         title: t('services.web.title'),
         description: t('services.web.description'),
-        features: ['Works perfectly on phones', 'Easy to find on Google', 'Loads in seconds', 'Professional brand look'],
+        features: [
+          'Works perfectly on phones',
+          'Easy to find on Google',
+          'Loads in seconds',
+          'Professional brand look',
+        ],
       },
       {
         key: 'software',
@@ -36,7 +43,12 @@ export default function ServicesPage() {
         caseStudy: 'customer-portal',
         title: t('services.software.title'),
         description: t('services.software.description'),
-        features: ['Built around your workflow', 'Grows as your business grows', 'Connects to your existing tools', 'Access from anywhere'],
+        features: [
+          'Built around your workflow',
+          'Grows as your business grows',
+          'Connects to your existing tools',
+          'Access from anywhere',
+        ],
       },
       {
         key: 'infrastructure',
@@ -46,7 +58,12 @@ export default function ServicesPage() {
         caseStudy: 'cloud-observability-foundation',
         title: t('services.infrastructure.title'),
         description: t('services.infrastructure.description'),
-        features: ['Cloud setup & migration', 'Reliable servers & networks', 'Keeps your systems running fast', '24/7 monitoring & alerts'],
+        features: [
+          'Cloud setup & migration',
+          'Reliable servers & networks',
+          'Keeps your systems running fast',
+          '24/7 monitoring & alerts',
+        ],
       },
       {
         key: 'iot',
@@ -56,7 +73,12 @@ export default function ServicesPage() {
         caseStudy: 'smart-iot-dashboard',
         title: t('services.iot.title'),
         description: t('services.iot.description'),
-        features: ['Connect sensors & devices', 'Live dashboards & reports', 'Automate everyday tasks', 'Secure data collection'],
+        features: [
+          'Connect sensors & devices',
+          'Live dashboards & reports',
+          'Automate everyday tasks',
+          'Secure data collection',
+        ],
       },
       {
         key: 'security',
@@ -66,7 +88,12 @@ export default function ServicesPage() {
         caseStudy: 'security-hardening',
         title: t('services.security.title'),
         description: t('services.security.description'),
-        features: ['Find & fix weak spots', 'Protect customer data', 'Security testing & audits', 'Compliance guidance'],
+        features: [
+          'Find & fix weak spots',
+          'Protect customer data',
+          'Security testing & audits',
+          'Compliance guidance',
+        ],
       },
     ],
     [t]
@@ -192,7 +219,10 @@ export default function ServicesPage() {
 
                     <ul className="space-y-2 mb-5">
                       {service.features.map((feature) => (
-                        <li key={feature} className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400">
+                        <li
+                          key={feature}
+                          className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400"
+                        >
                           <IconCheck className="w-3.5 h-3.5 text-brand-orange flex-shrink-0" />
                           {feature}
                         </li>

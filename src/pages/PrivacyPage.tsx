@@ -1,3 +1,5 @@
+// Privacy page view
+// Contains the privacy policy content and contact affordances.
 import { Link } from 'react-router-dom';
 
 export default function PrivacyPage() {

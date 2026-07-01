@@ -1,3 +1,5 @@
+// Localization provider and translation messages.
+// Keep translation keys centralized here for easier updates and locale support.
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 
 export type LocaleCode = 'en' | 'am' | 'fr' | 'es' | 'ar';

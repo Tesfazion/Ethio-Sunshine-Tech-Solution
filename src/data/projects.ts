@@ -1,3 +1,5 @@
+// Static project case study data.
+// Update this file to add or edit portfolio projects shown on the projects pages.
 export type ProjectMetric = { label: string; value: string };
 export type ProjectLink = { label: string; href: string };
 export type ProjectSection = { title: string; body: string };

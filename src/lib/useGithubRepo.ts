@@ -1,3 +1,5 @@
+// Custom hook to fetch GitHub repository metadata.
+// Use this for repo badges, stats, or project links on marketing pages.
 import { useEffect, useState } from 'react';
 
 export type GithubRepoInfo = {
@@ -48,4 +50,3 @@ export function useGithubRepo(owner: string, repo: string) {
 
   return { data, status } as const;
 }
-

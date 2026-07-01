@@ -1,3 +1,5 @@
+// Reusable project spotlight card component.
+// Use this for project listings and case study calls-to-action.
 import { Link } from 'react-router-dom';
 import type { Project } from '../data/projects';
 import { cn } from '../lib/cn';

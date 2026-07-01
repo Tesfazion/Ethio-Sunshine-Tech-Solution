@@ -1,6 +1,19 @@
+// Home page view
+// Displays hero, services highlights, project showcase, testimonials, and FAQ sections.
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { IconCheck, IconChevronDown, IconChartBar, IconBuilding, IconGlobe, IconGraduation, IconHeartPulse, IconMapPin, IconShoppingBag, IconClock } from '../components/icons';
+import {
+  IconBuilding,
+  IconChartBar,
+  IconCheck,
+  IconChevronDown,
+  IconClock,
+  IconGlobe,
+  IconGraduation,
+  IconHeartPulse,
+  IconMapPin,
+  IconShoppingBag,
+} from '../components/icons';
 import { PROJECTS } from '../data/projects';
 import { useI18n } from '../i18n';
 import { cn } from '../lib/cn';
@@ -252,7 +265,9 @@ export default function HomePage() {
                   style={{ animationDelay: `${idx * 80}ms` }}
                 >
                   <p className="text-2xl font-bold text-brand-orange">{stat.value}</p>
-                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 font-medium leading-tight">{stat.label}</p>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 font-medium leading-tight">
+                    {stat.label}
+                  </p>
                 </div>
               ))}
             </div>
@@ -272,11 +287,15 @@ export default function HomePage() {
                   />
                 )}
                 <div className="min-w-0">
-                  <p className="text-[10px] font-bold text-brand-orange uppercase tracking-widest mb-1">Latest case study</p>
+                  <p className="text-[10px] font-bold text-brand-orange uppercase tracking-widest mb-1">
+                    Latest case study
+                  </p>
                   <p className="font-bold text-slate-900 dark:text-white text-sm group-hover:text-brand-orange transition-colors truncate">
                     {featuredProjects[0].title}
                   </p>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 line-clamp-2">{featuredProjects[0].summary}</p>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 line-clamp-2">
+                    {featuredProjects[0].summary}
+                  </p>
                   <span className="inline-block mt-2 text-xs font-semibold text-tech-blue group-hover:underline">
                     Read case study →
                   </span>
@@ -403,7 +422,9 @@ export default function HomePage() {
                   </div>
                   <div>
                     <p className="text-sm font-bold text-slate-900 dark:text-white leading-tight">{client.name}</p>
-                    <p className="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wide">{client.sector}</p>
+                    <p className="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                      {client.sector}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -734,9 +755,7 @@ export default function HomePage() {
                     onClick={() => setOpenFaq((current) => (current === idx ? null : idx))}
                     aria-expanded={isOpen}
                   >
-                    <span className="text-base font-semibold text-slate-900 dark:text-white pe-4">
-                      {item.question}
-                    </span>
+                    <span className="text-base font-semibold text-slate-900 dark:text-white pe-4">{item.question}</span>
                     <IconChevronDown
                       className={cn(
                         'w-5 h-5 flex-shrink-0 transition-transform duration-300',

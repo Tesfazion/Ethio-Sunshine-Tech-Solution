@@ -1,3 +1,5 @@
+// Pricing page view
+// Shows pricing tiers, cost breakdown, and benefits for easy pricing updates.
 import { Link } from 'react-router-dom';
 import { IconCheck, IconStar } from '../components/icons';
 import { useI18n } from '../i18n';
@@ -230,7 +232,9 @@ export default function PricingPage() {
                     <th key={tier.name} className="p-4 font-bold text-slate-900 dark:text-white text-center">
                       {tier.name}
                       {tier.recommended && (
-                        <span className="block text-[10px] font-bold text-brand-orange uppercase mt-1">Most popular</span>
+                        <span className="block text-[10px] font-bold text-brand-orange uppercase mt-1">
+                          Most popular
+                        </span>
                       )}
                     </th>
                   ))}
