@@ -1,81 +1,167 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useI18n } from '../i18n';
-import { IconChevronDown, IconCloud, IconCode, IconDevices, IconShield, IconSparkles } from '../components/icons';
-import { cn } from '../lib/cn';
+import { IconCheck, IconChevronDown, IconChartBar, IconBuilding, IconGlobe, IconGraduation, IconHeartPulse, IconMapPin, IconShoppingBag, IconClock } from '../components/icons';
 import { PROJECTS } from '../data/projects';
+import { useI18n } from '../i18n';
+import { cn } from '../lib/cn';
 
-import heroImage from '../../Images/Copilot_20260510_134932.png';
+import animatedManImage from '../assets/images/anim-man-laptop.png';
+import cyberSecurityImage from '../assets/images/cyber-security/cyber-security.jpeg';
+import softwareDevImage from '../assets/images/software-dev/software-development.jpeg';
+import webDesignImage from '../assets/images/web-designing/web-design-development.png';
 
-import cyberSecurityImage from '../../Images/cyber-security/9ad3fb14fec1877b220d02187e4e8494.jpg';
-import infrastructureImage from '../../Images/it-infrastructure/a6ac98b7add388a11e26f63afd33e783.jpg';
-import iotImage from '../../Images/iot/b66694e550998d6ef5a9c6cb6ca22c74.jpg';
-import softwareDevImage from '../../Images/software-dev/b31c608108475fea6cd7e49e3a2dd46e.jpg';
-import webDesignImage from '../../Images/web-designing/7b1eb6a2b96f287333455fd78bb1c453.jpg';
+const TESTIMONIAL_BG = 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1920&q=80';
 
 export default function HomePage() {
   const { t, formatNumber } = useI18n();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-  const services = useMemo(
-    () => [
-      {
-        key: 'web',
-        icon: IconSparkles,
-        image: webDesignImage,
-        title: t('services.web.title'),
-        description: t('services.web.description'),
-      },
-      {
-        key: 'software',
-        icon: IconCode,
-        image: softwareDevImage,
-        title: t('services.software.title'),
-        description: t('services.software.description'),
-      },
-      {
-        key: 'infrastructure',
-        icon: IconCloud,
-        image: infrastructureImage,
-        title: t('services.infrastructure.title'),
-        description: t('services.infrastructure.description'),
-      },
-      {
-        key: 'iot',
-        icon: IconDevices,
-        image: iotImage,
-        title: t('services.iot.title'),
-        description: t('services.iot.description'),
-      },
-      {
-        key: 'security',
-        icon: IconShield,
-        image: cyberSecurityImage,
-        title: t('services.security.title'),
-        description: t('services.security.description'),
-      },
-    ],
-    [t]
-  );
+  /* ── Data ─────────────────────────────────────────────────────────── */
 
   const stats = useMemo(
     () => [
       { value: `${formatNumber(30)}+`, label: t('stats.projects') },
       { value: `${formatNumber(98)}%`, label: t('stats.clients') },
-      { value: `${formatNumber(12)}h`, label: t('stats.hours') },
-      { value: `${formatNumber(24)}h`, label: t('stats.response') },
+      { value: `${formatNumber(5)}+`, label: 'Years Experience' },
+      { value: '24/7', label: t('stats.response') },
     ],
     [formatNumber, t]
   );
 
-  const engagementModels = useMemo(
+  const featuredServices = useMemo(
     () => [
-      { key: 'delivery', icon: IconSparkles, title: t('engagement.models.delivery.title'), description: t('engagement.models.delivery.description') },
-      { key: 'team', icon: IconCode, title: t('engagement.models.team.title'), description: t('engagement.models.team.description') },
-      { key: 'review', icon: IconShield, title: t('engagement.models.review.title'), description: t('engagement.models.review.description') },
+      {
+        key: 'web',
+        image: webDesignImage,
+        title: t('services.web.title'),
+        description: t('services.web.description'),
+        tag: 'Web & UX',
+      },
+      {
+        key: 'software',
+        image: softwareDevImage,
+        title: t('services.software.title'),
+        description: t('services.software.description'),
+        tag: 'Software',
+      },
+      {
+        key: 'security',
+        image: cyberSecurityImage,
+        title: t('services.security.title'),
+        description: t('services.security.description'),
+        tag: 'Security',
+      },
     ],
     [t]
   );
+
+  const differentiators = [
+    {
+      Icon: IconMapPin,
+      color: 'bg-brand-orange',
+      title: 'Ethiopian Market Expertise',
+      body: 'Local regulations, payment systems, and customer expectations — built in from day one.',
+      stat: '5+',
+      statLabel: 'Years in Addis',
+    },
+    {
+      Icon: IconGlobe,
+      color: 'bg-tech-blue',
+      title: 'Global Tech Standards',
+      body: 'The same tools and practices used by top international firms, adapted for your budget.',
+      stat: '5',
+      statLabel: 'Languages supported',
+    },
+    {
+      Icon: IconChartBar,
+      color: 'bg-brand-orange',
+      title: 'Transparent ETB Pricing',
+      body: 'Every quote in Ethiopian Birr. No hidden fees — you know the cost before we start.',
+      stat: '48h',
+      statLabel: 'Quote turnaround',
+    },
+    {
+      Icon: IconClock,
+      color: 'bg-tech-blue',
+      title: 'Full-Lifecycle Support',
+      body: 'Training, updates, and security patches included — we stay after launch.',
+      stat: '24/7',
+      statLabel: 'Support available',
+    },
+  ];
+
+  const industries = [
+    { Icon: IconShoppingBag, name: 'Retail & E-commerce', desc: 'Online stores, catalogs & payments' },
+    { Icon: IconHeartPulse, name: 'Healthcare', desc: 'Patient portals & clinic systems' },
+    { Icon: IconGraduation, name: 'Education', desc: 'School sites, LMS & student portals' },
+    { Icon: IconChartBar, name: 'Finance', desc: 'Secure dashboards & client portals' },
+    { Icon: IconBuilding, name: 'Construction', desc: 'Project tracking & field reporting' },
+    { Icon: IconGlobe, name: 'NGOs & International', desc: 'Multilingual & donor management' },
+  ];
+
+  const clientPartners = [
+    { name: 'Addis Fashion House', initials: 'AF', sector: 'Retail' },
+    { name: 'Haile Health Center', initials: 'HH', sector: 'Healthcare' },
+    { name: 'EthioMart Online', initials: 'EM', sector: 'E-commerce' },
+    { name: 'Addis Financial Services', initials: 'AFS', sector: 'Finance' },
+  ];
+
+  const testimonials = [
+    {
+      quote:
+        'Sunshine Tech transformed our retail website completely. Our customer inquiries tripled within 2 months — truly professional, start to finish.',
+      author: 'Belay Tesfaye',
+      role: 'Owner',
+      company: 'Addis Fashion House',
+      category: 'Retail',
+      initials: 'BT',
+    },
+    {
+      quote:
+        "They built our patient management system on time and within budget. The team genuinely understood our clinic's needs. Highly recommended.",
+      author: 'Dr. Tigist Haile',
+      role: 'Medical Director',
+      company: 'Haile Health Center',
+      category: 'Healthcare',
+      initials: 'TH',
+    },
+    {
+      quote:
+        'From first consultation to final delivery, the experience was seamless. Our e-commerce store now handles hundreds of orders daily.',
+      author: 'Solomon Bekele',
+      role: 'Co-Founder',
+      company: 'EthioMart Online',
+      category: 'E-commerce',
+      initials: 'SB',
+    },
+  ];
+
+  const insights = [
+    {
+      category: 'Business Growth',
+      title: 'Why Ethiopian SMEs Need a Professional Website in 2026',
+      excerpt:
+        'Mobile internet is booming in Ethiopia. Your website is your first impression — and first impressions shape buying decisions.',
+      readTime: '4 min',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=70',
+    },
+    {
+      category: 'Cybersecurity',
+      title: 'Top 5 Cyber Threats Facing Ethiopian Businesses Today',
+      excerpt:
+        'Phishing, weak passwords, and unpatched software remain the biggest risks. Protect your business without breaking the bank.',
+      readTime: '5 min',
+      image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=70',
+    },
+    {
+      category: 'IoT & Innovation',
+      title: "Smart Technology Adoption in Ethiopia: What's Working",
+      excerpt:
+        'From smart inventory to IoT sensors, Ethiopian businesses are innovating fast. Real use cases from our clients.',
+      readTime: '6 min',
+      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=70',
+    },
+  ];
 
   const faqItems = useMemo(
     () => [
@@ -89,353 +175,680 @@ export default function HomePage() {
 
   const featuredProjects = useMemo(() => PROJECTS.slice(0, 3), []);
 
-  return (
-    <div>
-      <section className="relative overflow-hidden bg-aurora dark:bg-aurora-dark">
-        <div className="pointer-events-none absolute -top-24 left-1/2 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-emerald-400/20 blur-3xl motion-safe:animate-float dark:bg-emerald-400/10" />
-        <div className="pointer-events-none absolute -bottom-28 left-[10%] h-[380px] w-[380px] rounded-full bg-sky-400/20 blur-3xl motion-safe:animate-float-slower dark:bg-sky-400/10" />
-        <div className="pointer-events-none absolute -bottom-32 right-[8%] h-[420px] w-[420px] rounded-full bg-amber-300/20 blur-3xl motion-safe:animate-float-xy dark:bg-amber-300/10" />
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.7),transparent_60%)] opacity-70 dark:opacity-0 motion-safe:animate-pulse-soft" />
+  /* ── JSX ──────────────────────────────────────────────────────────── */
 
-        <div className="mx-auto max-w-screen-2xl px-5 pb-16 pt-14 sm:px-8 sm:pb-20 lg:pb-24 lg:pt-20">
-          <div className="grid gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
-            <div className="space-y-8">
-              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200/60 bg-white/70 px-4 py-2 text-xs font-semibold text-emerald-900 shadow-sm dark:border-emerald-400/20 dark:bg-slate-950/50 dark:text-emerald-100 dark:shadow-none">
-                <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                <span>{t('hero.badge')}</span>
+  return (
+    <div className="bg-page-warm dark:bg-slate-900">
+      {/* ── HERO ───────────────────────────────────────────────────────── */}
+      <section className="relative bg-brand-orange-light dark:bg-slate-950 border-b-4 border-brand-orange overflow-hidden">
+        {/* Solid accent blocks */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden>
+          <div className="absolute top-0 right-0 w-1/3 h-full bg-brand-orange/8 dark:bg-brand-orange/5" />
+          <div className="absolute bottom-0 left-0 w-48 h-48 bg-tech-blue/10 dark:bg-tech-blue/8 rounded-tr-[4rem]" />
+        </div>
+
+        <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+          <div className="grid gap-10 lg:grid-cols-2 lg:gap-16 lg:items-center">
+            {/* Left — copy */}
+            <div className="space-y-8 animate-slide-in-left z-10">
+              <div className="inline-flex items-center gap-2 rounded-full bg-brand-orange px-4 py-2 shadow-md">
+                <span className="h-2 w-2 rounded-full bg-white animate-pulse" />
+                <span className="text-sm font-semibold text-white">{t('hero.badge')}</span>
               </div>
 
               <div className="space-y-4">
-                <h1 className="text-balance text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl motion-safe:animate-fade-up dark:text-slate-50">
+                <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl dark:text-white leading-tight">
                   {t('hero.title')}
                 </h1>
-                <p
-                  className="max-w-2xl text-balance text-base leading-relaxed text-slate-700 sm:text-lg motion-safe:animate-fade-up dark:text-slate-300"
-                  style={{ animationDelay: '90ms' }}
-                >
+                <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed max-w-lg">
                   {t('hero.subtitle')}
                 </p>
               </div>
 
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+              <div className="space-y-5">
                 <Link
                   to="/contact"
-                  className="inline-flex items-center justify-center rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 motion-safe:animate-fade-up dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200"
-                  style={{ animationDelay: '160ms' }}
+                  className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-brand-orange rounded-lg hover:bg-[#E66D00] transition-all hover:shadow-lg hover:-translate-y-0.5 shadow-md"
                 >
-                  {t('actions.getQuote')}
+                  Book free consultation
                 </Link>
-                <Link
-                  to="/services"
-                  className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-slate-50 motion-safe:animate-fade-up dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-100 dark:hover:bg-slate-900"
-                  style={{ animationDelay: '220ms' }}
-                >
-                  {t('actions.viewWork')}
-                </Link>
-              </div>
-
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
-                <div className="flex items-center gap-3 rounded-2xl border border-slate-200/70 bg-white/70 px-4 py-3 shadow-sm dark:border-slate-800/70 dark:bg-slate-950/40 dark:shadow-none">
-                  <IconSparkles className="h-6 w-6 text-emerald-600" />
-                  <div>
-                    <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">{t('hero.highlight')}</p>
-                    <p className="text-xs text-slate-600 dark:text-slate-400">{t('hero.note')}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-tr from-emerald-300/25 via-sky-300/20 to-amber-300/15 blur-2xl dark:from-emerald-500/10 dark:via-sky-500/10 dark:to-amber-400/5" />
-              <div className="relative overflow-hidden rounded-[2.25rem] border border-slate-200/70 bg-white shadow-xl dark:border-slate-800/70 dark:bg-slate-950">
-                <div className="absolute inset-0 -translate-x-[40%] bg-gradient-to-tr from-white/0 via-white/40 to-white/0 motion-safe:animate-shimmer dark:via-white/10" />
-                <img src={heroImage} alt="" className="aspect-[16/12] w-full object-cover" loading="eager" decoding="async" />
-                <div className="absolute inset-0 ring-1 ring-inset ring-white/40 dark:ring-slate-700/40" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-screen-2xl px-5 py-16 sm:px-8 sm:py-20">
-        <div className="flex flex-col gap-3">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-700">{t('services.eyebrow')}</p>
-          <h2 className="text-balance text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl dark:text-slate-50">
-            {t('services.title')}
-          </h2>
-          <p className="max-w-3xl text-balance text-base leading-relaxed text-slate-600 sm:text-lg dark:text-slate-300">{t('services.subtitle')}</p>
-        </div>
-
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, index) => {
-            const Icon = service.icon;
-            return (
-              <article
-                key={service.key}
-                className="group relative overflow-hidden rounded-[2rem] bg-white/70 shadow-sm ring-1 ring-slate-200/70 backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-glow motion-safe:animate-fade-up dark:bg-slate-900/60 dark:ring-slate-800/70 dark:shadow-none dark:hover:shadow-[0_20px_60px_rgba(0,0,0,0.35)]"
-                style={{ animationDelay: `${index * 60}ms` }}
-              >
-                <div className="relative">
-                  <img src={service.image} alt={service.title} className="h-40 w-full object-cover" loading="lazy" decoding="async" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-white/85 via-white/15 to-transparent dark:from-slate-950/85 dark:via-slate-950/20" />
-                  <div className="absolute inset-0 ring-1 ring-inset ring-white/40 dark:ring-slate-700/40" />
-                </div>
-
-                <div className="relative space-y-3 px-6 pb-7 pt-5">
-                  <div className="flex items-center gap-3">
-                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 dark:bg-emerald-500/10 dark:text-emerald-200 dark:ring-emerald-500/20">
-                      <Icon className="h-6 w-6" />
-                    </span>
-                    <h3 className="text-lg font-semibold text-slate-950 dark:text-slate-50">{service.title}</h3>
-                  </div>
-                  <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">{service.description}</p>
-                  <div className="pointer-events-none absolute -bottom-24 -right-24 h-56 w-56 rounded-full bg-emerald-200/25 blur-3xl transition opacity-0 group-hover:opacity-100 dark:bg-emerald-500/10" />
-                </div>
-              </article>
-            );
-          })}
-        </div>
-
-        <div className="mt-10 flex flex-wrap items-center justify-between gap-4 rounded-[2rem] border border-slate-200 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-900/40">
-          <div className="space-y-1">
-            <p className="text-sm font-semibold text-slate-950 dark:text-slate-50">{t('services.ctaTitle')}</p>
-            <p className="text-sm text-slate-600 dark:text-slate-300">{t('services.ctaSubtitle')}</p>
-          </div>
-          <div className="flex items-center gap-3">
-            <Link
-              to="/services"
-              className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900"
-            >
-              {t('actions.viewWork')}
-            </Link>
-            <Link
-              to="/contact"
-              className="inline-flex items-center justify-center rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200"
-            >
-              {t('actions.getQuote')}
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-slate-50 dark:bg-slate-950">
-        <div className="mx-auto max-w-screen-2xl px-5 py-16 sm:px-8 sm:py-20">
-          <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-end">
-            <div className="space-y-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-700">{t('projects.featured.eyebrow')}</p>
-              <h2 className="text-balance text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl dark:text-slate-50">
-                {t('projects.featured.title')}
-              </h2>
-              <p className="max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg dark:text-slate-300">{t('projects.featured.subtitle')}</p>
-            </div>
-            <Link
-              to="/projects"
-              className="inline-flex items-center justify-center rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200"
-            >
-              {t('projects.featured.viewAll')}
-            </Link>
-          </div>
-
-          <div className="mt-10 grid gap-6 lg:grid-cols-3">
-            {featuredProjects.map((project) => (
-              <article
-                key={project.slug}
-                className="group relative isolate overflow-hidden rounded-[2rem] border border-slate-200 bg-white/70 p-6 shadow-sm backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-glow dark:border-slate-800 dark:bg-slate-900/60 dark:shadow-none dark:hover:shadow-[0_20px_60px_rgba(0,0,0,0.35)]"
-              >
-                <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-tr from-emerald-200/25 via-sky-200/20 to-amber-200/20 opacity-0 transition duration-300 group-hover:opacity-100 dark:from-emerald-500/10 dark:via-sky-500/10 dark:to-amber-500/5" />
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-700">{project.year}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.slice(0, 3).map((tag) => (
-                      <span
-                        key={tag}
-                        className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-300"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <h3 className="mt-4 text-xl font-semibold tracking-tight text-slate-950 dark:text-slate-50">{project.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">{project.summary}</p>
-
-                <div className="mt-5">
-                  <Link
-                    to={`/projects/${project.slug}`}
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-slate-900 underline-offset-4 hover:underline dark:text-slate-100"
-                  >
-                    {t('projects.readCaseStudy')}
-                    <span aria-hidden="true">→</span>
+                <p className="text-sm text-slate-500 dark:text-slate-400">
+                  No commitment required.{' '}
+                  <Link to="/projects" className="font-semibold text-tech-blue hover:underline">
+                    View our work →
                   </Link>
-                </div>
+                </p>
+              </div>
+            </div>
 
-                <div className="pointer-events-none absolute -bottom-24 -right-24 h-56 w-56 rounded-full bg-sky-200/35 blur-3xl opacity-0 transition group-hover:opacity-100 dark:bg-sky-500/10" />
-              </article>
+            {/* Right — illustration with solid backdrop */}
+            <div className="relative lg:h-[560px] flex items-center justify-center animate-slide-in-right">
+              <div className="absolute inset-0 lg:inset-y-6 bg-tech-blue rounded-3xl shadow-xl" />
+              <div className="absolute inset-0 lg:inset-y-6 bg-brand-orange rounded-3xl translate-x-3 translate-y-3 -z-10" />
+              <div className="relative z-10 w-full h-full flex items-end justify-center lg:items-center p-6">
+                <img
+                  src={animatedManImage}
+                  alt="Professional tech consultant"
+                  className="w-full h-auto max-w-md lg:max-w-lg xl:max-w-xl mx-auto drop-shadow-2xl animate-float-gentle"
+                  loading="eager"
+                  decoding="async"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── PROOF STRIP — stats backed by real work ──────────────────────── */}
+      <section className="bg-white dark:bg-slate-900 border-b-2 border-slate-200 dark:border-slate-800 py-10">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-6 lg:grid-cols-[1fr_1.2fr_1fr] items-stretch">
+            {/* Stats */}
+            <div className="grid grid-cols-2 gap-3">
+              {stats.map((stat, idx) => (
+                <div
+                  key={stat.label}
+                  className="bg-slate-50 dark:bg-slate-800 rounded-xl border-2 border-slate-200 dark:border-slate-700 p-4 text-center"
+                  style={{ animationDelay: `${idx * 80}ms` }}
+                >
+                  <p className="text-2xl font-bold text-brand-orange">{stat.value}</p>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 font-medium leading-tight">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Featured case study preview */}
+            {featuredProjects[0] && (
+              <Link
+                to={`/projects/${featuredProjects[0].slug}`}
+                className="group flex gap-4 bg-brand-orange-light dark:bg-slate-800 border-2 border-brand-orange/30 dark:border-slate-700 rounded-xl p-4 hover:border-brand-orange transition-all"
+              >
+                {featuredProjects[0].coverImage && (
+                  <img
+                    src={featuredProjects[0].coverImage}
+                    alt=""
+                    className="w-20 h-20 rounded-lg object-cover flex-shrink-0 hidden sm:block"
+                    loading="lazy"
+                  />
+                )}
+                <div className="min-w-0">
+                  <p className="text-[10px] font-bold text-brand-orange uppercase tracking-widest mb-1">Latest case study</p>
+                  <p className="font-bold text-slate-900 dark:text-white text-sm group-hover:text-brand-orange transition-colors truncate">
+                    {featuredProjects[0].title}
+                  </p>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 line-clamp-2">{featuredProjects[0].summary}</p>
+                  <span className="inline-block mt-2 text-xs font-semibold text-tech-blue group-hover:underline">
+                    Read case study →
+                  </span>
+                </div>
+              </Link>
+            )}
+
+            {/* Mini testimonial */}
+            <div className="bg-tech-blue rounded-xl p-5 flex flex-col justify-center">
+              <div className="flex gap-1 mb-2" aria-hidden>
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <svg key={i} viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5 text-orange-300">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+              <blockquote className="text-white/90 text-sm italic leading-relaxed mb-3">
+                "{testimonials[0].quote.slice(0, 100)}…"
+              </blockquote>
+              <p className="text-xs text-white/70">
+                <span className="font-semibold text-white">{testimonials[0].author}</span> · {testimonials[0].company}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── INDUSTRIES ───────────────────────────────────────────────────── */}
+      <section className="bg-tech-blue dark:bg-slate-950 py-12 lg:py-16 border-b-4 border-brand-orange">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10 animate-fade-in-up">
+            <p className="text-xs font-bold text-orange-300 uppercase tracking-widest mb-3">Industries We Serve</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">Trusted Across Ethiopia &amp; Beyond</h2>
+            <p className="text-white/70 text-sm max-w-lg mx-auto">
+              From local shops to international NGOs — we build technology that fits your industry.
+            </p>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {industries.map((industry, idx) => (
+              <div
+                key={industry.name}
+                className="group flex items-start gap-4 bg-white/10 border border-white/15 rounded-xl p-5 hover:bg-white/15 transition-all animate-scale-in"
+                style={{ animationDelay: `${idx * 60}ms` }}
+              >
+                <div className="flex items-center justify-center w-11 h-11 rounded-xl bg-brand-orange text-white flex-shrink-0 group-hover:scale-105 transition-transform">
+                  <industry.Icon className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-white text-sm mb-1">{industry.name}</h3>
+                  <p className="text-white/65 text-xs leading-relaxed">{industry.desc}</p>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-white dark:bg-slate-950">
-        <div className="mx-auto max-w-screen-2xl px-5 py-16 sm:px-8 sm:py-20">
-          <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
-            <div className="space-y-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-700">{t('solutions.eyebrow')}</p>
-              <h2 className="text-balance text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl dark:text-slate-50">
-                {t('solutions.title')}
-              </h2>
-              <p className="text-base leading-relaxed text-slate-600 sm:text-lg dark:text-slate-300">{t('hero.subtitle')}</p>
-            </div>
+      {/* ── WHAT MAKES US DIFFERENT ───────────────────────────────────────── */}
+      <section className="bg-section-b dark:bg-slate-900 py-16 lg:py-24 border-b-2 border-slate-200 dark:border-slate-800">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 animate-fade-in-up">
+            <p className="text-sm font-semibold text-brand-orange uppercase tracking-wider mb-3">Why Choose Us</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+              What Makes Sunshine Tech Different
+            </h2>
+            <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+              We're not just another tech vendor — we're a long-term partner that grows with your business.
+            </p>
+          </div>
 
-            <div className="grid gap-4">
-              {(['one', 'two', 'three', 'four'] as const).map((k) => (
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {differentiators.map((d, idx) => (
+              <div
+                key={d.title}
+                className="bg-white dark:bg-slate-800 rounded-2xl border-2 border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 animate-scale-in hover:border-brand-orange"
+                style={{ animationDelay: `${idx * 80}ms` }}
+              >
+                <div className={cn('h-1.5', d.color)} />
+                <div className="p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className={cn('flex items-center justify-center w-12 h-12 rounded-xl text-white', d.color)}>
+                      <d.Icon className="w-6 h-6" />
+                    </div>
+                    <div className="text-end">
+                      <p className="text-2xl font-black text-brand-orange leading-none">{d.stat}</p>
+                      <p className="text-[10px] text-slate-400 uppercase tracking-wide mt-0.5">{d.statLabel}</p>
+                    </div>
+                  </div>
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">{d.title}</h3>
+                  <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">{d.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── WHO WE SERVE ─────────────────────────────────────────────────── */}
+      <section className="bg-section-a dark:bg-slate-950 py-16 lg:py-24 border-b-2 border-slate-200 dark:border-slate-800">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 animate-fade-in-up">
+            <p className="text-sm font-semibold text-brand-blue uppercase tracking-wider mb-3">Our Clients</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">Who We Serve</h2>
+            <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+              From local startups in Addis Ababa to international organizations operating in Ethiopia — we deliver for
+              both.
+            </p>
+          </div>
+
+          {/* Named clients */}
+          <div className="mb-10 animate-fade-in-up">
+            <p className="text-center text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">
+              Organizations we've worked with
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              {clientPartners.map((client) => (
                 <div
-                  key={k}
-                  className="flex gap-4 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60 dark:shadow-none"
+                  key={client.name}
+                  className="flex items-center gap-3 bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 hover:border-brand-orange transition-colors"
                 >
-                  <span className="mt-0.5 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-600 text-white shadow-sm">
-                    <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden="true">
-                      <path d="M20 6L9 17l-5-5" className="stroke-current" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </span>
-                  <p className="text-sm leading-relaxed text-slate-700 sm:text-base dark:text-slate-200">{t(`solutions.bullets.${k}`)}</p>
+                  <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-tech-blue text-white text-xs font-black flex-shrink-0">
+                    {client.initials}
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-slate-900 dark:text-white leading-tight">{client.name}</p>
+                    <p className="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wide">{client.sector}</p>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {stats.map((stat) => (
+          <div className="grid gap-8 lg:grid-cols-2">
+            {/* Ethiopian businesses */}
+            <div className="bg-brand-orange-light dark:bg-slate-800 rounded-2xl border-2 border-brand-orange/30 dark:border-slate-700 p-8 animate-slide-in-left">
+              <div className="flex items-center gap-3 mb-5">
+                <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-brand-orange text-white">
+                  <IconMapPin className="w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white">Ethiopian Businesses</h3>
+              </div>
+              <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-5 text-sm">
+                Affordable, practical solutions built for the Ethiopian market — scaled to grow with your business.
+              </p>
+              <ul className="grid grid-cols-2 gap-2">
+                {[
+                  'Startups & SMEs',
+                  'Retail & E-commerce',
+                  'Healthcare & Clinics',
+                  'Education & NGOs',
+                  'Government Offices',
+                  'Hospitality & Tourism',
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-2 text-slate-700 dark:text-slate-300 text-sm">
+                    <div className="w-5 h-5 rounded-full bg-brand-orange flex items-center justify-center flex-shrink-0">
+                      <IconCheck className="w-3 h-3 text-white" />
+                    </div>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* International clients */}
+            <div className="bg-brand-blue-light dark:bg-slate-800 rounded-2xl border-2 border-brand-blue/30 dark:border-slate-700 p-8 animate-slide-in-right">
+              <div className="flex items-center gap-3 mb-5">
+                <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-tech-blue text-white">
+                  <IconGlobe className="w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white">International Clients</h3>
+              </div>
+              <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-5 text-sm">
+                Global-standard delivery for organizations operating in or expanding to Ethiopia, with remote-first
+                collaboration.
+              </p>
+              <ul className="grid grid-cols-2 gap-2">
+                {[
+                  'Ethiopian Diaspora',
+                  'International NGOs',
+                  'Companies entering ET',
+                  'Remote tech teams',
+                  'Multilingual businesses',
+                  'Cross-border commerce',
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-2 text-slate-700 dark:text-slate-300 text-sm">
+                    <div className="w-5 h-5 rounded-full bg-brand-blue flex items-center justify-center flex-shrink-0">
+                      <IconCheck className="w-3 h-3 text-white" />
+                    </div>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SERVICES PREVIEW ─────────────────────────────────────────────── */}
+      <section className="bg-section-b dark:bg-slate-900 py-16 lg:py-24 border-b-2 border-slate-200 dark:border-slate-800">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12 animate-fade-in-up">
+            <div>
+              <p className="text-sm font-semibold text-brand-blue uppercase tracking-wider mb-3">
+                {t('services.eyebrow')}
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-3">
+                {t('services.title')}
+              </h2>
+              <p className="text-lg text-slate-600 dark:text-slate-300 max-w-xl">{t('services.subtitle')}</p>
+            </div>
+            {/* Soft CTA — not "Get Quote" */}
+            <Link
+              to="/services"
+              className="inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-brand-orange border-2 border-brand-orange rounded-lg hover:bg-brand-orange hover:text-white transition-all shrink-0"
+            >
+              View All 5 Services →
+            </Link>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-3">
+            {featuredServices.map((service, idx) => (
               <div
-                key={stat.label}
-                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/60 dark:shadow-none"
+                key={service.key}
+                className="group bg-white dark:bg-slate-800 rounded-2xl border-2 border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-2xl hover:border-brand-orange hover:-translate-y-2 transition-all duration-300 animate-scale-in flex flex-col"
+                style={{ animationDelay: `${idx * 100}ms` }}
               >
-                <p className="text-3xl font-semibold tracking-tight text-slate-950 dark:text-slate-50">{stat.value}</p>
-                <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{stat.label}</p>
+                <div className="relative h-44 overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-black/15 group-hover:bg-black/5 transition-colors" />
+                  <span className="absolute bottom-3 left-3 text-xs font-bold text-white/80 uppercase tracking-widest bg-black/30 px-2 py-1 rounded-full">
+                    {service.tag}
+                  </span>
+                </div>
+                <div className="p-6 flex-grow flex flex-col">
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-brand-orange transition-colors mb-2">
+                    {service.title}
+                  </h3>
+                  <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-sm flex-grow">
+                    {service.description}
+                  </p>
+                  <div className="pt-4 border-t-2 border-slate-100 dark:border-slate-700 mt-4">
+                    {/* Soft learn-more link, not a hard CTA */}
+                    <Link
+                      to="/services"
+                      className="inline-flex items-center gap-2 text-brand-orange font-semibold text-sm hover:gap-3 transition-all"
+                    >
+                      Learn more{' '}
+                      <span aria-hidden="true" className="arrow-dir">
+                        →
+                      </span>
+                    </Link>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-screen-2xl px-5 py-16 sm:px-8 sm:py-20">
-        <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
-          <div className="space-y-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-700">{t('engagement.eyebrow')}</p>
-            <h2 className="text-balance text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl dark:text-slate-50">
-              {t('engagement.title')}
-            </h2>
-            <p className="max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg dark:text-slate-300">{t('engagement.subtitle')}</p>
-          </div>
-
-          <div className="flex items-center gap-3 lg:justify-end">
+      {/* ── CASE STUDIES ─────────────────────────────────────────────────── */}
+      <section className="bg-section-a dark:bg-slate-950 py-16 lg:py-24 border-b-2 border-slate-200 dark:border-slate-800">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12 animate-fade-in-up">
+            <div>
+              <p className="text-sm font-semibold text-brand-orange uppercase tracking-wider mb-3">
+                {t('projects.featured.eyebrow')}
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-3">
+                {t('projects.featured.title')}
+              </h2>
+              <p className="text-lg text-slate-600 dark:text-slate-300">{t('projects.featured.subtitle')}</p>
+            </div>
             <Link
-              to="/contact"
-              className="inline-flex items-center justify-center rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200"
+              to="/projects"
+              className="inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-slate-700 bg-white border-2 border-slate-300 rounded-lg hover:border-brand-blue hover:text-brand-blue transition-all dark:bg-slate-800 dark:text-slate-200 dark:border-slate-600 shrink-0"
             >
-              {t('actions.getQuote')}
+              {t('projects.featured.viewAll')}
             </Link>
           </div>
-        </div>
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          {engagementModels.map((model, index) => {
-            const Icon = model.icon;
-            return (
-              <div
-                key={model.key}
-                className="group relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900/60 dark:shadow-none dark:hover:shadow-[0_20px_60px_rgba(0,0,0,0.35)]"
-                style={{ animationDelay: `${index * 60}ms` }}
+          <div className="grid gap-8 lg:grid-cols-3">
+            {featuredProjects.map((project, idx) => (
+              <article
+                key={project.slug}
+                className="group bg-slate-50 dark:bg-slate-800 rounded-2xl border-2 border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-xl hover:border-brand-orange hover:-translate-y-2 transition-all duration-300 animate-scale-in flex flex-col"
+                style={{ animationDelay: `${idx * 100}ms` }}
               >
-                <div className="flex items-start gap-4">
-                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 dark:bg-emerald-500/10 dark:text-emerald-200 dark:ring-emerald-500/20">
-                    <Icon className="h-6 w-6" />
-                  </span>
-                  <div className="space-y-2">
-                    <p className="text-lg font-semibold text-slate-950 dark:text-slate-50">{model.title}</p>
-                    <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">{model.description}</p>
+                <div
+                  className={cn(
+                    'h-1.5',
+                    idx === 0 ? 'bg-brand-orange' : idx === 1 ? 'bg-tech-blue' : 'bg-brand-orange'
+                  )}
+                />
+
+                {project.coverImage && (
+                  <div className="relative h-36 overflow-hidden">
+                    <img
+                      src={project.coverImage}
+                      alt=""
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-slate-900/20" />
+                    {project.industry && (
+                      <span className="absolute top-3 start-3 text-[10px] font-bold text-white bg-tech-blue px-2 py-1 rounded-full">
+                        {project.industry}
+                      </span>
+                    )}
+                  </div>
+                )}
+
+                <div className="p-6 flex-grow flex flex-col">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-xs font-bold text-brand-orange uppercase tracking-wider">{project.year}</span>
+                    {project.duration && (
+                      <>
+                        <span className="text-slate-300">·</span>
+                        <span className="text-xs text-slate-500 dark:text-slate-400">{project.duration}</span>
+                      </>
+                    )}
+                  </div>
+
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-brand-orange transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-sm flex-grow">
+                    {project.summary}
+                  </p>
+
+                  {project.metrics?.length ? (
+                    <div className="flex flex-wrap gap-2 mt-4">
+                      {project.metrics.slice(0, 3).map((m) => (
+                        <div
+                          key={m.label}
+                          className="text-center bg-white dark:bg-slate-700 rounded-lg px-3 py-2 border border-slate-200 dark:border-slate-600"
+                        >
+                          <p className="text-sm font-bold text-brand-orange leading-none">{m.value}</p>
+                          <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">{m.label}</p>
+                        </div>
+                      ))}
+                    </div>
+                  ) : project.result ? (
+                    <p className="mt-4 text-xs font-semibold text-brand-orange bg-brand-orange-light dark:bg-brand-orange/10 rounded-lg px-3 py-2">
+                      ✦ {project.result}
+                    </p>
+                  ) : null}
+
+                  <div className="pt-4 border-t-2 border-slate-200 dark:border-slate-700 mt-auto">
+                    <Link
+                      to={`/projects/${project.slug}`}
+                      className="inline-flex items-center gap-2 text-brand-orange font-semibold text-sm hover:gap-3 transition-all"
+                    >
+                      {t('projects.readCaseStudy')}{' '}
+                      <span aria-hidden="true" className="arrow-dir">
+                        →
+                      </span>
+                    </Link>
                   </div>
                 </div>
-                <div className="pointer-events-none absolute -bottom-24 -right-24 h-56 w-56 rounded-full bg-sky-200/35 blur-3xl opacity-0 transition group-hover:opacity-100 dark:bg-sky-500/10" />
-              </div>
-            );
-          })}
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="bg-slate-50 dark:bg-slate-950">
-        <div className="mx-auto max-w-screen-2xl px-5 py-16 sm:px-8 sm:py-20">
-          <div className="space-y-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-700">{t('faq.eyebrow')}</p>
-            <h2 className="text-balance text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl dark:text-slate-50">{t('faq.title')}</h2>
-            <p className="max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg dark:text-slate-300">{t('faq.subtitle')}</p>
+      {/* ── TESTIMONIALS ─────────────────────────────────────────────────── */}
+      <section
+        className="relative py-16 lg:py-24 overflow-hidden"
+        style={{
+          backgroundImage: `url(${TESTIMONIAL_BG})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="absolute inset-0 bg-slate-900/88" />
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 animate-fade-in-up">
+            <p className="text-sm font-semibold text-orange-300 uppercase tracking-wider mb-3">Client Stories</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">What Our Clients Say</h2>
+            <p className="text-white/70 text-lg max-w-xl mx-auto">Real outcomes for real businesses across Ethiopia.</p>
           </div>
 
-          <div className="mt-10 grid gap-4">
+          <div className="grid gap-6 md:grid-cols-3">
+            {testimonials.map((testimonial, idx) => (
+              <div
+                key={testimonial.author}
+                className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/15 transition-all animate-scale-in"
+                style={{ animationDelay: `${idx * 100}ms` }}
+              >
+                {/* Stars */}
+                <div className="flex gap-1 mb-4" aria-label="5 star rating">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <svg
+                      key={i}
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      className="w-4 h-4 text-yellow-400"
+                      aria-hidden
+                    >
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+
+                <blockquote className="text-white/90 leading-relaxed mb-6 italic text-sm">
+                  "{testimonial.quote}"
+                </blockquote>
+
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-brand-orange text-white text-sm font-bold flex-shrink-0">
+                    {testimonial.initials}
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-semibold text-white text-sm">{testimonial.author}</p>
+                    <p className="text-white/60 text-xs truncate">
+                      {testimonial.role}, {testimonial.company}
+                    </p>
+                  </div>
+                  <span className="ml-auto text-xs text-orange-300 bg-white/10 px-2 py-1 rounded-full whitespace-nowrap shrink-0">
+                    {testimonial.category}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ─── */}
+      <section className="bg-section-a dark:bg-slate-950 py-16 lg:py-24 border-b-2 border-slate-200 dark:border-slate-800">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10 animate-fade-in-up">
+            <p className="text-xs font-bold text-brand-blue uppercase tracking-widest mb-3">{t('faq.eyebrow')}</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-3">{t('faq.title')}</h2>
+            <p className="text-slate-600 dark:text-slate-300 leading-relaxed">{t('faq.subtitle')}</p>
+          </div>
+
+          <div className="space-y-3 animate-slide-in-right">
             {faqItems.map((item, idx) => {
               const isOpen = openFaq === idx;
               return (
                 <div
-                  key={`${idx}-${item.question}`}
-                  className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900/60 dark:shadow-none"
+                  key={idx}
+                  className="border-2 border-slate-200 dark:border-slate-700 rounded-2xl overflow-hidden bg-white dark:bg-slate-800 hover:border-brand-orange transition-colors"
                 >
                   <button
                     type="button"
-                    className="flex w-full items-center justify-between gap-6 px-6 py-5 text-left"
+                    className="w-full flex items-center justify-between px-6 py-5 text-start hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
                     onClick={() => setOpenFaq((current) => (current === idx ? null : idx))}
                     aria-expanded={isOpen}
-                    aria-controls={`faq-${idx}`}
                   >
-                    <span className="text-base font-semibold text-slate-950 dark:text-slate-50 sm:text-lg">{item.question}</span>
+                    <span className="text-base font-semibold text-slate-900 dark:text-white pe-4">
+                      {item.question}
+                    </span>
                     <IconChevronDown
                       className={cn(
-                        'h-5 w-5 flex-none text-slate-500 transition-transform duration-200 dark:text-slate-400',
-                        isOpen ? 'rotate-180' : 'rotate-0'
+                        'w-5 h-5 flex-shrink-0 transition-transform duration-300',
+                        isOpen ? 'rotate-180 text-brand-orange' : 'text-brand-blue dark:text-[#7FA8FF]'
                       )}
                     />
                   </button>
-
-                  <div id={`faq-${idx}`} className={cn('px-6 pb-6', isOpen ? 'block' : 'hidden')}>
-                    <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300 sm:text-base">{item.answer}</p>
-                  </div>
+                  {isOpen && (
+                    <div className="px-6 pb-5 pt-1 border-t border-slate-100 dark:border-slate-700 animate-fade-in-up">
+                      <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">{item.answer}</p>
+                    </div>
+                  )}
                 </div>
               );
             })}
           </div>
+
+          <div className="mt-8 p-5 bg-brand-orange-light dark:bg-slate-800 border-2 border-brand-orange/30 dark:border-slate-700 rounded-2xl flex flex-col sm:flex-row sm:items-center gap-4">
+            <p className="text-sm text-slate-700 dark:text-slate-300 flex-grow">
+              <span className="font-semibold text-brand-orange">Still have questions?</span> Our team is happy to help.
+            </p>
+            <Link
+              to="/contact"
+              className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-white bg-brand-orange rounded-xl hover:bg-[#E66D00] transition-all shrink-0"
+            >
+              Ask us now
+            </Link>
+          </div>
         </div>
       </section>
 
-      <section className="bg-white dark:bg-slate-950">
-        <div className="mx-auto max-w-screen-2xl px-5 py-16 sm:px-8 sm:py-20">
-          <div className="relative overflow-hidden rounded-[2.5rem] border border-slate-200 bg-aurora p-8 shadow-sm dark:border-slate-800 dark:bg-aurora-dark dark:shadow-none sm:p-12">
-            <div className="pointer-events-none absolute -bottom-28 -right-28 h-[420px] w-[420px] rounded-full bg-emerald-300/25 blur-3xl dark:bg-emerald-400/10" />
-            <div className="pointer-events-none absolute -top-24 -left-24 h-[360px] w-[360px] rounded-full bg-sky-300/20 blur-3xl dark:bg-sky-400/10" />
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.75),transparent_55%)] opacity-70 dark:opacity-0" />
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(16,185,129,0.18),rgba(14,165,233,0.14),rgba(250,204,21,0.14),rgba(16,185,129,0.18))] bg-[length:220%_220%] opacity-55 mix-blend-multiply motion-safe:animate-gradient-pan dark:hidden" />
-
-            <div className="relative grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-              <div className="space-y-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-800 dark:text-emerald-200">{t('cta.eyebrow')}</p>
-                <h2 className="text-balance text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl dark:text-slate-50">{t('cta.title')}</h2>
-                <p className="max-w-2xl text-base leading-relaxed text-slate-700 sm:text-lg dark:text-slate-300">{t('cta.subtitle')}</p>
-              </div>
-
-              <div className="flex flex-col gap-3 sm:flex-row lg:flex-col lg:items-stretch">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center justify-center rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200"
-                >
-                  {t('actions.getQuote')}
-                </Link>
-                <Link
-                  to="/projects"
-                  className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900"
-                >
-                  {t('cta.viewProjects')}
-                </Link>
-              </div>
+      {/* ── INSIGHTS / BLOG TEASER ───────────────────────────────────────── */}
+      <section className="bg-section-a dark:bg-slate-950 py-16 lg:py-24 border-b-2 border-slate-200 dark:border-slate-800">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12 animate-fade-in-up">
+            <div>
+              <p className="text-sm font-semibold text-brand-blue uppercase tracking-wider mb-3">
+                Ethiopian Tech Insights
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-3">Industry Knowledge</h2>
+              <p className="text-lg text-slate-600 dark:text-slate-300 max-w-xl">
+                Stay ahead with insights on technology trends shaping businesses in Ethiopia and beyond.
+              </p>
             </div>
+            <Link
+              to="/contact"
+              className="inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-slate-700 border-2 border-slate-300 rounded-lg hover:border-brand-orange hover:text-brand-orange transition-all dark:text-slate-300 dark:border-slate-600 shrink-0"
+            >
+              Get Insights Newsletter
+            </Link>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-3">
+            {insights.map((insight, idx) => (
+              <article
+                key={insight.title}
+                className="group bg-white dark:bg-slate-800 rounded-2xl border-2 border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-xl hover:border-brand-blue hover:-translate-y-2 transition-all duration-300 animate-scale-in"
+                style={{ animationDelay: `${idx * 100}ms` }}
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={insight.image}
+                    alt={insight.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+                  <span className="absolute top-3 left-3 text-xs font-bold text-white bg-brand-orange px-3 py-1 rounded-full">
+                    {insight.category}
+                  </span>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2 group-hover:text-brand-blue transition-colors leading-snug">
+                    {insight.title}
+                  </h3>
+                  <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">{insight.excerpt}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-slate-400 dark:text-slate-500">{insight.readTime} read</span>
+                    <Link
+                      to="/contact"
+                      className="text-sm font-semibold text-brand-blue hover:text-brand-orange transition-colors"
+                    >
+                      Subscribe →
+                    </Link>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FINAL CTA — ONE strong CTA at the bottom ─────────────────────── */}
+      <section className="bg-section-b dark:bg-slate-900 py-16 lg:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="bg-brand-orange rounded-2xl p-8 lg:p-12 text-center shadow-2xl animate-scale-in">
+            <p className="text-sm font-semibold text-white/80 uppercase tracking-wider mb-4">{t('cta.eyebrow')}</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">{t('cta.title')}</h2>
+            <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto">{t('cta.subtitle')}</p>
+
+            <Link
+              to="/contact"
+              className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-brand-orange bg-white rounded-lg hover:bg-slate-50 hover:shadow-lg transition-all"
+            >
+              Book free consultation
+            </Link>
+            <p className="mt-4 text-sm text-white/75">
+              Or{' '}
+              <Link to="/projects" className="font-semibold text-white underline hover:text-orange-200">
+                browse our case studies
+              </Link>
+            </p>
           </div>
         </div>
       </section>

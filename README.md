@@ -1,39 +1,76 @@
-# Ethio-Sunshine Tech Solution – Portfolio Website
+# Ethio-Sunshine Tech Solution
 
-Modern, multi-page, multilingual portfolio/agency website built with **React + Vite + Tailwind CSS**.
+Professional technology solutions website built with React, TypeScript, Vite, and Tailwind CSS.
+
+## Getting Started
+
+```bash
+npm install
+npm run dev
+```
+
+The local development server runs at the URL printed by Vite, usually `http://localhost:5173`.
 
 ## Scripts
 
-- `npm run dev` – start dev server
-- `npm run build` – typecheck + production build
-- `npm run preview` – preview production build locally
+```bash
+npm run dev      # Start development server
+npm run build    # Typecheck and create production build
+npm run preview  # Preview the production build locally
+```
 
-## Project structure
+## Project Structure
 
-- `src/pages/` – route pages (Home, Services, Projects, About, Contact)
-- `src/layout/` – app shell (header/footer/navigation)
-- `src/components/` – shared UI pieces (icons, error boundary)
-- `src/data/` – structured content (projects, site/contact/social links)
-- `public/` – static assets (`sitemap.xml`, `robots.txt`, `404.html` for GitHub Pages SPA support)
+```text
+Ethio-Sunshine-Tech-Solution/
+├── .github/                 # GitHub configuration and workflows
+├── .vscode/                 # Shared editor settings
+├── docs/                    # Project notes, setup docs, and references
+├── public/                  # Static public files
+├── scripts/                 # Utility scripts
+├── src/                     # Application source
+│   ├── assets/images/       # Imported website images
+│   ├── components/          # Shared UI components
+│   ├── data/                # Site and project content
+│   ├── layout/              # App shell, header, footer
+│   ├── lib/                 # Small utilities
+│   ├── pages/               # Route pages
+│   ├── App.tsx              # Route definitions
+│   ├── i18n.tsx             # Language strings
+│   ├── index.css            # Global styles
+│   └── main.tsx             # React entry point
+├── index.html               # Vite HTML entry
+├── package.json             # npm scripts and dependencies
+├── tailwind.config.js       # Tailwind configuration
+└── vite.config.ts           # Vite configuration
+```
 
-## Editing company details
+Root-level files are limited to files required by the build tooling or repository setup. App code, assets, docs, and scripts live in folders.
 
-- Contact + social links live in `src/data/site.ts`.
-- Translated UI strings live in `src/i18n.tsx`.
-- Project/case-study content lives in `src/data/projects.ts`.
+## Documentation
 
-## GitHub Pages (SPA) publishing
+- [Quick Start](docs/QUICK_START.md)
+- [Contributing](docs/CONTRIBUTING.md)
+- [Code of Conduct](docs/CODE_OF_CONDUCT.md)
+- [Technical Reference](docs/TECHNICAL_REFERENCE.md)
 
-This repo includes GitHub Pages refresh/deep-link support:
+## Content Locations
 
-- `public/404.html` handles redirects for SPA routes.
-- `index.html` contains a small redirect script (must stay **before** the app module script).
+- Company contact details: `src/data/site.ts`
+- Project/case-study content: `src/data/projects.ts`
+- UI language strings: `src/i18n.tsx`
+- Website images: `src/assets/images/`
 
-If you publish as **Project Pages** (URL like `https://username.github.io/repo-name/`) and you **do not** use a custom domain:
+## Deployment
 
-1. Update `public/404.html` and set `pathSegmentsToKeep = 1`.
-2. Set Vite base path in `vite.config.ts`, for example:
-   - `base: '/repo-name/'`
+Build the site with:
 
-The router already uses `import.meta.env.BASE_URL` as its `basename` (`src/main.tsx`), so it will follow your Vite `base` setting.
+```bash
+npm run build
+```
 
+The production files are generated in `dist/`. That folder is ignored because it is build output and can be regenerated at any time.
+
+## License
+
+This project is proprietary and confidential.

@@ -1,150 +1,126 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import ProjectSpotlight from '../components/ProjectSpotlight';
 import { PROJECTS } from '../data/projects';
 import { useI18n } from '../i18n';
 import { cn } from '../lib/cn';
 
+const HERO_BG = 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1920&q=80';
+
 export default function ProjectsPage() {
   const { t } = useI18n();
-  const [activeTag, setActiveTag] = useState<string>('__all__');
 
-  const tags = useMemo(() => {
-    const set = new Set<string>();
-    for (const project of PROJECTS) {
-      for (const tag of project.tags) set.add(tag);
-    }
-    return Array.from(set).sort((a, b) => a.localeCompare(b));
-  }, []);
-
-  const filtered = useMemo(() => {
-    if (activeTag === '__all__') return PROJECTS;
-    return PROJECTS.filter((project) => project.tags.includes(activeTag));
-  }, [activeTag]);
+  const stats = useMemo(
+    () => [
+      {
+        label: t('projects.dashboard.cards.one.label'),
+        value: t('projects.dashboard.cards.one.value'),
+      },
+      {
+        label: t('projects.dashboard.cards.two.label'),
+        value: t('projects.dashboard.cards.two.value'),
+      },
+      {
+        label: t('projects.dashboard.cards.three.label'),
+        value: t('projects.dashboard.cards.three.value'),
+      },
+    ],
+    [t]
+  );
 
   return (
-    <div>
-      <section className="bg-aurora dark:bg-aurora-dark">
-        <div className="mx-auto max-w-screen-2xl px-5 py-14 sm:px-8 sm:py-16">
-          <div className="space-y-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-700">{t('projects.page.eyebrow')}</p>
-            <h1 className="text-balance text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl dark:text-slate-50">{t('projects.page.title')}</h1>
-            <p className="max-w-3xl text-base leading-relaxed text-slate-700 sm:text-lg dark:text-slate-300">{t('projects.page.subtitle')}</p>
+    <div className="bg-slate-50 dark:bg-slate-900">
+      {/* ── Hero with integrated stats ──────────────────────────────── */}
+      <section className="relative overflow-hidden bg-tech-blue" aria-label="Projects hero">
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-20"
+          style={{ backgroundImage: `url('${HERO_BG}')` }}
+          aria-hidden="true"
+        />
+
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+          <div className="max-w-3xl animate-slide-in-left">
+            <p className="text-orange-300 text-sm font-bold uppercase tracking-widest mb-4">
+              {t('projects.page.eyebrow')}
+            </p>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
+              {t('projects.page.title')}
+            </h1>
+            <p className="text-white/80 text-lg max-w-2xl leading-relaxed">{t('projects.page.subtitle')}</p>
           </div>
 
-          <div className="mt-8 flex flex-wrap gap-2">
-            <button
-              type="button"
-              onClick={() => setActiveTag('__all__')}
-              className={cn(
-                'rounded-full border px-4 py-2 text-sm font-semibold shadow-sm transition',
-                activeTag === '__all__'
-                  ? 'border-slate-900 bg-slate-900 text-white dark:border-white dark:bg-white dark:text-slate-900'
-                  : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200 dark:hover:bg-slate-900'
-              )}
-            >
-              {t('projects.filterAll')}
-            </button>
-            {tags.map((tag) => (
-              <button
-                key={tag}
-                type="button"
-                onClick={() => setActiveTag(tag)}
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl animate-fade-in-up">
+            {stats.map((stat, idx) => (
+              <div
+                key={stat.label}
                 className={cn(
-                  'rounded-full border px-4 py-2 text-sm font-semibold shadow-sm transition',
-                  activeTag === tag
-                    ? 'border-slate-900 bg-slate-900 text-white dark:border-white dark:bg-white dark:text-slate-900'
-                    : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200 dark:hover:bg-slate-900'
+                  'bg-white dark:bg-slate-800 rounded-xl border-2 p-5 text-center shadow-lg',
+                  idx === 0 ? 'border-brand-orange' : idx === 1 ? 'border-tech-blue' : 'border-slate-200 dark:border-slate-600'
                 )}
               >
-                {tag}
-              </button>
+                <p className="text-3xl font-bold text-brand-orange">{stat.value}</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 uppercase tracking-wider font-semibold">
+                  {stat.label}
+                </p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-screen-2xl px-5 py-16 sm:px-8 sm:py-20">
-        <div className="mb-10 overflow-hidden rounded-[2rem] border border-slate-200 bg-white/70 p-6 shadow-sm backdrop-blur dark:border-slate-800 dark:bg-slate-900/50 dark:shadow-none">
-          <div className="relative">
-            <div className="pointer-events-none absolute -top-20 -left-24 h-56 w-56 rounded-full bg-emerald-200/40 blur-3xl motion-safe:animate-float dark:bg-emerald-500/10" />
-            <div className="pointer-events-none absolute -bottom-24 right-0 h-56 w-56 rounded-full bg-sky-200/35 blur-3xl motion-safe:animate-float-xy dark:bg-sky-500/10" />
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(16,185,129,0.18),rgba(14,165,233,0.14),rgba(250,204,21,0.12),rgba(16,185,129,0.18))] bg-[length:220%_220%] opacity-55 mix-blend-multiply motion-safe:animate-gradient-pan dark:hidden" />
+      {/* ── All projects — unified spotlight layout ─────────────────── */}
+      <section className="bg-white dark:bg-slate-950 py-14 lg:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
+            <div>
+              <p className="text-xs font-bold text-brand-orange uppercase tracking-widest mb-2">Case Studies</p>
+              <h2 className="text-3xl font-bold text-slate-900 dark:text-white">Real Results for Real Clients</h2>
+              <p className="text-slate-600 dark:text-slate-400 mt-2 max-w-xl">
+                Every project below follows the same proven process — clear goals, measurable outcomes, and ongoing
+                support.
+              </p>
+            </div>
+            <p className="text-sm font-semibold text-slate-500 dark:text-slate-400 bg-brand-orange-light dark:bg-slate-800 px-4 py-2 rounded-full border-2 border-brand-orange/30 dark:border-slate-700">
+              {PROJECTS.length} projects delivered
+            </p>
+          </div>
 
-            <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <div className="space-y-1">
-                <p className="text-sm font-semibold text-slate-950 dark:text-slate-50">{t('projects.dashboard.title')}</p>
-                <p className="text-sm text-slate-600 dark:text-slate-300">{t('projects.dashboard.subtitle')}</p>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                {[
-                  { label: t('projects.dashboard.cards.one.label'), value: t('projects.dashboard.cards.one.value') },
-                  { label: t('projects.dashboard.cards.two.label'), value: t('projects.dashboard.cards.two.value') },
-                  { label: t('projects.dashboard.cards.three.label'), value: t('projects.dashboard.cards.three.value') },
-                ].map((card) => (
-                  <div
-                    key={card.label}
-                    className="min-w-[180px] rounded-2xl border border-slate-200 bg-white/70 px-4 py-3 shadow-sm backdrop-blur dark:border-slate-800 dark:bg-slate-950/50 dark:shadow-none"
-                  >
-                    <p className="text-xs font-semibold text-slate-500 dark:text-slate-400">{card.label}</p>
-                    <p className="mt-1 text-sm font-semibold text-slate-950 dark:text-slate-50">{card.value}</p>
-                  </div>
-                ))}
-              </div>
+          <div className="space-y-10 lg:space-y-14">
+            {PROJECTS.map((project, index) => (
+              <ProjectSpotlight
+                key={project.slug}
+                project={project}
+                reverse={index % 2 === 1}
+                readCaseStudyLabel={t('projects.readCaseStudy')}
+                className="animate-scale-in"
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA ─────────────────────────────────────────────────────── */}
+      <section className="bg-brand-orange-light dark:bg-slate-900 py-16 border-t-2 border-slate-200 dark:border-slate-800">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="bg-brand-orange rounded-2xl p-8 lg:p-12 text-center shadow-2xl animate-scale-in">
+            <p className="text-xs font-bold text-white/70 uppercase tracking-widest mb-3">Ready to build?</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">{t('projects.ctaTitle')}</h2>
+            <p className="text-white/85 mb-8 max-w-xl mx-auto">{t('projects.ctaSubtitle')}</p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/contact"
+                className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-brand-orange bg-white rounded-xl hover:bg-slate-50 hover:shadow-lg transition-all"
+              >
+                {t('actions.getQuote')}
+              </Link>
+              <Link
+                to="/services"
+                className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white border-2 border-white rounded-xl hover:bg-white/10 transition-all"
+              >
+                View Services
+              </Link>
             </div>
           </div>
-        </div>
-
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((project, index) => (
-            <article
-              key={project.slug}
-              className="group relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white/70 p-6 shadow-sm backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-glow motion-safe:animate-fade-up dark:border-slate-800 dark:bg-slate-900/60 dark:shadow-none dark:hover:shadow-[0_20px_60px_rgba(0,0,0,0.35)]"
-              style={{ animationDelay: `${index * 60}ms` }}
-            >
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-700">{project.year}</p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.slice(0, 3).map((tag) => (
-                    <span
-                      key={tag}
-                      className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-300"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <h2 className="mt-4 text-xl font-semibold tracking-tight text-slate-950 dark:text-slate-50">{project.title}</h2>
-              <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">{project.summary}</p>
-
-              <div className="mt-5 flex items-center justify-between gap-4">
-                <Link
-                  to={`/projects/${project.slug}`}
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-slate-900 underline-offset-4 hover:underline dark:text-slate-100"
-                >
-                  {t('projects.readCaseStudy')}
-                  <span aria-hidden="true">→</span>
-                </Link>
-                <span className="text-xs text-slate-500 dark:text-slate-400">{t('projects.caseStudy')}</span>
-              </div>
-
-              <div className="pointer-events-none absolute -bottom-24 -right-24 h-56 w-56 rounded-full bg-sky-200/35 blur-3xl opacity-0 transition group-hover:opacity-100 dark:bg-sky-500/10" />
-            </article>
-          ))}
-        </div>
-
-        <div className="mt-12 flex flex-wrap items-center justify-between gap-4 rounded-[2rem] border border-slate-200 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-900/40">
-          <div className="space-y-1">
-            <p className="text-sm font-semibold text-slate-950 dark:text-slate-50">{t('projects.ctaTitle')}</p>
-            <p className="text-sm text-slate-600 dark:text-slate-300">{t('projects.ctaSubtitle')}</p>
-          </div>
-          <Link
-            to="/contact"
-            className="inline-flex items-center justify-center rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200"
-          >
-            {t('actions.getQuote')}
-          </Link>
         </div>
       </section>
     </div>

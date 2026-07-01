@@ -1,10 +1,18 @@
 export default {
-  content: ["./index.html", "./src/**/*.{ts,tsx}"],
+  content: ['./index.html', './src/**/*.{ts,tsx}'],
   darkMode: ['class'],
   theme: {
     extend: {
+      colors: {
+        'sunrise-orange': '#FF7A00',
+        'tech-blue': '#007ACC',
+      },
+      fontFamily: {
+        heading: ['Montserrat', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        body: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      },
       boxShadow: {
-        glow: '0 20px 60px rgba(34,197,94,0.18)',
+        glow: '0 20px 60px rgba(255,122,0,0.18)',
       },
       keyframes: {
         float: {

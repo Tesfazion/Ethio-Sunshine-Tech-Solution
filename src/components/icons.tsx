@@ -166,3 +166,79 @@ export function IconGitHub({ className }: IconProps) {
     </svg>
   );
 }
+
+export function IconCheck({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <path d="M20 6L9 17l-5-5" className="stroke-current" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function IconStar({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <path
+        d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 18l-6.2 3.3L7 14.2 2 9.3l6.9-1L12 2z"
+        className="fill-current"
+      />
+    </svg>
+  );
+}
+
+export function IconShoppingBag({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <path d="M6 8h12l-1.2 11H7.2L6 8z" className="stroke-current" strokeWidth="1.5" strokeLinejoin="round" />
+      <path d="M9 8V6a3 3 0 0 1 6 0v2" className="stroke-current" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function IconHeartPulse({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <path d="M12 21s-6.5-4.2-8.5-8.5C1.8 9.2 3.6 5.5 7 5.5c1.8 0 3.2 1 5 2.8C13.8 6.5 15.2 5.5 17 5.5c3.4 0 5.2 3.7 3.5 7-2 4.3-8.5 8.5-8.5 8.5z" className="stroke-current" strokeWidth="1.5" strokeLinejoin="round" />
+      <path d="M12 9v4l2 1.5" className="stroke-current" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function IconGraduation({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <path d="M3 9.5 12 5l9 4.5-9 4.5-9-4.5z" className="stroke-current" strokeWidth="1.5" strokeLinejoin="round" />
+      <path d="M7 12v4.5c0 1.2 2.2 2.5 5 2.5s5-1.3 5-2.5V12" className="stroke-current" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M21 10v5" className="stroke-current" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function IconChartBar({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <path d="M6 20V10" className="stroke-current" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M12 20V4" className="stroke-current" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M18 20v-7" className="stroke-current" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function IconBuilding({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <path d="M4 20V8l8-4 8 4v12" className="stroke-current" strokeWidth="1.5" strokeLinejoin="round" />
+      <path d="M9 20v-5h6v5" className="stroke-current" strokeWidth="1.5" strokeLinejoin="round" />
+      <path d="M9 10h1M14 10h1M9 14h1M14 14h1" className="stroke-current" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function IconGlobe({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z" className="stroke-current" strokeWidth="1.5" />
+      <path d="M3 12h18M12 3c2.5 2.8 4 6.2 4 9s-1.5 6.2-4 9M12 3c-2.5 2.8-4 6.2-4 9s1.5 6.2 4 9" className="stroke-current" strokeWidth="1.5" />
+    </svg>
+  );
+}

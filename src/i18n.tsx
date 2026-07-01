@@ -23,7 +23,7 @@ interface Messages {
 const MESSAGES: Record<LocaleCode, Messages> = {
   en: {
     brand: {
-      name: 'Ethio-Sunshine Tech Solution',
+      name: 'Sunshine Tech Solution',
       tagline: 'International product, cloud, and security partner',
     },
     nav: {
@@ -39,10 +39,10 @@ const MESSAGES: Record<LocaleCode, Messages> = {
       send: 'Send message',
     },
     hero: {
-      badge: 'Modern · Reliable · Global',
-      title: 'Build faster. Launch smarter. Scale globally.',
+      badge: 'Global Delivery · Modern Engineering · 5+ Years',
+      title: 'Your technology partner for web, software & security',
       subtitle:
-        'We design, build, and secure digital products for organizations worldwide—beautiful UX, strong engineering, and measurable outcomes.',
+        'We design, build, and secure digital products for organizations worldwide — strong engineering, clear communication, and support that continues after launch.',
       highlight: 'Light, modern, international',
       note: 'Trusted delivery for web, mobile, cloud, and cybersecurity.',
     },
@@ -109,9 +109,18 @@ const MESSAGES: Record<LocaleCode, Messages> = {
       subtitle: 'A few common topics to help you get started.',
       items: {
         one: { q: 'How fast can you start?', a: 'Typically within 1–2 weeks depending on scope and availability.' },
-        two: { q: 'Do you work internationally?', a: 'Yes—remote-first delivery across time zones and languages, including RTL.' },
-        three: { q: 'What does the handover include?', a: 'Source code, documentation, and deployment notes. Ongoing support is optional.' },
-        four: { q: 'Can you sign NDAs or SLAs?', a: 'Yes. We can work under NDAs and define service levels based on your needs.' },
+        two: {
+          q: 'Do you work internationally?',
+          a: 'Yes—remote-first delivery across time zones and languages, including RTL.',
+        },
+        three: {
+          q: 'What does the handover include?',
+          a: 'Source code, documentation, and deployment notes. Ongoing support is optional.',
+        },
+        four: {
+          q: 'Can you sign NDAs or SLAs?',
+          a: 'Yes. We can work under NDAs and define service levels based on your needs.',
+        },
       },
     },
     projects: {
@@ -166,12 +175,36 @@ const MESSAGES: Record<LocaleCode, Messages> = {
       subtitle:
         'We’re a product, cloud, and security partner—focused on modern UX, strong engineering, and reliable delivery across time zones.',
       cards: {
-        one: { eyebrow: 'Principle', title: 'Design-first', body: 'We start with users and outcomes—then build the system around clarity and trust.' },
-        two: { eyebrow: 'Practice', title: 'Engineering excellence', body: 'Clean architecture, maintainable code, and performance as a baseline—not a luxury.' },
-        three: { eyebrow: 'Default', title: 'Security built-in', body: 'Hardening, best practices, and risk reduction as part of every delivery.' },
-        four: { eyebrow: 'Global', title: 'International-ready', body: 'Multilingual UX and RTL support designed from day one.' },
-        five: { eyebrow: 'Delivery', title: 'Transparent process', body: 'Predictable milestones, clear communication, and fast feedback loops.' },
-        six: { eyebrow: 'Growth', title: 'Built to scale', body: 'Systems that evolve—new pages, new products, and new markets without rewrites.' },
+        one: {
+          eyebrow: 'Principle',
+          title: 'Design-first',
+          body: 'We start with users and outcomes—then build the system around clarity and trust.',
+        },
+        two: {
+          eyebrow: 'Practice',
+          title: 'Engineering excellence',
+          body: 'Clean architecture, maintainable code, and performance as a baseline—not a luxury.',
+        },
+        three: {
+          eyebrow: 'Default',
+          title: 'Security built-in',
+          body: 'Hardening, best practices, and risk reduction as part of every delivery.',
+        },
+        four: {
+          eyebrow: 'Global',
+          title: 'International-ready',
+          body: 'Multilingual UX and RTL support designed from day one.',
+        },
+        five: {
+          eyebrow: 'Delivery',
+          title: 'Transparent process',
+          body: 'Predictable milestones, clear communication, and fast feedback loops.',
+        },
+        six: {
+          eyebrow: 'Growth',
+          title: 'Built to scale',
+          body: 'Systems that evolve—new pages, new products, and new markets without rewrites.',
+        },
       },
       story: {
         eyebrow: 'Story',
@@ -188,8 +221,16 @@ const MESSAGES: Record<LocaleCode, Messages> = {
         eyebrow: 'Team',
         title: 'Founder & engineering team',
         subtitle: 'A small, focused team built for quality—design, engineering, and delivery.',
-        founder: { role: 'Founder & CEO', name: 'Tesfa', body: 'Vision, delivery quality, and customer success—end to end.' },
-        developer: { role: 'Lead Developer', name: 'Sunshine Engineering', body: 'Architecture, performance, and clean code—built to scale.' },
+        founder: {
+          role: 'Founder & CEO',
+          name: 'Tesfa',
+          body: 'Vision, delivery quality, and customer success—end to end.',
+        },
+        developer: {
+          role: 'Lead Developer',
+          name: 'Sunshine Engineering',
+          body: 'Architecture, performance, and clean code—built to scale.',
+        },
       },
     },
     notFound: {
@@ -215,8 +256,7 @@ const MESSAGES: Record<LocaleCode, Messages> = {
     contact: {
       eyebrow: 'Contact',
       title: 'Tell us what you want to build',
-      subtitle:
-        'Share a short brief and we’ll respond with the best next step—timeline, estimate, and a clear plan.',
+      subtitle: 'Share a short brief and we’ll respond with the best next step—timeline, estimate, and a clear plan.',
       name: 'Name',
       email: 'Email',
       brief: 'Project brief',
@@ -235,7 +275,7 @@ const MESSAGES: Record<LocaleCode, Messages> = {
       },
     },
     footer: {
-      rights: '© 2026 Ethio‑Sunshine Tech Solution. All rights reserved.',
+      rights: '© 2026 Sunshine Tech Solution. All rights reserved.',
       line: 'Built for global audiences — multilingual and RTL-ready.',
     },
     language: {
@@ -249,7 +289,7 @@ const MESSAGES: Record<LocaleCode, Messages> = {
   },
   am: {
     brand: {
-      name: 'ኢትዮ-ሳንሻይን ቴክ ሶሉሽን',
+      name: 'ሳንሻይን ቴክ ሶሉሽን',
       tagline: 'ዓለም አቀፍ የምርት፣ የደመና እና የደህንነት አጋር',
     },
     nav: {
@@ -267,16 +307,14 @@ const MESSAGES: Record<LocaleCode, Messages> = {
     hero: {
       badge: 'ዘመናዊ · ታማኝ · ዓለም አቀፍ',
       title: 'ፈጣን ይገንቡ። በጥበብ ይጀምሩ። በዓለም ይስፋፉ።',
-      subtitle:
-        'ለዓለም አቀፍ ደንበኞች የሚመች ዲጂታል ምርት እንዲወጣ እንዲጠበቅ እና እንዲያድግ እንረዳለን—ጥሩ UX፣ ጠንካራ ኢንጂነሪንግ፣ ውጤታማ መለኪያዎች።',
+      subtitle: 'ለዓለም አቀፍ ደንበኞች የሚመች ዲጂታል ምርት እንዲወጣ እንዲጠበቅ እና እንዲያድግ እንረዳለን—ጥሩ UX፣ ጠንካራ ኢንጂነሪንግ፣ ውጤታማ መለኪያዎች።',
       highlight: 'ቀለል ያለ፣ ዘመናዊ፣ ዓለም አቀፍ',
       note: 'ለድር፣ ለሞባይል፣ ለደመና እና ለሳይበር ደህንነት የታመነ አፈፃፀም።',
     },
     services: {
       eyebrow: 'እኛ ምን እናደርጋለን',
       title: 'ለዘመናዊ ቡድኖች የተዘጋጁ አገልግሎቶች',
-      subtitle:
-        'ከስትራቴጂ እስከ አፈፃፀም ድረስ፣ ዲዛይንን ኢንጂነሪንግን እና ደህንነትን አንድ እናደርጋለን።',
+      subtitle: 'ከስትራቴጂ እስከ አፈፃፀም ድረስ፣ ዲዛይንን ኢንጂነሪንግን እና ደህንነትን አንድ እናደርጋለን።',
       web: { title: 'የድር ዲዛይን እና UI', description: 'ተደራሽነት እና ፍጥነት ያለው ዘመናዊ ድር ዲዛይን።' },
       software: { title: 'ሶፍትዌር ልማት', description: 'በጥራት የተሠራ የድር/ሞባይል መተግበሪያ እና ፈጣን ኢተሬሽን።' },
       infrastructure: { title: 'የIT መሠረተ ልማት', description: 'ኔትወርክ፣ ሲስተም እና ኦብዘርቫቢሊቲ—ታመን መሠረት።' },
@@ -340,8 +378,7 @@ const MESSAGES: Record<LocaleCode, Messages> = {
     contact: {
       eyebrow: 'አግኙን',
       title: 'ምን መገንባት እንደሚፈልጉ ያንገሩን',
-      subtitle:
-        'አጭር መግለጫ ይላኩ፤ ተመጣጣኝ እርምጃ፣ ጊዜ ግምት እና ግልጽ እቅድ እንመልሳለን።',
+      subtitle: 'አጭር መግለጫ ይላኩ፤ ተመጣጣኝ እርምጃ፣ ጊዜ ግምት እና ግልጽ እቅድ እንመልሳለን።',
       name: 'ስም',
       email: 'ኢሜይል',
       brief: 'የፕሮጀክት መግለጫ',
@@ -372,7 +409,7 @@ const MESSAGES: Record<LocaleCode, Messages> = {
     },
   },
   fr: {
-    brand: { name: 'Ethio‑Sunshine Tech Solution', tagline: 'Partenaire international produit, cloud et sécurité' },
+    brand: { name: 'Sunshine Tech Solution', tagline: 'Partenaire international produit, cloud et sécurité' },
     nav: { home: 'Accueil', services: 'Services', projects: 'Projets', about: 'À propos', contact: 'Contact' },
     actions: { getQuote: 'Demander une proposition', viewWork: 'Voir nos atouts', send: 'Envoyer' },
     hero: {
@@ -389,9 +426,18 @@ const MESSAGES: Record<LocaleCode, Messages> = {
       subtitle:
         'De la stratégie à la livraison, nous combinons design, ingénierie et sécurité pour livrer un travail premium.',
       web: { title: 'Web design & UI', description: 'Interfaces modernes, accessibles et performantes.' },
-      software: { title: 'Développement logiciel', description: 'Applications web/mobile full‑stack, itération rapide.' },
-      infrastructure: { title: 'Infrastructure IT', description: 'Réseaux, systèmes et observabilité — bases stables.' },
-      iot: { title: 'IoT & systèmes intelligents', description: 'Connecter, collecter et créer des expériences temps réel.' },
+      software: {
+        title: 'Développement logiciel',
+        description: 'Applications web/mobile full‑stack, itération rapide.',
+      },
+      infrastructure: {
+        title: 'Infrastructure IT',
+        description: 'Réseaux, systèmes et observabilité — bases stables.',
+      },
+      iot: {
+        title: 'IoT & systèmes intelligents',
+        description: 'Connecter, collecter et créer des expériences temps réel.',
+      },
       security: { title: 'Cybersécurité', description: 'Durcissement et bonnes pratiques sur apps et infra.' },
     },
     solutions: {
@@ -428,13 +474,30 @@ const MESSAGES: Record<LocaleCode, Messages> = {
       title: 'Questions, réponses',
       subtitle: 'Quelques sujets fréquents pour bien démarrer.',
       items: {
-        one: { q: 'À quelle vitesse pouvez‑vous démarrer ?', a: 'En général sous 1 à 2 semaines selon le périmètre et la disponibilité.' },
-        two: { q: 'Travaillez‑vous à l’international ?', a: 'Oui — livraison remote‑first, collaboration multi‑fuseaux et multi‑langues, y compris RTL.' },
-        three: { q: 'Que comprend la livraison ?', a: 'Code source, documentation et notes de déploiement. Le support continu est optionnel.' },
-        four: { q: 'Pouvez‑vous signer des NDA ou SLA ?', a: 'Oui. Nous pouvons travailler sous NDA et définir des niveaux de service selon vos besoins.' },
+        one: {
+          q: 'À quelle vitesse pouvez‑vous démarrer ?',
+          a: 'En général sous 1 à 2 semaines selon le périmètre et la disponibilité.',
+        },
+        two: {
+          q: 'Travaillez‑vous à l’international ?',
+          a: 'Oui — livraison remote‑first, collaboration multi‑fuseaux et multi‑langues, y compris RTL.',
+        },
+        three: {
+          q: 'Que comprend la livraison ?',
+          a: 'Code source, documentation et notes de déploiement. Le support continu est optionnel.',
+        },
+        four: {
+          q: 'Pouvez‑vous signer des NDA ou SLA ?',
+          a: 'Oui. Nous pouvons travailler sous NDA et définir des niveaux de service selon vos besoins.',
+        },
       },
     },
-    stats: { projects: 'Projets livrés', clients: 'Satisfaction client', response: 'Temps de réponse', hours: 'Couverture horaire' },
+    stats: {
+      projects: 'Projets livrés',
+      clients: 'Satisfaction client',
+      response: 'Temps de réponse',
+      hours: 'Couverture horaire',
+    },
     process: {
       eyebrow: 'Méthode',
       title: 'Un processus simple et transparent',
@@ -465,12 +528,12 @@ const MESSAGES: Record<LocaleCode, Messages> = {
         timezoneValue: 'Adapté Afrique / Europe',
       },
     },
-    footer: { rights: '© 2026 Ethio‑Sunshine Tech Solution. Tous droits réservés.', line: 'Multilingue et RTL‑ready.' },
+    footer: { rights: '© 2026 Sunshine Tech Solution. Tous droits réservés.', line: 'Multilingue et RTL‑ready.' },
     language: { label: 'Langue' },
     a11y: { skip: 'Aller au contenu', toggleMenu: 'Basculer le menu', toggleTheme: 'Basculer le thème' },
   },
   es: {
-    brand: { name: 'Ethio‑Sunshine Tech Solution', tagline: 'Socio internacional de producto, nube y seguridad' },
+    brand: { name: 'Sunshine Tech Solution', tagline: 'Socio internacional de producto, nube y seguridad' },
     nav: { home: 'Inicio', services: 'Servicios', projects: 'Proyectos', about: 'Acerca de', contact: 'Contacto' },
     actions: { getQuote: 'Pedir propuesta', viewWork: 'Ver capacidades', send: 'Enviar' },
     hero: {
@@ -486,10 +549,22 @@ const MESSAGES: Record<LocaleCode, Messages> = {
       title: 'Servicios para equipos modernos',
       subtitle: 'Combinamos diseño, ingeniería y seguridad para entregar con calidad internacional.',
       web: { title: 'Diseño web y UI', description: 'Interfaces modernas, responsivas y accesibles.' },
-      software: { title: 'Desarrollo de software', description: 'Apps full‑stack con arquitectura limpia e iteración rápida.' },
-      infrastructure: { title: 'Infraestructura IT', description: 'Redes, sistemas y observabilidad para crecer con estabilidad.' },
-      iot: { title: 'IoT y sistemas inteligentes', description: 'Conecta dispositivos, recopila datos y entrega en tiempo real.' },
-      security: { title: 'Ciberseguridad', description: 'Endurecimiento y buenas prácticas en apps e infraestructura.' },
+      software: {
+        title: 'Desarrollo de software',
+        description: 'Apps full‑stack con arquitectura limpia e iteración rápida.',
+      },
+      infrastructure: {
+        title: 'Infraestructura IT',
+        description: 'Redes, sistemas y observabilidad para crecer con estabilidad.',
+      },
+      iot: {
+        title: 'IoT y sistemas inteligentes',
+        description: 'Conecta dispositivos, recopila datos y entrega en tiempo real.',
+      },
+      security: {
+        title: 'Ciberseguridad',
+        description: 'Endurecimiento y buenas prácticas en apps e infraestructura.',
+      },
     },
     solutions: {
       eyebrow: 'Por qué nosotros',
@@ -525,13 +600,30 @@ const MESSAGES: Record<LocaleCode, Messages> = {
       title: 'Preguntas y respuestas',
       subtitle: 'Algunas dudas comunes para ayudarte a comenzar.',
       items: {
-        one: { q: '¿Qué tan rápido pueden empezar?', a: 'Normalmente en 1–2 semanas, según el alcance y la disponibilidad.' },
-        two: { q: '¿Trabajan internacionalmente?', a: 'Sí—entrega remota, colaboración por zonas horarias e idiomas, incluyendo RTL.' },
-        three: { q: '¿Qué incluye la entrega?', a: 'Código fuente, documentación y notas de despliegue. El soporte continuo es opcional.' },
-        four: { q: '¿Pueden firmar NDA o SLA?', a: 'Sí. Podemos trabajar con NDA y definir niveles de servicio según tus necesidades.' },
+        one: {
+          q: '¿Qué tan rápido pueden empezar?',
+          a: 'Normalmente en 1–2 semanas, según el alcance y la disponibilidad.',
+        },
+        two: {
+          q: '¿Trabajan internacionalmente?',
+          a: 'Sí—entrega remota, colaboración por zonas horarias e idiomas, incluyendo RTL.',
+        },
+        three: {
+          q: '¿Qué incluye la entrega?',
+          a: 'Código fuente, documentación y notas de despliegue. El soporte continuo es opcional.',
+        },
+        four: {
+          q: '¿Pueden firmar NDA o SLA?',
+          a: 'Sí. Podemos trabajar con NDA y definir niveles de servicio según tus necesidades.',
+        },
       },
     },
-    stats: { projects: 'Proyectos entregados', clients: 'Satisfacción', response: 'Tiempo de respuesta', hours: 'Cobertura horaria' },
+    stats: {
+      projects: 'Proyectos entregados',
+      clients: 'Satisfacción',
+      response: 'Tiempo de respuesta',
+      hours: 'Cobertura horaria',
+    },
     process: {
       eyebrow: 'Proceso',
       title: 'Un proceso simple y transparente',
@@ -561,12 +653,15 @@ const MESSAGES: Record<LocaleCode, Messages> = {
         timezoneValue: 'Compatible África / Europa',
       },
     },
-    footer: { rights: '© 2026 Ethio‑Sunshine Tech Solution. Todos los derechos reservados.', line: 'Multilenguaje y RTL listo.' },
+    footer: {
+      rights: '© 2026 Sunshine Tech Solution. Todos los derechos reservados.',
+      line: 'Multilenguaje y RTL listo.',
+    },
     language: { label: 'Idioma' },
     a11y: { skip: 'Saltar al contenido', toggleMenu: 'Alternar menú', toggleTheme: 'Cambiar tema' },
   },
   ar: {
-    brand: { name: 'إثيو‑صن شاين تك سوليوشن', tagline: 'شريك عالمي للمنتجات والسحابة والأمن' },
+    brand: { name: 'صن شاين تك سوليوشن', tagline: 'شريك عالمي للمنتجات والسحابة والأمن' },
     nav: { home: 'الرئيسية', services: 'الخدمات', projects: 'المشاريع', about: 'من نحن', contact: 'تواصل' },
     actions: { getQuote: 'اطلب عرضاً', viewWork: 'عرض القدرات', send: 'إرسال' },
     hero: {
@@ -624,7 +719,10 @@ const MESSAGES: Record<LocaleCode, Messages> = {
         one: { q: 'كم بسرعة يمكنكم البدء؟', a: 'عادة خلال 1–2 أسبوع حسب النطاق والتوفر.' },
         two: { q: 'هل تعملون دولياً؟', a: 'نعم—تسليم عن بُعد والتعاون عبر المناطق الزمنية واللغات، بما في ذلك RTL.' },
         three: { q: 'ماذا يشمل التسليم؟', a: 'الكود المصدري والتوثيق وملاحظات النشر. الدعم المستمر اختياري.' },
-        four: { q: 'هل يمكنكم توقيع NDA أو SLA؟', a: 'نعم. يمكننا العمل بموجب NDA وتحديد مستويات الخدمة وفق احتياجاتك.' },
+        four: {
+          q: 'هل يمكنكم توقيع NDA أو SLA؟',
+          a: 'نعم. يمكننا العمل بموجب NDA وتحديد مستويات الخدمة وفق احتياجاتك.',
+        },
       },
     },
     stats: { projects: 'مشاريع منجزة', clients: 'رضا العملاء', response: 'زمن الاستجابة', hours: 'تغطية زمنية' },

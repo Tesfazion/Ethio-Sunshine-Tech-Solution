@@ -1,0 +1,36 @@
+Web quality
+
+#Usability
+Global site understandability
+Online feedback and help features
+Interface and aesthetic features
+Special features
+
+
+#Functionality
+Searching and retrieving capability
+Navigation and browsing features
+Application domain-related features
+
+
+#Reliability
+Correct link processing
+Error recovery
+User input validation and recovery
+
+
+#Efficiency
+Response time performance
+Page generation speed
+Graphics generation speed
+
+
+#Maintainability
+Ease of correction
+Adaptability
+Extensibility
+
+
+#Security
+#Availability
+#Scalability

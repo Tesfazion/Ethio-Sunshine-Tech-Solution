@@ -1,12 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
-import { useI18n } from '../i18n';
-import { IconGitHub, IconMail, IconMoon, IconPhone, IconSun } from '../components/icons';
-import { SITE } from '../data/site';
-import { cn } from '../lib/cn';
+import { IconGitHub, IconMail, IconMapPin, IconMoon, IconPhone, IconSun } from '../components/icons';
+import ChatWidget from '../components/ChatWidget';
 import { getProjectBySlug } from '../data/projects';
+import { SITE } from '../data/site';
+import { useI18n } from '../i18n';
+import { cn } from '../lib/cn';
 
-import logoImage from '../../Images/logo/Copilot_20260510_125854.png';
+import logoImage from '../assets/images/logo/company-logo.png';
 
 type Theme = 'light' | 'dark';
 
@@ -25,13 +26,26 @@ export default function AppShell() {
   const [theme, setTheme] = useState<Theme>(() => getInitialTheme());
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
-  const navLinks = useMemo(
+  const navGroups = useMemo(
     () => [
-      { to: '/', label: t('nav.home'), end: true },
-      { to: '/services', label: t('nav.services') },
-      { to: '/projects', label: t('nav.projects') },
-      { to: '/about', label: t('nav.about') },
-      { to: '/contact', label: t('nav.contact') },
+      {
+        links: [{ to: '/', label: t('nav.home'), end: true as const }],
+      },
+      {
+        label: 'Work',
+        links: [
+          { to: '/services', label: t('nav.services') },
+          { to: '/projects', label: t('nav.projects') },
+          { to: '/pricing', label: 'Pricing' },
+        ],
+      },
+      {
+        label: 'Company',
+        links: [
+          { to: '/about', label: t('nav.about') },
+          { to: '/contact', label: t('nav.contact') },
+        ],
+      },
     ],
     [t]
   );
@@ -49,72 +63,103 @@ export default function AppShell() {
     const brand = t('brand.name');
     const path = location.pathname;
 
-    if (path === '/') {
-      document.title = brand;
-      return;
-    }
-
-    if (path.startsWith('/projects/')) {
-      const slug = path.split('/')[2] ?? '';
-      const project = getProjectBySlug(slug);
-      document.title = project ? `${project.title} | ${brand}` : `${t('nav.projects')} | ${brand}`;
-      return;
-    }
-
-    const titleMap: Record<string, string> = {
-      '/services': t('nav.services'),
-      '/projects': t('nav.projects'),
-      '/about': t('nav.about'),
-      '/contact': t('nav.contact'),
+    const metaDescriptions: Record<string, string> = {
+      '/': 'Sunshine Tech Solution — Web design, software development, IT infrastructure, IoT & cybersecurity for businesses worldwide. 30+ projects delivered.',
+      '/services': 'Professional tech services in Ethiopia: websites, custom software, cloud infrastructure, IoT systems & cybersecurity. Free consultation available.',
+      '/projects': 'Explore 30+ real case studies — websites, portals, e-commerce, cloud & security projects delivered for Ethiopian and international clients.',
+      '/pricing': 'Transparent website pricing in Ethiopian Birr (ETB). Basic, Standard & Advanced packages from 14,250 ETB. Free consultation included.',
+      '/about': 'Meet the Sunshine Tech team — Ethiopian tech experts delivering global-quality web, software & security solutions since 2021.',
+      '/contact': 'Contact Sunshine Tech Solution in Addis Ababa. Free project consultation via phone, email, WhatsApp or our contact form.',
+      '/privacy': 'Privacy policy for Sunshine Tech Solution — how we collect, use and protect your personal information.',
     };
 
-    document.title = `${titleMap[path] ?? brand} | ${brand}`;
+    let pageTitle = brand;
+    if (path === '/') {
+      pageTitle = brand;
+    } else if (path.startsWith('/projects/')) {
+      const slug = path.split('/')[2] ?? '';
+      const project = getProjectBySlug(slug);
+      pageTitle = project ? `${project.title} | ${brand}` : `${t('nav.projects')} | ${brand}`;
+    } else {
+      const titleMap: Record<string, string> = {
+        '/services': t('nav.services'),
+        '/projects': t('nav.projects'),
+        '/about': t('nav.about'),
+        '/contact': t('nav.contact'),
+        '/pricing': 'Pricing',
+        '/privacy': 'Privacy',
+      };
+      pageTitle = `${titleMap[path] ?? brand} | ${brand}`;
+    }
+
+    document.title = pageTitle;
+
+    const description = path.startsWith('/projects/') && getProjectBySlug(path.split('/')[2] ?? '')
+      ? getProjectBySlug(path.split('/')[2] ?? '')!.summary
+      : metaDescriptions[path] ?? metaDescriptions['/'];
+
+    let metaTag = document.querySelector('meta[name="description"]');
+    if (metaTag) {
+      metaTag.setAttribute('content', description);
+    }
   }, [location.pathname, t]);
 
   return (
-    <div id="top" className="min-h-screen bg-app text-slate-900 dark:bg-app-dark dark:text-slate-100">
+    <div id="top" className="min-h-screen bg-page-warm dark:bg-slate-900">
       <a
         href="#content"
-        className="sr-only focus:not-sr-only focus:fixed focus:start-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-slate-900 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white dark:focus:bg-white dark:focus:text-slate-900"
+        className="sr-only focus:not-sr-only focus:fixed focus:start-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-brand-orange focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
       >
         {t('a11y.skip')}
       </a>
 
-      <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/60 backdrop-blur dark:border-slate-800/70 dark:bg-slate-950/60">
-        <div className="mx-auto flex max-w-screen-2xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
+      <header className="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b border-slate-200/70 shadow-sm dark:bg-slate-950/85 dark:border-slate-800/60">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
           <Link to="/" className="flex items-center gap-3">
-            <div className="relative h-10 w-10 overflow-hidden rounded-2xl ring-1 ring-slate-200 shadow-sm dark:ring-slate-800">
+            <div className="relative h-16 w-16 overflow-hidden rounded-xl border-2 border-brand-orange shadow-sm">
               <img src={logoImage} alt={t('brand.name')} className="h-full w-full object-cover" />
             </div>
             <div className="hidden sm:block">
-              <p className="text-sm font-semibold text-slate-950 dark:text-slate-50">{t('brand.name')}</p>
-              <p className="text-xs text-slate-500 dark:text-slate-400">{t('brand.tagline')}</p>
+              <p className="text-lg font-bold text-slate-900 dark:text-white">{t('brand.name')}</p>
+              <p className="text-xs text-slate-600 dark:text-slate-400">{t('brand.tagline')}</p>
             </div>
           </Link>
 
-          <nav className="hidden items-center gap-8 text-sm font-medium text-slate-700 dark:text-slate-200 lg:flex">
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                end={link.end}
-                className={({ isActive }) =>
-                  cn('transition hover:text-slate-950 dark:hover:text-white', isActive && 'text-slate-950 dark:text-white')
-                }
-              >
-                {link.label}
-              </NavLink>
+          <nav className="hidden items-center gap-1 lg:flex">
+            {navGroups.map((group, gi) => (
+              <div key={group.label ?? `group-${gi}`} className="flex items-center gap-1">
+                {gi > 0 && <span className="mx-2 h-4 w-px bg-slate-200 dark:bg-slate-700" aria-hidden />}
+                {group.label && (
+                  <span className="sr-only">{group.label}</span>
+                )}
+                {group.links.map((link) => (
+                  <NavLink
+                    key={link.to}
+                    to={link.to}
+                    end={'end' in link ? link.end : undefined}
+                    className={({ isActive }) =>
+                      cn(
+                        'px-3 py-2 rounded-lg text-sm font-semibold transition-colors',
+                        isActive
+                          ? 'text-brand-orange bg-brand-orange-light dark:bg-brand-orange/10'
+                          : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800'
+                      )
+                    }
+                  >
+                    {link.label}
+                  </NavLink>
+                ))}
+              </div>
             ))}
           </nav>
 
           <div className="flex items-center gap-3">
-            <div className="hidden items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3 py-2 shadow-sm backdrop-blur dark:border-slate-800 dark:bg-slate-900/50 sm:flex">
-              <span className="text-xs font-medium text-slate-500 dark:text-slate-400">{t('language.label')}</span>
+            <div className="hidden items-center gap-2 sm:flex">
               <select
                 aria-label={t('language.label')}
                 value={locale}
                 onChange={(e) => setLocale(e.target.value as typeof locale)}
-                className="bg-transparent text-sm font-semibold text-slate-800 outline-none dark:text-slate-100"
+                className="px-3 py-2 text-sm font-medium text-slate-700 bg-slate-100 border border-slate-200 rounded-lg outline-none dark:bg-slate-800 dark:border-slate-700 dark:text-slate-200"
               >
                 {locales.map((l) => (
                   <option key={l.code} value={l.code}>
@@ -127,7 +172,7 @@ export default function AppShell() {
             <button
               type="button"
               onClick={() => setTheme((v) => (v === 'dark' ? 'light' : 'dark'))}
-              className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/70 p-2 text-slate-700 shadow-sm backdrop-blur transition hover:bg-white dark:border-slate-800 dark:bg-slate-900/50 dark:text-slate-200 dark:hover:bg-slate-900"
+              className="inline-flex items-center justify-center p-2 text-slate-700 bg-slate-100 border border-slate-200 rounded-lg transition-colors hover:bg-slate-200 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-700"
               aria-label={t('a11y.toggleTheme')}
             >
               {theme === 'dark' ? <IconSun className="h-5 w-5" /> : <IconMoon className="h-5 w-5" />}
@@ -135,14 +180,14 @@ export default function AppShell() {
 
             <Link
               to="/contact"
-              className="hidden rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200 sm:inline-flex"
+              className="hidden px-6 py-2 text-sm font-semibold text-white bg-brand-orange rounded-lg transition-colors hover:bg-[#E66D00] sm:inline-flex"
             >
-              {t('actions.getQuote')}
+              Book consultation
             </Link>
 
             <button
               type="button"
-              className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/70 p-2 text-slate-700 shadow-sm backdrop-blur transition hover:bg-white dark:border-slate-800 dark:bg-slate-900/50 dark:text-slate-200 dark:hover:bg-slate-900 lg:hidden"
+              className="inline-flex items-center justify-center p-2 text-slate-700 bg-slate-100 border border-slate-200 rounded-lg transition-colors hover:bg-slate-200 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-700 lg:hidden"
               onClick={() => setMobileNavOpen((v) => !v)}
               aria-label={t('a11y.toggleMenu')}
               aria-expanded={mobileNavOpen}
@@ -156,18 +201,18 @@ export default function AppShell() {
 
         <div
           className={cn(
-            'border-t border-slate-200/70 bg-white/70 backdrop-blur dark:border-slate-800/70 dark:bg-slate-950/70 lg:hidden',
+            'border-t-2 border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950 lg:hidden',
             mobileNavOpen ? 'block' : 'hidden'
           )}
         >
-          <div className="mx-auto flex max-w-screen-2xl flex-col gap-3 px-5 py-5 sm:px-8">
-            <div className="flex items-center justify-between rounded-2xl border border-slate-200 bg-white/70 px-4 py-3 shadow-sm backdrop-blur dark:border-slate-800 dark:bg-slate-900/50">
-              <span className="text-xs font-medium text-slate-500 dark:text-slate-400">{t('language.label')}</span>
+          <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-4 sm:px-6">
+            <div className="mb-2 flex items-center justify-between px-4 py-3 rounded-lg bg-slate-100 dark:bg-slate-800">
+              <span className="text-xs font-medium text-slate-600 dark:text-slate-400">{t('language.label')}</span>
               <select
                 aria-label={t('language.label')}
                 value={locale}
                 onChange={(e) => setLocale(e.target.value as typeof locale)}
-                className="bg-transparent text-sm font-semibold text-slate-800 outline-none dark:text-slate-100"
+                className="bg-transparent text-sm font-semibold text-slate-900 outline-none dark:text-white"
               >
                 {locales.map((l) => (
                   <option key={l.code} value={l.code}>
@@ -177,27 +222,38 @@ export default function AppShell() {
               </select>
             </div>
 
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                end={link.end}
-                className={({ isActive }) =>
-                  cn(
-                    'rounded-2xl px-4 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-50 dark:text-slate-100 dark:hover:bg-slate-900',
-                    isActive && 'bg-slate-50 dark:bg-slate-900'
-                  )
-                }
-              >
-                {link.label}
-              </NavLink>
+            {navGroups.map((group, gi) => (
+              <div key={group.label ?? `mobile-group-${gi}`}>
+                {group.label && (
+                  <p className="px-4 pt-3 pb-1 text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">
+                    {group.label}
+                  </p>
+                )}
+                {group.links.map((link) => (
+                  <NavLink
+                    key={link.to}
+                    to={link.to}
+                    end={'end' in link ? link.end : undefined}
+                    className={({ isActive }) =>
+                      cn(
+                        'px-4 py-3 rounded-lg text-sm font-semibold transition-colors block',
+                        isActive
+                          ? 'bg-brand-orange-light text-brand-orange'
+                          : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800'
+                      )
+                    }
+                  >
+                    {link.label}
+                  </NavLink>
+                ))}
+              </div>
             ))}
 
             <Link
               to="/contact"
-              className="mt-2 inline-flex items-center justify-center rounded-full bg-slate-900 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200"
+              className="mt-2 inline-flex items-center justify-center px-4 py-3 text-sm font-semibold text-white bg-brand-orange rounded-lg transition-colors hover:bg-[#E66D00]"
             >
-              {t('actions.getQuote')}
+              Book consultation
             </Link>
           </div>
         </div>
@@ -207,42 +263,130 @@ export default function AppShell() {
         <Outlet />
       </main>
 
-      <footer className="border-t border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950">
-        <div className="mx-auto flex max-w-screen-2xl flex-col gap-4 px-5 py-10 text-sm text-slate-600 dark:text-slate-300 sm:px-8 lg:flex-row lg:items-center lg:justify-between">
-          <div className="space-y-2">
-            <p className="font-semibold text-slate-950 dark:text-slate-50">{t('brand.name')}</p>
-            <p>{t('footer.line')}</p>
-            <div className="flex flex-wrap items-center gap-3 pt-1">
-              <a
-                href={`mailto:${SITE.email}`}
-                dir="ltr"
-                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-sm backdrop-blur transition hover:bg-white dark:border-slate-800 dark:bg-slate-900/50 dark:text-slate-200 dark:hover:bg-slate-900"
+      <footer className="bg-slate-900 dark:bg-slate-950 text-white">
+        {/* ── Brand gradient top accent ─────────────────────── */}
+        <div className="h-1 bg-gradient-to-r from-[#FF7A00] via-[#FF7A00] to-[#007ACC]" />
+
+        {/* ── Main footer body ──────────────────────────────── */}
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+          <div className="grid gap-10 md:grid-cols-3">
+            {/* Col 1 — Brand */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <div className="h-12 w-12 overflow-hidden rounded-xl border-2 border-[#FF7A00] shadow-lg flex-shrink-0">
+                  <img src={logoImage} alt={t('brand.name')} className="h-full w-full object-cover" />
+                </div>
+                <div>
+                  <p className="text-base font-bold text-white">{t('brand.name')}</p>
+                  <p className="text-xs text-white/50 mt-0.5">{t('brand.tagline')}</p>
+                </div>
+              </div>
+              <p className="text-sm text-white/65 leading-relaxed max-w-xs">{t('footer.line')}</p>
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-[#FF7A00] hover:text-orange-300 transition-colors"
               >
-                <IconMail className="h-4 w-4" />
-                {SITE.email}
-              </a>
-              <a
-                href={`tel:${SITE.phone}`}
-                dir="ltr"
-                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-sm backdrop-blur transition hover:bg-white dark:border-slate-800 dark:bg-slate-900/50 dark:text-slate-200 dark:hover:bg-slate-900"
-              >
-                <IconPhone className="h-4 w-4" />
-                {SITE.phone}
-              </a>
-              <a
-                href={githubUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-sm backdrop-blur transition hover:bg-white dark:border-slate-800 dark:bg-slate-900/50 dark:text-slate-200 dark:hover:bg-slate-900"
-              >
-                <IconGitHub className="h-4 w-4" />
-                GitHub
-              </a>
+                Book a free consultation →
+              </Link>
+              <div className="flex items-center gap-3 pt-1">
+                <a
+                  href={githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                  className="flex items-center justify-center w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
+                >
+                  <IconGitHub className="h-4 w-4 text-white" />
+                </a>
+                <a
+                  href={`mailto:${SITE.email}`}
+                  aria-label="Email"
+                  className="flex items-center justify-center w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
+                >
+                  <IconMail className="h-4 w-4 text-white" />
+                </a>
+                <a
+                  href={`tel:${SITE.phone}`}
+                  aria-label="Phone"
+                  className="flex items-center justify-center w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
+                >
+                  <IconPhone className="h-4 w-4 text-white" />
+                </a>
+              </div>
+            </div>
+
+            {/* Col 2 — Explore */}
+            <div className="space-y-4">
+              <h3 className="text-xs font-bold uppercase tracking-widest text-[#FF7A00]">Explore</h3>
+              <ul className="space-y-2.5">
+                {[
+                  { to: '/services', label: t('nav.services') },
+                  { to: '/projects', label: t('nav.projects') },
+                  { to: '/pricing', label: 'Pricing' },
+                  { to: '/about', label: t('nav.about') },
+                  { to: '/contact', label: t('nav.contact') },
+                ].map((link) => (
+                  <li key={link.to}>
+                    <NavLink
+                      to={link.to}
+                      className={({ isActive }) =>
+                        cn(
+                          'text-sm transition-colors',
+                          isActive ? 'text-[#FF7A00] font-semibold' : 'text-white/65 hover:text-white'
+                        )
+                      }
+                    >
+                      {link.label}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Col 3 — Contact */}
+            <div className="space-y-4">
+              <h3 className="text-xs font-bold uppercase tracking-widest text-[#7FA8FF]">Contact</h3>
+              <ul className="space-y-3">
+                <li>
+                  <a
+                    href={`mailto:${SITE.email}`}
+                    className="flex items-start gap-2 text-sm text-white/65 hover:text-white transition-colors"
+                  >
+                    <IconMail className="h-4 w-4 flex-shrink-0 mt-0.5 text-[#7FA8FF]" />
+                    <span className="break-all">{SITE.email}</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={`tel:${SITE.phone}`}
+                    className="flex items-center gap-2 text-sm text-white/65 hover:text-white transition-colors"
+                  >
+                    <IconPhone className="h-4 w-4 flex-shrink-0 text-[#7FA8FF]" />
+                    <span>{SITE.phone}</span>
+                  </a>
+                </li>
+                <li className="flex items-start gap-2 text-sm text-white/65">
+                  <IconMapPin className="h-4 w-4 flex-shrink-0 mt-0.5 text-[#7FA8FF]" />
+                  <span>{SITE.location}</span>
+                </li>
+              </ul>
             </div>
           </div>
-          <p>{t('footer.rights')}</p>
+        </div>
+
+        {/* ── Bottom bar ────────────────────────────────────── */}
+        <div className="border-t border-white/10">
+          <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-center sm:text-start">
+              <p className="text-xs text-white/40">{t('footer.rights')}</p>
+              <Link to="/privacy" className="text-xs text-white/40 hover:text-white/70 transition-colors">
+                Privacy Policy
+              </Link>
+            </div>
+          </div>
         </div>
       </footer>
+      <ChatWidget />
     </div>
   );
 }

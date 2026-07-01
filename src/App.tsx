@@ -5,9 +5,11 @@ import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import HomePage from './pages/HomePage';
 import NotFoundPage from './pages/NotFoundPage';
+import PricingPage from './pages/PricingPage';
 import ProjectDetailPage from './pages/ProjectDetailPage';
 import ProjectsPage from './pages/ProjectsPage';
 import ServicesPage from './pages/ServicesPage';
+import PrivacyPage from './pages/PrivacyPage';
 
 export default function App() {
   return (
@@ -54,10 +56,26 @@ export default function App() {
           }
         />
         <Route
+          path="pricing"
+          element={
+            <ErrorBoundary title="Pricing page error">
+              <PricingPage />
+            </ErrorBoundary>
+          }
+        />
+        <Route
           path="contact"
           element={
             <ErrorBoundary title="Contact page error">
               <ContactPage />
+            </ErrorBoundary>
+          }
+        />
+        <Route
+          path="privacy"
+          element={
+            <ErrorBoundary title="Privacy page error">
+              <PrivacyPage />
             </ErrorBoundary>
           }
         />
