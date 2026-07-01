@@ -2,8 +2,6 @@
 
 ![Homepage preview](README-screenshot.png)
 
-![Services page preview](README-services-screenshot.png)
-
 Professional technology solutions website built with React, TypeScript, Vite, and Tailwind CSS.
 
 Supported languages: English, Afaan Oromoo, Amharic, Español, Français, and العربية (Arabic).

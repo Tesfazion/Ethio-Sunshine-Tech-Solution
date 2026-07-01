@@ -23,31 +23,19 @@ function getInitialTheme(): Theme {
 export default function AppShell() {
   const { locale, locales, setLocale, t } = useI18n();
   const location = useLocation();
-  const githubUrl = SITE.socials.find((link) => link.kind === 'github')?.href ?? 'https://github.com/';
+  const brandTagline = t('brand.tagline');
 
   const [theme, setTheme] = useState<Theme>(() => getInitialTheme());
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
-  const navGroups = useMemo(
+  const navLinks = useMemo(
     () => [
-      {
-        links: [{ to: '/', label: t('nav.home'), end: true as const }],
-      },
-      {
-        label: 'Work',
-        links: [
-          { to: '/services', label: t('nav.services') },
-          { to: '/projects', label: t('nav.projects') },
-          { to: '/pricing', label: 'Pricing' },
-        ],
-      },
-      {
-        label: 'Company',
-        links: [
-          { to: '/about', label: t('nav.about') },
-          { to: '/contact', label: t('nav.contact') },
-        ],
-      },
+      { to: '/', label: t('nav.home'), end: true as const },
+      { to: '/services', label: t('nav.services') },
+      { to: '/projects', label: t('nav.projects') },
+      { to: '/pricing', label: 'Pricing' },
+      { to: '/about', label: t('nav.about') },
+      { to: '/contact', label: t('nav.contact') },
     ],
     [t]
   );
@@ -125,38 +113,31 @@ export default function AppShell() {
       <header className="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b border-slate-200/70 shadow-sm dark:bg-slate-950/85 dark:border-slate-800/60">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
           <Link to="/" className="flex items-center gap-3">
-            <div className="relative h-16 w-16 overflow-hidden rounded-xl border-2 border-brand-orange shadow-sm">
+            <div className="relative h-14 w-14 overflow-hidden rounded-xl border-2 border-brand-orange shadow-sm">
               <img src={logoImage} alt={t('brand.name')} className="h-full w-full object-cover" />
             </div>
             <div className="hidden sm:block">
               <p className="text-lg font-bold text-slate-900 dark:text-white">{t('brand.name')}</p>
-              <p className="text-xs text-slate-600 dark:text-slate-400">{t('brand.tagline')}</p>
             </div>
           </Link>
 
           <nav className="hidden items-center gap-1 lg:flex">
-            {navGroups.map((group, gi) => (
-              <div key={group.label ?? `group-${gi}`} className="flex items-center gap-1">
-                {gi > 0 && <span className="mx-2 h-4 w-px bg-slate-200 dark:bg-slate-700" aria-hidden />}
-                {group.label && <span className="sr-only">{group.label}</span>}
-                {group.links.map((link) => (
-                  <NavLink
-                    key={link.to}
-                    to={link.to}
-                    end={'end' in link ? link.end : undefined}
-                    className={({ isActive }) =>
-                      cn(
-                        'px-3 py-2 rounded-lg text-sm font-semibold transition-colors',
-                        isActive
-                          ? 'text-brand-orange bg-brand-orange-light dark:bg-brand-orange/10'
-                          : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800'
-                      )
-                    }
-                  >
-                    {link.label}
-                  </NavLink>
-                ))}
-              </div>
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                end={link.end}
+                className={({ isActive }) =>
+                  cn(
+                    'px-3 py-2 rounded-lg text-sm font-semibold transition-colors',
+                    isActive
+                      ? 'text-brand-orange bg-brand-orange-light dark:bg-brand-orange/10'
+                      : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800'
+                  )
+                }
+              >
+                {link.label}
+              </NavLink>
             ))}
           </nav>
 
@@ -233,31 +214,22 @@ export default function AppShell() {
               </select>
             </div>
 
-            {navGroups.map((group, gi) => (
-              <div key={group.label ?? `mobile-group-${gi}`}>
-                {group.label && (
-                  <p className="px-4 pt-3 pb-1 text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">
-                    {group.label}
-                  </p>
-                )}
-                {group.links.map((link) => (
-                  <NavLink
-                    key={link.to}
-                    to={link.to}
-                    end={'end' in link ? link.end : undefined}
-                    className={({ isActive }) =>
-                      cn(
-                        'px-4 py-3 rounded-lg text-sm font-semibold transition-colors block',
-                        isActive
-                          ? 'bg-brand-orange-light text-brand-orange'
-                          : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800'
-                      )
-                    }
-                  >
-                    {link.label}
-                  </NavLink>
-                ))}
-              </div>
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                end={link.end}
+                className={({ isActive }) =>
+                  cn(
+                    'px-4 py-3 rounded-lg text-sm font-semibold transition-colors block',
+                    isActive
+                      ? 'bg-brand-orange-light text-brand-orange'
+                      : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800'
+                  )
+                }
+              >
+                {link.label}
+              </NavLink>
             ))}
 
             <Link
@@ -289,7 +261,7 @@ export default function AppShell() {
                 </div>
                 <div>
                   <p className="text-base font-bold text-white">{t('brand.name')}</p>
-                  <p className="text-xs text-white/50 mt-0.5">{t('brand.tagline')}</p>
+                  {brandTagline ? <p className="text-xs text-white/50 mt-0.5">{brandTagline}</p> : null}
                 </div>
               </div>
               <p className="text-sm text-white/65 leading-relaxed max-w-xs">{t('footer.line')}</p>
@@ -301,7 +273,7 @@ export default function AppShell() {
               </Link>
               <div className="flex items-center gap-3 pt-1">
                 <a
-                  href={githubUrl}
+                  href={SITE.socials.find((social) => social.kind === 'github')?.href ?? '#'}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GitHub"

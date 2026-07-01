@@ -27,7 +27,7 @@ const MESSAGES: Record<LocaleCode, Messages> = {
   en: {
     brand: {
       name: 'Sunshine Tech Solution',
-      tagline: 'International product, cloud, and security partner',
+      tagline: 'Modern web, software & security services',
     },
     nav: {
       home: 'Home',
@@ -293,7 +293,7 @@ const MESSAGES: Record<LocaleCode, Messages> = {
   am: {
     brand: {
       name: 'ሳንሻይን ቴክ ሶሉሽን',
-      tagline: 'ዓለም አቀፍ የምርት፣ የደመና እና የደህንነት አጋር',
+      tagline: 'የድር፣ ሶፍትዌር እና የደህንነት አገልግሎቶች',
     },
     nav: {
       home: 'መነሻ',
@@ -412,7 +412,7 @@ const MESSAGES: Record<LocaleCode, Messages> = {
     },
   },
   fr: {
-    brand: { name: 'Sunshine Tech Solution', tagline: 'Partenaire international produit, cloud et sécurité' },
+    brand: { name: 'Sunshine Tech Solution', tagline: 'Services web, logiciels et sécurité' },
     nav: { home: 'Accueil', services: 'Services', projects: 'Projets', about: 'À propos', contact: 'Contact' },
     actions: { getQuote: 'Demander une proposition', viewWork: 'Voir nos atouts', send: 'Envoyer' },
     hero: {
@@ -536,7 +536,7 @@ const MESSAGES: Record<LocaleCode, Messages> = {
     a11y: { skip: 'Aller au contenu', toggleMenu: 'Basculer le menu', toggleTheme: 'Basculer le thème' },
   },
   es: {
-    brand: { name: 'Sunshine Tech Solution', tagline: 'Socio internacional de producto, nube y seguridad' },
+    brand: { name: 'Sunshine Tech Solution', tagline: 'Servicios web, software y seguridad' },
     nav: { home: 'Inicio', services: 'Servicios', projects: 'Proyectos', about: 'Acerca de', contact: 'Contacto' },
     actions: { getQuote: 'Pedir propuesta', viewWork: 'Ver capacidades', send: 'Enviar' },
     hero: {
@@ -666,7 +666,7 @@ const MESSAGES: Record<LocaleCode, Messages> = {
   om: {
     brand: {
       name: 'Sunshine Tech Solution',
-      tagline: 'Hiriyaa oomisha, cloud, fi nageenya addunyaa',
+      tagline: 'Tajaajilawwan web, software, fi nageenya',
     },
     nav: {
       home: 'Mana',
@@ -935,7 +935,7 @@ const MESSAGES: Record<LocaleCode, Messages> = {
     },
   },
   ar: {
-    brand: { name: 'صن شاين تك سوليوشن', tagline: 'شريك عالمي للمنتجات والسحابة والأمن' },
+    brand: { name: 'صن شاين تك سوليوشن', tagline: 'خدمات الويب والبرمجيات والأمن' },
     nav: { home: 'الرئيسية', services: 'الخدمات', projects: 'المشاريع', about: 'من نحن', contact: 'تواصل' },
     actions: { getQuote: 'اطلب عرضاً', viewWork: 'عرض القدرات', send: 'إرسال' },
     hero: {

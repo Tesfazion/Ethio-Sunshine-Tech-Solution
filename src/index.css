@@ -19,7 +19,7 @@
     Arial,
     sans-serif;
   background-color: #ffffff;
-  --color-sunrise-orange: #ff7a00;
+  --color-sunrise-orange: #ef842b;
   --color-tech-blue: #007acc;
 
   /* Section palette */
@@ -33,7 +33,9 @@
   --shadow-card-lg: 0 10px 24px rgba(0, 0, 0, 0.08), 0 24px 60px rgba(0, 122, 204, 0.11);
 
   /* Subtle dot-grid pattern (SVG data-URI) used as texture behind glass cards */
-  --dot-pattern: linear-gradient(rgba(0, 122, 204, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 122, 204, 0.04) 1px, transparent 1px);
+  --dot-pattern:
+    linear-gradient(rgba(0, 122, 204, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 122, 204, 0.04) 1px, transparent 1px);
 }
 
 html {
@@ -83,19 +85,19 @@ body {
 
   /* brand colours */
   .text-brand-orange {
-    color: #ff7a00;
+    color: #ef842b;
   }
   .bg-brand-orange {
-    background-color: #ff7a00;
+    background-color: #ef842b;
   }
   .bg-brand-orange-light {
-    background-color: #fff7ef;
+    background-color: #fff3e6;
   }
   .border-brand-orange {
-    border-color: #ff7a00;
+    border-color: #ef842b;
   }
   .ring-brand-orange {
-    --tw-ring-color: #ff7a00;
+    --tw-ring-color: #ef842b;
   }
 
   .text-brand-blue {
@@ -151,14 +153,18 @@ body {
     background-color: var(--bg-section-b);
     background-image:
       radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0, 122, 204, 0.08) 0%, transparent 70%), var(--dot-pattern);
-    background-size: auto, 28px 28px;
+    background-size:
+      auto,
+      28px 28px;
   }
   /* cool section: subtle radial gradient from blue tint + texture */
   .bg-section-c {
     background-color: var(--bg-section-c);
     background-image:
       radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0, 122, 204, 0.1) 0%, transparent 70%), var(--dot-pattern);
-    background-size: auto, 28px 28px;
+    background-size:
+      auto,
+      28px 28px;
   }
 
   /* ── Glassmorphism cards (for LIGHT mode) ── */
@@ -190,7 +196,7 @@ body {
     background: rgba(255, 255, 255, 0.75);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(0, 122, 204, 0.20);
+    border: 1px solid rgba(0, 122, 204, 0.2);
     border-inline-start: 3px solid #007acc;
     box-shadow: var(--shadow-card);
   }

@@ -1,6 +1,7 @@
 // Floating chat widget component.
 // Provides quick WhatsApp contact and support interactions.
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { IconMail, IconPhone } from './icons';
 
 const WA_NUMBER = '251983708869';
@@ -11,6 +12,45 @@ export default function ChatWidget() {
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
   const [sent, setSent] = useState(false);
+  const [activeTopic, setActiveTopic] = useState('');
+
+  const commonTopics = [
+    {
+      id: 'services',
+      title: 'Services offered',
+      summary: 'Learn what solutions we can build for your business.',
+      answer:
+        'We provide web design, custom software development, IT infrastructure, IoT systems, and cybersecurity services tailored for startups and growing organizations.',
+    },
+    {
+      id: 'pricing',
+      title: 'Payment options',
+      summary: 'See how pricing and proposals work.',
+      answer:
+        'We offer transparent package pricing and custom quotes. Payments can be arranged by invoice, bank transfer, or local payment methods during project onboarding.',
+    },
+    {
+      id: 'timeline',
+      title: 'Delivery times',
+      summary: 'Typical timelines for websites and software.',
+      answer:
+        'Website projects commonly launch in 2–4 weeks. Larger software or security engagements are scheduled after discovery, with clear milestones and delivery estimates.',
+    },
+    {
+      id: 'languages',
+      title: 'Language support',
+      summary: 'Know which languages your site can support.',
+      answer:
+        'Yes, we support multilingual websites and apps, including Afaan Oromoo, Amharic, Español, Français, Arabic, and RTL-ready layouts.',
+    },
+    {
+      id: 'security',
+      title: 'Security help',
+      summary: 'Ask about cybersecurity and infrastructure support.',
+      answer:
+        'We handle cybersecurity posture reviews, hardening, and secure infrastructure setup so your web app and cloud environment are protected.',
+    },
+  ];
 
   function handleSend(e: React.FormEvent) {
     e.preventDefault();
@@ -32,19 +72,19 @@ export default function ChatWidget() {
       {/* ── Chat panel ───────────────────────────── */}
       {open && (
         <div
-          className="fixed bottom-24 end-4 z-[60] w-[calc(100vw-2rem)] max-w-xs sm:max-w-sm bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 flex flex-col overflow-hidden animate-scale-in"
+          className="fixed bottom-24 end-4 z-[60] w-[calc(100vw-2rem)] max-w-sm sm:max-w-sm max-h-[80vh] bg-white dark:bg-slate-800 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-700 flex flex-col overflow-hidden animate-scale-in"
           role="dialog"
           aria-label="Chat with our team"
         >
           {/* Header — solid brand */}
-          <div className="bg-tech-blue p-4 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-11 h-11 rounded-xl bg-white/15 border border-white/25 flex items-center justify-center text-white font-black text-xs flex-shrink-0">
+          <div className="bg-tech-blue p-3 flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2">
+              <div className="w-10 h-10 rounded-xl bg-white/15 border border-white/25 flex items-center justify-center text-white font-black text-xs flex-shrink-0">
                 STS
               </div>
               <div>
                 <p className="font-bold text-white text-sm leading-tight">Sunshine Tech Support</p>
-                <div className="flex items-center gap-1.5 mt-0.5">
+                <div className="flex items-center gap-1 mt-0.5">
                   <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
                   <span className="text-white/80 text-xs">Typically replies within 1 hour</span>
                 </div>
@@ -61,13 +101,47 @@ export default function ChatWidget() {
           </div>
 
           {/* Body */}
-          <div className="p-4 bg-slate-50 dark:bg-slate-900 flex-grow">
+          <div className="p-4 bg-slate-50 dark:bg-slate-900 flex-grow overflow-y-auto min-h-0">
             {/* Greeting bubble */}
-            <div className="bg-white dark:bg-slate-800 rounded-2xl rounded-tl-sm p-3.5 text-sm text-slate-700 dark:text-slate-200 shadow-sm border border-slate-100 dark:border-slate-700 mb-4 leading-relaxed">
-              👋 Welcome to <strong>Sunshine Tech Solution</strong>!
-              <br />
-              You're connected with our customer support team. Ask us anything — web, software, pricing, or any tech
-              question. We're here to help!
+            <div className="bg-white dark:bg-slate-800 rounded-3xl p-4 text-sm text-slate-700 dark:text-slate-200 shadow-sm border border-slate-100 dark:border-slate-700 mb-4 leading-relaxed">
+              <p className="text-sm font-semibold text-slate-900 dark:text-white">
+                👋 Welcome to Sunshine Tech Support
+              </p>
+              <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">
+                Get quick answers to common questions, or send us a message if you want a custom quote.
+              </p>
+            </div>
+
+            <div className="space-y-2 mb-4">
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+                  Quick topics
+                </p>
+                <span className="text-xs text-slate-400 dark:text-slate-500">Tap to expand</span>
+              </div>
+              <div className="space-y-2">
+                {commonTopics.map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => setActiveTopic(activeTopic === item.id ? '' : item.id)}
+                    className="w-full rounded-3xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-4 py-3 text-left transition hover:border-brand-orange hover:bg-brand-orange/5"
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <div>
+                        <p className="font-semibold text-sm text-slate-900 dark:text-white">{item.title}</p>
+                        <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">{item.summary}</p>
+                      </div>
+                      <span className="text-brand-orange text-xs font-semibold">
+                        {activeTopic === item.id ? 'Hide' : 'Show'}
+                      </span>
+                    </div>
+                    {activeTopic === item.id ? (
+                      <p className="mt-3 text-sm text-slate-700 dark:text-slate-200 leading-relaxed">{item.answer}</p>
+                    ) : null}
+                  </button>
+                ))}
+              </div>
             </div>
 
             {sent ? (
@@ -101,23 +175,31 @@ export default function ChatWidget() {
             )}
           </div>
 
-          {/* Footer — direct contact links */}
-          <div className="px-4 py-3 border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-center gap-5">
-            <a
-              href={`tel:+${WA_NUMBER}`}
-              className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 hover:text-[#FF7A00] transition-colors"
-            >
-              <IconPhone className="h-3.5 w-3.5" />
-              Call us
-            </a>
-            <span className="text-slate-200 dark:text-slate-600">|</span>
-            <a
-              href={`mailto:${COMPANY_EMAIL}`}
-              className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 hover:text-[#007ACC] transition-colors"
-            >
-              <IconMail className="h-3.5 w-3.5" />
-              Email us
-            </a>
+          {/* Footer — direct contact links and CTA */}
+          <div className="px-4 py-3 border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 space-y-3">
+            <div className="flex items-center justify-between gap-3 text-xs text-slate-500 dark:text-slate-400">
+              <span>Need more help?</span>
+              <Link to="/contact" className="font-semibold text-brand-orange hover:text-[#E66D00]">
+                Contact us
+              </Link>
+            </div>
+            <div className="flex items-center justify-center gap-5">
+              <a
+                href={`tel:+${WA_NUMBER}`}
+                className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 hover:text-[#FF7A00] transition-colors"
+              >
+                <IconPhone className="h-3.5 w-3.5" />
+                Call us
+              </a>
+              <span className="text-slate-200 dark:text-slate-600">|</span>
+              <a
+                href={`mailto:${COMPANY_EMAIL}`}
+                className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 hover:text-[#007ACC] transition-colors"
+              >
+                <IconMail className="h-3.5 w-3.5" />
+                Email us
+              </a>
+            </div>
           </div>
         </div>
       )}

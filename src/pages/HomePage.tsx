@@ -204,11 +204,6 @@ export default function HomePage() {
           <div className="grid gap-10 lg:grid-cols-2 lg:gap-16 lg:items-center">
             {/* Left — copy */}
             <div className="space-y-8 animate-slide-in-left z-10">
-              <div className="inline-flex items-center gap-2 rounded-full bg-brand-orange px-4 py-2 shadow-md">
-                <span className="h-2 w-2 rounded-full bg-white animate-pulse" />
-                <span className="text-sm font-semibold text-white">{t('hero.badge')}</span>
-              </div>
-
               <div className="space-y-4">
                 <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl dark:text-white leading-tight">
                   {t('hero.title')}
