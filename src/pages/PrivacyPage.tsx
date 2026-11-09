@@ -6,23 +6,23 @@ export default function PrivacyPage() {
   const sections = [
     {
       title: 'Information We Collect',
-      content: `When you use our contact form, we collect your name, email address, and the message you send us. We do not collect any other personal information automatically. We do not use cookies for tracking, and we do not have user accounts on this website.`,
+      content: `This website does not submit or store contact form details on its server. The form prepares an email draft in your email application; information is sent to us only if you choose to send that email. Your browser may store your language and theme preferences locally.`,
     },
     {
       title: 'How We Use Your Information',
-      content: `We use the information you provide solely to respond to your inquiry or project request. Your contact details are never sold, rented, or shared with third parties for marketing purposes. We retain your message only as long as necessary to respond to it.`,
+      content: `If you send us an email or contact us through WhatsApp, we use the information in that communication to respond to your inquiry. Email and messaging providers process information under their own privacy terms. Contact us to ask about information you have sent us.`,
     },
     {
       title: 'Third-Party Services',
-      content: `This website uses Google Fonts (for typography) and Unsplash (for images). These services may log your IP address as part of their standard operation. We use no advertising networks, analytics trackers, or social media pixels on this website.`,
+      content: `The website loads fonts from Google Fonts and some images from Unsplash. Your browser may make requests to those services when loading a page. No advertising or analytics service is intentionally embedded in this site.`,
     },
     {
       title: 'Data Security',
-      content: `Our website does not store your personal data on our servers. Contact form submissions are delivered directly via email using your default mail client (mailto links). WhatsApp communications are protected by WhatsApp's end-to-end encryption.`,
+      content: `The contact form creates a mailto draft in your browser and does not transmit the form contents to this website. If you send the draft, your email provider and our email service will process it. WhatsApp messages are processed by WhatsApp when you choose to use that service.`,
     },
     {
       title: 'Your Rights',
-      content: `You have the right to request that we delete any personal information you have shared with us. To make such a request, please email us at sunshinetechsolution4@gmail.com. We will respond within 5 business days.`,
+      content: `You can contact us at sunshinetechsolution4@gmail.com with questions or requests concerning information you have sent us. Any request will be handled in accordance with applicable requirements.`,
     },
     {
       title: 'Changes to This Policy',
@@ -37,7 +37,7 @@ export default function PrivacyPage() {
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-xs font-bold text-orange-300 uppercase tracking-widest mb-4">Legal</p>
           <h1 className="text-4xl sm:text-5xl font-bold mb-4">Privacy Policy</h1>
-          <p className="text-white/70 text-lg">Last updated: June 2026</p>
+          <p className="text-white/70 text-lg">Last updated: November 9, 2026</p>
         </div>
       </section>
 
@@ -75,13 +75,13 @@ export default function PrivacyPage() {
           </div>
 
           {/* Contact */}
-          <div className="mt-8 bg-gradient-to-br from-[#FF7A00] to-[#C85A00] rounded-2xl p-7 text-white text-center animate-scale-in">
+          <div className="mt-8 bg-gradient-to-br from-[#C2410C] to-[#9A3412] rounded-2xl p-7 text-white text-center animate-scale-in">
             <h3 className="text-xl font-bold mb-2">Questions About This Policy?</h3>
             <p className="text-white/80 text-sm mb-5">Contact us and we'll be happy to explain anything further.</p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a
                 href="mailto:sunshinetechsolution4@gmail.com"
-                className="inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-[#FF7A00] bg-white rounded-xl hover:bg-slate-50 transition-all"
+                className="inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-[#9A3412] bg-white rounded-xl hover:bg-slate-50 transition-all"
               >
                 Email Us
               </a>

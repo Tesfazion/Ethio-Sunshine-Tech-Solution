@@ -1,34 +1,14 @@
 // Projects page view
-// Lists project case studies with spotlight cards and a call-to-action section.
-import { useMemo } from 'react';
+// Lists illustrative project concepts with spotlight cards and a call-to-action section.
 import { Link } from 'react-router-dom';
 import ProjectSpotlight from '../components/ProjectSpotlight';
 import { PROJECTS } from '../data/projects';
 import { useI18n } from '../i18n';
-import { cn } from '../lib/cn';
 
-const HERO_BG = 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1920&q=80';
+const HERO_BG = 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1600&q=70';
 
 export default function ProjectsPage() {
   const { t } = useI18n();
-
-  const stats = useMemo(
-    () => [
-      {
-        label: t('projects.dashboard.cards.one.label'),
-        value: t('projects.dashboard.cards.one.value'),
-      },
-      {
-        label: t('projects.dashboard.cards.two.label'),
-        value: t('projects.dashboard.cards.two.value'),
-      },
-      {
-        label: t('projects.dashboard.cards.three.label'),
-        value: t('projects.dashboard.cards.three.value'),
-      },
-    ],
-    [t]
-  );
 
   return (
     <div className="bg-slate-50 dark:bg-slate-900">
@@ -48,28 +28,9 @@ export default function ProjectsPage() {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
               {t('projects.page.title')}
             </h1>
-            <p className="text-white/80 text-lg max-w-2xl leading-relaxed">{t('projects.page.subtitle')}</p>
-          </div>
-
-          <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl animate-fade-in-up">
-            {stats.map((stat, idx) => (
-              <div
-                key={stat.label}
-                className={cn(
-                  'bg-white dark:bg-slate-800 rounded-xl border-2 p-5 text-center shadow-lg',
-                  idx === 0
-                    ? 'border-brand-orange'
-                    : idx === 1
-                      ? 'border-tech-blue'
-                      : 'border-slate-200 dark:border-slate-600'
-                )}
-              >
-                <p className="text-3xl font-bold text-brand-orange">{stat.value}</p>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 uppercase tracking-wider font-semibold">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
+            <p className="text-white/80 text-lg max-w-2xl leading-relaxed">
+              {t('projects.page.subtitle')}
+            </p>
           </div>
         </div>
       </section>
@@ -79,15 +40,14 @@ export default function ProjectsPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
             <div>
-              <p className="text-xs font-bold text-brand-orange uppercase tracking-widest mb-2">Case Studies</p>
-              <h2 className="text-3xl font-bold text-slate-900 dark:text-white">Real Results for Real Clients</h2>
+              <p className="text-xs font-bold text-brand-orange uppercase tracking-widest mb-2">{t('projects.page.eyebrow')}</p>
+              <h2 className="text-3xl font-bold text-slate-900 dark:text-white">{t('projects.page.title')}</h2>
               <p className="text-slate-600 dark:text-slate-400 mt-2 max-w-xl">
-                Every project below follows the same proven process — clear goals, measurable outcomes, and ongoing
-                support.
+                These examples illustrate capabilities and are not client case studies or measured project outcomes.
               </p>
             </div>
             <p className="text-sm font-semibold text-slate-500 dark:text-slate-400 bg-brand-orange-light dark:bg-slate-800 px-4 py-2 rounded-full border-2 border-brand-orange/30 dark:border-slate-700">
-              {PROJECTS.length} projects delivered
+              {PROJECTS.length} illustrative concepts
             </p>
           </div>
 

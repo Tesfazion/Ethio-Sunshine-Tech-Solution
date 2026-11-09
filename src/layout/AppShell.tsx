@@ -33,7 +33,7 @@ export default function AppShell() {
       { to: '/', label: t('nav.home'), end: true as const },
       { to: '/services', label: t('nav.services') },
       { to: '/projects', label: t('nav.projects') },
-      { to: '/pricing', label: 'Pricing' },
+      { to: '/pricing', label: t('nav.pricing') },
       { to: '/about', label: t('nav.about') },
       { to: '/contact', label: t('nav.contact') },
     ],
@@ -54,17 +54,17 @@ export default function AppShell() {
     const path = location.pathname;
 
     const metaDescriptions: Record<string, string> = {
-      '/': 'Sunshine Tech Solution — Web design, software development, IT infrastructure, IoT & cybersecurity for businesses worldwide. 30+ projects delivered.',
+      '/': 'Sunshine Tech Solution — Web design, software development, IT infrastructure, IoT & cybersecurity services based in Addis Ababa.',
       '/services':
-        'Professional tech services in Ethiopia: websites, custom software, cloud infrastructure, IoT systems & cybersecurity. Free consultation available.',
+        'Technology services in Ethiopia: websites, custom software, cloud infrastructure, IoT systems & cybersecurity.',
       '/projects':
-        'Explore 30+ real case studies — websites, portals, e-commerce, cloud & security projects delivered for Ethiopian and international clients.',
+        'Explore illustrative website, portal, e-commerce, cloud and security concepts from Sunshine Tech Solution.',
       '/pricing':
-        'Transparent website pricing in Ethiopian Birr (ETB). Basic, Standard & Advanced packages from 14,250 ETB. Free consultation included.',
+        'Indicative website project pricing in ETB for Ethiopia-based projects and independently scoped USD ranges for international work.',
       '/about':
-        'Meet the Sunshine Tech team — Ethiopian tech experts delivering global-quality web, software & security solutions since 2021.',
+        'Learn about Sunshine Tech Solution, an Ethiopia-based provider of web, software, infrastructure, IoT, and security services.',
       '/contact':
-        'Contact Sunshine Tech Solution in Addis Ababa. Free project consultation via phone, email, WhatsApp or our contact form.',
+        'Contact Sunshine Tech Solution in Addis Ababa by phone, email, WhatsApp, or the email-draft contact form.',
       '/privacy':
         'Privacy policy for Sunshine Tech Solution — how we collect, use and protect your personal information.',
     };
@@ -82,7 +82,7 @@ export default function AppShell() {
         '/projects': t('nav.projects'),
         '/about': t('nav.about'),
         '/contact': t('nav.contact'),
-        '/pricing': 'Pricing',
+        '/pricing': t('nav.pricing'),
         '/privacy': 'Privacy',
       };
       pageTitle = `${titleMap[path] ?? brand} | ${brand}`;
@@ -102,7 +102,7 @@ export default function AppShell() {
   }, [location.pathname, t]);
 
   return (
-    <div id="top" className="min-h-screen bg-page-warm dark:bg-slate-900">
+    <div id="top" className="min-h-screen overflow-x-clip bg-page-warm dark:bg-slate-900">
       <a
         href="#content"
         className="sr-only focus:not-sr-only focus:fixed focus:start-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-brand-orange focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
@@ -142,7 +142,7 @@ export default function AppShell() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <div className="hidden items-center gap-2 sm:flex">
+            <div className="hidden items-center gap-2 xl:flex">
               <label htmlFor="locale-select" className="text-sm font-medium text-slate-600 dark:text-slate-300">
                 {t('language.label')}
               </label>
@@ -172,9 +172,9 @@ export default function AppShell() {
 
             <Link
               to="/contact"
-              className="hidden px-6 py-2 text-sm font-semibold text-white bg-brand-orange rounded-lg transition-colors hover:bg-[#E66D00] sm:inline-flex"
+              className="hidden whitespace-nowrap px-6 py-2 text-sm font-semibold text-white bg-brand-orange rounded-lg transition-colors hover:bg-[#9A3412] lg:inline-flex"
             >
-              Book consultation
+              {t('actions.getQuote')}
             </Link>
 
             <button
@@ -183,6 +183,7 @@ export default function AppShell() {
               onClick={() => setMobileNavOpen((v) => !v)}
               aria-label={t('a11y.toggleMenu')}
               aria-expanded={mobileNavOpen}
+              aria-controls="mobile-navigation"
             >
               <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
                 <path d="M5 7h14M5 12h14M5 17h14" className="stroke-current" strokeWidth="1.8" strokeLinecap="round" />
@@ -192,6 +193,7 @@ export default function AppShell() {
         </div>
 
         <div
+          id="mobile-navigation"
           className={cn(
             'border-t-2 border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950 lg:hidden',
             mobileNavOpen ? 'block' : 'hidden'
@@ -234,9 +236,9 @@ export default function AppShell() {
 
             <Link
               to="/contact"
-              className="mt-2 inline-flex items-center justify-center px-4 py-3 text-sm font-semibold text-white bg-brand-orange rounded-lg transition-colors hover:bg-[#E66D00]"
+              className="mt-2 inline-flex items-center justify-center px-4 py-3 text-sm font-semibold text-white bg-brand-orange rounded-lg transition-colors hover:bg-[#9A3412]"
             >
-              Book consultation
+              {t('actions.getQuote')}
             </Link>
           </div>
         </div>
@@ -248,7 +250,7 @@ export default function AppShell() {
 
       <footer className="bg-slate-900 dark:bg-slate-950 text-white">
         {/* ── Brand gradient top accent ─────────────────────── */}
-        <div className="h-1 bg-gradient-to-r from-[#FF7A00] via-[#FF7A00] to-[#007ACC]" />
+        <div className="h-1 bg-gradient-to-r from-[#C2410C] via-[#C2410C] to-[#007ACC]" />
 
         {/* ── Main footer body ──────────────────────────────── */}
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -256,7 +258,7 @@ export default function AppShell() {
             {/* Col 1 — Brand */}
             <div className="space-y-4">
               <div className="flex items-center gap-3">
-                <div className="h-12 w-12 overflow-hidden rounded-xl border-2 border-[#FF7A00] shadow-lg flex-shrink-0">
+                <div className="h-12 w-12 overflow-hidden rounded-xl border-2 border-[#C2410C] shadow-lg flex-shrink-0">
                   <img src={logoImage} alt={t('brand.name')} className="h-full w-full object-cover" />
                 </div>
                 <div>
@@ -267,9 +269,9 @@ export default function AppShell() {
               <p className="text-sm text-white/65 leading-relaxed max-w-xs">{t('footer.line')}</p>
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-[#FF7A00] hover:text-orange-300 transition-colors"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-orange-300 hover:text-orange-200 transition-colors"
               >
-                Book a free consultation →
+                {t('actions.getQuote')} →
               </Link>
               <div className="flex items-center gap-3 pt-1">
                 <a
@@ -300,12 +302,12 @@ export default function AppShell() {
 
             {/* Col 2 — Explore */}
             <div className="space-y-4">
-              <h3 className="text-xs font-bold uppercase tracking-widest text-[#FF7A00]">Explore</h3>
+              <h3 className="text-xs font-bold uppercase tracking-widest text-orange-300">Explore</h3>
               <ul className="space-y-2.5">
                 {[
                   { to: '/services', label: t('nav.services') },
                   { to: '/projects', label: t('nav.projects') },
-                  { to: '/pricing', label: 'Pricing' },
+                  { to: '/pricing', label: t('nav.pricing') },
                   { to: '/about', label: t('nav.about') },
                   { to: '/contact', label: t('nav.contact') },
                 ].map((link) => (
@@ -315,7 +317,7 @@ export default function AppShell() {
                       className={({ isActive }) =>
                         cn(
                           'text-sm transition-colors',
-                          isActive ? 'text-[#FF7A00] font-semibold' : 'text-white/65 hover:text-white'
+                          isActive ? 'text-orange-300 font-semibold' : 'text-white/65 hover:text-white'
                         )
                       }
                     >

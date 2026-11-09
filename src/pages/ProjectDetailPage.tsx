@@ -1,5 +1,5 @@
 // Project detail page view
-// Shows a single project case study based on the URL slug.
+// Shows an illustrative project concept based on the URL slug.
 import { Link, useParams } from 'react-router-dom';
 import { getProjectBySlug } from '../data/projects';
 import { useI18n } from '../i18n';
@@ -22,7 +22,7 @@ export default function ProjectDetailPage() {
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               to="/projects"
-              className="inline-flex items-center justify-center rounded-full bg-brand-orange text-white px-6 py-3 text-sm font-semibold shadow-sm transition hover:bg-[#E66D00] dark:bg-brand-orange dark:text-white dark:hover:bg-[#FFB366]"
+              className="inline-flex items-center justify-center rounded-full bg-brand-orange text-white px-6 py-3 text-sm font-semibold shadow-sm transition hover:bg-[#9A3412] dark:bg-brand-orange dark:text-white dark:hover:bg-[#9A3412]"
             >
               {t('projects.backToProjects')}
             </Link>
@@ -37,14 +37,6 @@ export default function ProjectDetailPage() {
       </div>
     );
   }
-
-  const initials = project.testimonial
-    ? project.testimonial.author
-        .split(' ')
-        .map((n) => n[0])
-        .join('')
-        .toUpperCase()
-    : '';
 
   return (
     <div className="bg-slate-50 dark:bg-slate-900 min-h-screen">
@@ -67,30 +59,13 @@ export default function ProjectDetailPage() {
 
           {/* Hero 2-col grid */}
           <div className="mt-8 grid lg:grid-cols-[1.2fr_0.8fr] gap-10 items-start">
-            {/* LEFT — title, summary, tags, result */}
+            {/* Concept title and summary */}
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-orange-300 mb-3">{project.year}</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-orange-300 mb-3">
+                Illustrative concept · {project.industry}
+              </p>
               <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white">{project.title}</h1>
               <p className="text-white/80 text-lg leading-relaxed mt-4 max-w-2xl">{project.summary}</p>
-
-              {/* Result banner */}
-              {project.result && (
-                <div className="mt-6 inline-flex items-center gap-2 bg-brand-orange/20 border border-brand-orange/40 rounded-full px-4 py-2 text-orange-200 text-sm font-semibold">
-                  <svg
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    className="h-4 w-4 flex-none text-orange-300"
-                    aria-hidden="true"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  {project.result}
-                </div>
-              )}
             </div>
 
             {/* RIGHT — glass card */}
@@ -116,50 +91,6 @@ export default function ProjectDetailPage() {
                 ))}
               </ul>
 
-              {/* Meta: Industry + Duration */}
-              {(project.industry || project.duration) && (
-                <div className="border-t border-white/20 mt-4 pt-4 grid grid-cols-2 gap-3">
-                  {project.industry && (
-                    <div>
-                      <p className="text-white/50 text-xs uppercase tracking-wider">Industry</p>
-                      <p className="text-white font-semibold text-sm mt-0.5">{project.industry}</p>
-                    </div>
-                  )}
-                  {project.duration && (
-                    <div>
-                      <p className="text-white/50 text-xs uppercase tracking-wider">Duration</p>
-                      <p className="text-white font-semibold text-sm mt-0.5">{project.duration}</p>
-                    </div>
-                  )}
-                </div>
-              )}
-
-              {/* Metrics */}
-              {project.metrics?.length ? (
-                <div className="grid grid-cols-2 gap-3 mt-4 border-t border-white/20 pt-4">
-                  {project.metrics.map((metric) => (
-                    <div key={metric.label} className="bg-white/10 rounded-xl px-4 py-3 text-center">
-                      <p className="text-brand-orange text-2xl font-bold">{metric.value}</p>
-                      <p className="text-white/60 text-xs mt-1">{metric.label}</p>
-                    </div>
-                  ))}
-                </div>
-              ) : null}
-
-              {/* Links */}
-              {project.links?.length ? (
-                <div className="mt-4 border-t border-white/20 pt-4 flex flex-wrap gap-3">
-                  {project.links.map((link) => (
-                    <a
-                      key={link.href}
-                      href={link.href}
-                      className="inline-flex items-center justify-center rounded-full border-2 border-brand-orange px-5 py-2 text-sm font-semibold text-orange-200 transition hover:bg-brand-orange hover:text-white"
-                    >
-                      {link.label}
-                    </a>
-                  ))}
-                </div>
-              ) : null}
             </div>
           </div>
         </div>
@@ -169,7 +100,7 @@ export default function ProjectDetailPage() {
       <section>
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-[1fr_0.38fr] items-start">
-            {/* LEFT — section cards + testimonial */}
+            {/* Concept details */}
             <div>
               {project.sections.map((section) => (
                 <div
@@ -181,38 +112,6 @@ export default function ProjectDetailPage() {
                 </div>
               ))}
 
-              {/* Testimonial */}
-              {project.testimonial && (
-                <div className="bg-brand-orange rounded-2xl p-8 mt-6">
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <svg
-                        key={i}
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                        className="h-5 w-5 text-yellow-300"
-                        aria-hidden="true"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <blockquote className="text-white text-lg leading-relaxed italic mb-6">
-                    "{project.testimonial.quote}"
-                  </blockquote>
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-lg">
-                      {initials}
-                    </div>
-                    <div>
-                      <p className="font-bold text-white">{project.testimonial.author}</p>
-                      <p className="text-white/70 text-sm">
-                        {project.testimonial.role}, {project.testimonial.company}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              )}
             </div>
 
             {/* RIGHT — Sticky sidebar */}
@@ -224,7 +123,7 @@ export default function ProjectDetailPage() {
                 <div className="mt-4 flex flex-col gap-3">
                   <Link
                     to="/contact"
-                    className="inline-flex items-center justify-center rounded-full bg-brand-orange text-white px-6 py-3 text-sm font-semibold shadow-sm transition hover:bg-[#E66D00] dark:hover:bg-[#FFB366]"
+                    className="inline-flex items-center justify-center rounded-full bg-brand-orange text-white px-6 py-3 text-sm font-semibold shadow-sm transition hover:bg-[#9A3412] dark:hover:bg-[#9A3412]"
                   >
                     {t('actions.getQuote')}
                   </Link>
@@ -237,27 +136,13 @@ export default function ProjectDetailPage() {
                 </div>
               </div>
 
-              {/* Card 2 — Industry & Year */}
+              {/* Project focus */}
               <div className="bg-section-c dark:bg-slate-800 rounded-2xl border-2 border-brand-blue/15 dark:border-slate-700 p-6 mt-4">
-                <p className="font-bold text-brand-blue dark:text-[#7FA8FF] mb-3 text-sm">Project Details</p>
-                <div className="space-y-2">
-                  {project.industry && (
-                    <div className="flex justify-between text-sm">
-                      <span className="text-slate-500 dark:text-slate-400">Industry</span>
-                      <span className="font-semibold text-slate-800 dark:text-white">{project.industry}</span>
-                    </div>
-                  )}
-                  {project.duration && (
-                    <div className="flex justify-between text-sm">
-                      <span className="text-slate-500 dark:text-slate-400">Duration</span>
-                      <span className="font-semibold text-slate-800 dark:text-white">{project.duration}</span>
-                    </div>
-                  )}
-                  <div className="flex justify-between text-sm">
-                    <span className="text-slate-500 dark:text-slate-400">Year</span>
-                    <span className="font-semibold text-slate-800 dark:text-white">{project.year}</span>
-                  </div>
-                </div>
+                <p className="font-bold text-brand-blue dark:text-[#7FA8FF] mb-2 text-sm">Project focus</p>
+                <p className="text-sm text-slate-800 dark:text-white">{project.industry}</p>
+                <p className="mt-3 text-xs leading-relaxed text-slate-600 dark:text-slate-400">
+                  This is an illustrative concept, not a verified client case study or performance claim.
+                </p>
               </div>
             </aside>
           </div>

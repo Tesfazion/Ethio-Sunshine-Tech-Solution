@@ -33,6 +33,7 @@ const MESSAGES: Record<LocaleCode, Messages> = {
       home: 'Home',
       services: 'Services',
       projects: 'Projects',
+      pricing: 'Pricing',
       about: 'About',
       contact: 'Contact',
     },
@@ -42,12 +43,12 @@ const MESSAGES: Record<LocaleCode, Messages> = {
       send: 'Send message',
     },
     hero: {
-      badge: 'Global Delivery · Modern Engineering · 5+ Years',
+      badge: 'Based in Ethiopia · Remote collaboration',
       title: 'Your technology partner for web, software & security',
       subtitle:
         'We design, build, and secure digital products for organizations worldwide — strong engineering, clear communication, and support that continues after launch.',
       highlight: 'Light, modern, international',
-      note: 'Trusted delivery for web, mobile, cloud, and cybersecurity.',
+      note: 'Web, mobile, cloud, infrastructure, IoT, and security services scoped to your goals.',
     },
     services: {
       eyebrow: 'What we do',
@@ -128,30 +129,21 @@ const MESSAGES: Record<LocaleCode, Messages> = {
     },
     projects: {
       featured: {
-        eyebrow: 'Projects',
-        title: 'Selected work & capabilities',
-        subtitle: 'A few examples of how we design, build, and secure products for modern teams.',
+        eyebrow: 'Project concepts',
+        title: 'Explore possible project approaches',
+        subtitle: 'Illustrative examples across web, software, infrastructure, IoT, and security.',
         viewAll: 'View all projects',
       },
-      dashboard: {
-        title: 'Project dashboard',
-        subtitle: 'A quick view of capabilities and delivery patterns.',
-        cards: {
-          one: { label: 'Delivery model', value: 'Remote-first' },
-          two: { label: 'Quality', value: 'Design + engineering' },
-          three: { label: 'Availability', value: 'Africa / Europe' },
-        },
-      },
       page: {
-        eyebrow: 'Projects',
-        title: 'Projects and case studies',
-        subtitle: 'A growing set of projects—built with international-quality UX, engineering, and security.',
+        eyebrow: 'Project concepts',
+        title: 'Illustrative project concepts',
+        subtitle: 'Examples of how we might approach common web, software, infrastructure, IoT, and security needs.',
       },
       filterAll: 'All',
-      readCaseStudy: 'Read case study',
+      readCaseStudy: 'Explore concept',
       caseStudy: 'Case study',
-      ctaTitle: 'Want similar results?',
-      ctaSubtitle: 'Send a short brief and we’ll propose the best next step.',
+      ctaTitle: 'Have a project in mind?',
+      ctaSubtitle: 'Tell us what you are planning and we’ll discuss a suitable next step.',
       highlights: 'Highlights',
       metrics: 'Metrics',
       links: 'Links',
@@ -256,6 +248,15 @@ const MESSAGES: Record<LocaleCode, Messages> = {
       step3: { title: 'Build', desc: 'Modern stack, clean code, tests, and measurable performance.' },
       step4: { title: 'Launch', desc: 'Release, monitoring, iteration, and continuous improvement.' },
     },
+    pricing: {
+      localLabel: 'Ethiopia · Local',
+      internationalLabel: 'International',
+      rangeCaption: 'Indicative project range; final price depends on scope.',
+      currencyNote:
+        'ETB ranges are planned for Ethiopia-based projects. USD ranges are independently set for international work; they are not converted from ETB. The final quote depends on scope, deliverables, and client region.',
+      additionalCostsNote:
+        'Domain and hosting costs are planning estimates, vary by provider and plan, and are not currency conversions. Confirm current provider fees before purchase.',
+    },
     contact: {
       eyebrow: 'Contact',
       title: 'Tell us what you want to build',
@@ -266,8 +267,17 @@ const MESSAGES: Record<LocaleCode, Messages> = {
       namePlaceholder: 'Your full name',
       emailPlaceholder: 'name@example.com',
       briefPlaceholder: 'What are you building? What outcomes matter most?',
+      openEmail: 'Open email draft',
+      packageInquiry:
+        'I’m interested in the {package} package. The listed planning ranges are {etb} ETB for Ethiopia and {usd} for international work; these are independent regional prices, not an exchange-rate conversion. Please confirm which applies to my project and discuss scope.',
+      errors: {
+        name: 'Please enter your full name (at least 2 characters).',
+        emailRequired: 'Email address is required.',
+        emailInvalid: 'Please enter a valid email address.',
+        brief: 'Please provide a brief description (at least 10 characters).',
+      },
       success:
-        'Thanks! Your email app should open so you can send the message. If it didn’t, email us at sunshinetechsolution4@gmail.com.',
+        'This website has not received your message. Review and send the draft in your email app. If it did not open, email us directly:',
       info: {
         emailTitle: 'Email',
         phoneTitle: 'Phone',
@@ -299,6 +309,7 @@ const MESSAGES: Record<LocaleCode, Messages> = {
       home: 'መነሻ',
       services: 'አገልግሎቶች',
       projects: 'ፕሮጀክቶች',
+      pricing: 'ዋጋ',
       about: 'ስለ እኛ',
       contact: 'አግኙን',
     },
@@ -378,6 +389,15 @@ const MESSAGES: Record<LocaleCode, Messages> = {
       step3: { title: 'ግንባታ', desc: 'ዘመናዊ ቴክኖሎጂ፣ ንጹህ ኮድ እና አፈፃፀም።' },
       step4: { title: 'መጀመር', desc: 'ማቅረብ፣ ክትትል እና ቀጣይ ማሻሻያ።' },
     },
+    pricing: {
+      localLabel: 'ኢትዮጵያ · አካባቢያዊ',
+      internationalLabel: 'ዓለም አቀፍ',
+      rangeCaption: 'ግምታዊ የፕሮጀክት ዋጋ፤ የመጨረሻ ዋጋ እንደ ወሰኑ ይወሰናል።',
+      currencyNote:
+        'የETB ዋጋዎች በኢትዮጵያ ለሚደረጉ ፕሮጀክቶች ናቸው። የUSD ዋጋዎች ለዓለም አቀፍ ስራ በተለየ የዋጋ መለኪያ የተዘጋጁ ናቸው፤ ከETB በምንዛሬ አልተቀየሩም። የመጨረሻ ዋጋ በወሰን፣ በሚሰጡ ውጤቶች እና በደንበኛው አካባቢ ይወሰናል።',
+      additionalCostsNote:
+        'የዶሜይን እና ሆስቲንግ ወጪዎች ግምታዊ ናቸው፤ እንደ አቅራቢው እና ፕላኑ ይለያያሉ። ከመግዛትዎ በፊት የአሁኑን ክፍያ ያረጋግጡ።',
+    },
     contact: {
       eyebrow: 'አግኙን',
       title: 'ምን መገንባት እንደሚፈልጉ ያንገሩን',
@@ -388,7 +408,16 @@ const MESSAGES: Record<LocaleCode, Messages> = {
       namePlaceholder: 'ሙሉ ስምዎ',
       emailPlaceholder: 'name@example.com',
       briefPlaceholder: 'ምን እየገነቡ ነው? ዋና ውጤት ምንድን ነው?',
-      success: 'እናመሰግናለን! መልእክቱን ለመላክ የኢሜይል መተግበሪያዎ መክፈት አለበት። ካልተከፈተ ወደ sunshinetechsolution4@gmail.com ይጻፉልን።',
+      openEmail: 'የኢሜይል ረቂቅ ክፈት',
+      packageInquiry:
+        'የ{package} ጥቅል ላይ ፍላጎት አለኝ። ግምታዊ ዋጋዎቹ ለኢትዮጵያ {etb} ETB እና ለዓለም አቀፍ ስራ {usd} ናቸው፤ እነዚህ የተለያዩ የክልል ዋጋዎች ናቸው እንጂ በምንዛሬ ልውውጥ የተቀየሩ አይደሉም። ለፕሮጀክቴ የሚሠራውን ያረጋግጡና ወሰኑን እንወያይ።',
+      errors: {
+        name: 'እባክዎ ሙሉ ስምዎን ያስገቡ (ቢያንስ 2 ቁምፊዎች)።',
+        emailRequired: 'የኢሜይል አድራሻ ያስፈልጋል።',
+        emailInvalid: 'እባክዎ ትክክለኛ የኢሜይል አድራሻ ያስገቡ።',
+        brief: 'እባክዎ አጭር መግለጫ ይስጡ (ቢያንስ 10 ቁምፊዎች)።',
+      },
+      success: 'ድረ-ገጹ መልእክትዎን አልተቀበለም። በኢሜይል መተግበሪያዎ ውስጥ ረቂቁን ይመልከቱና ይላኩ። ካልተከፈተ በቀጥታ ኢሜይል ያድርጉልን።',
       info: {
         emailTitle: 'ኢሜይል',
         phoneTitle: 'ስልክ',
@@ -413,7 +442,7 @@ const MESSAGES: Record<LocaleCode, Messages> = {
   },
   fr: {
     brand: { name: 'Sunshine Tech Solution', tagline: 'Services web, logiciels et sécurité' },
-    nav: { home: 'Accueil', services: 'Services', projects: 'Projets', about: 'À propos', contact: 'Contact' },
+    nav: { home: 'Accueil', services: 'Services', projects: 'Projets', pricing: 'Tarifs', about: 'À propos', contact: 'Contact' },
     actions: { getQuote: 'Demander une proposition', viewWork: 'Voir nos atouts', send: 'Envoyer' },
     hero: {
       badge: 'Moderne · Fiable · Global',
@@ -509,6 +538,15 @@ const MESSAGES: Record<LocaleCode, Messages> = {
       step3: { title: 'Construire', desc: 'Stack moderne, code propre, tests, performance.' },
       step4: { title: 'Lancer', desc: 'Mise en prod, monitoring, itérations.' },
     },
+    pricing: {
+      localLabel: 'Éthiopie · Local',
+      internationalLabel: 'International',
+      rangeCaption: 'Fourchette indicative ; le prix final dépend du périmètre.',
+      currencyNote:
+        'Les tarifs en ETB concernent les projets réalisés en Éthiopie. Les tarifs en USD sont définis séparément pour les projets internationaux ; ils ne sont pas convertis depuis l’ETB. Le devis final dépend du périmètre, des livrables et de la région du client.',
+      additionalCostsNote:
+        'Les frais de domaine et d’hébergement sont des estimations, varient selon le fournisseur et le forfait, et ne sont pas des conversions monétaires. Vérifiez les tarifs en vigueur avant tout achat.',
+    },
     contact: {
       eyebrow: 'Contact',
       title: 'Parlez‑nous de votre projet',
@@ -520,8 +558,17 @@ const MESSAGES: Record<LocaleCode, Messages> = {
       namePlaceholder: 'Votre nom complet',
       emailPlaceholder: 'nom@exemple.com',
       briefPlaceholder: 'Que construisez‑vous ? Quels résultats sont prioritaires ?',
+      openEmail: 'Ouvrir le brouillon',
+      packageInquiry:
+        'Je souhaite en savoir plus sur le forfait {package}. Les fourchettes indicatives sont de {etb} ETB en Éthiopie et de {usd} pour les projets internationaux ; il s’agit de tarifs régionaux indépendants, pas d’une conversion de devises. Merci de confirmer le tarif applicable et le périmètre.',
+      errors: {
+        name: 'Veuillez saisir votre nom complet (2 caractères minimum).',
+        emailRequired: 'L’adresse e-mail est obligatoire.',
+        emailInvalid: 'Veuillez saisir une adresse e-mail valide.',
+        brief: 'Veuillez décrire brièvement le projet (10 caractères minimum).',
+      },
       success:
-        'Merci ! Votre application e‑mail devrait s’ouvrir pour envoyer le message. Sinon, écrivez‑nous à sunshinetechsolution4@gmail.com.',
+        'Ce site n’a pas reçu votre message. Vérifiez le brouillon dans votre application e‑mail et envoyez-le. Si elle ne s’est pas ouverte, écrivez-nous directement :',
       info: {
         emailTitle: 'Email',
         phoneTitle: 'Téléphone',
@@ -537,7 +584,7 @@ const MESSAGES: Record<LocaleCode, Messages> = {
   },
   es: {
     brand: { name: 'Sunshine Tech Solution', tagline: 'Servicios web, software y seguridad' },
-    nav: { home: 'Inicio', services: 'Servicios', projects: 'Proyectos', about: 'Acerca de', contact: 'Contacto' },
+    nav: { home: 'Inicio', services: 'Servicios', projects: 'Proyectos', pricing: 'Precios', about: 'Acerca de', contact: 'Contacto' },
     actions: { getQuote: 'Pedir propuesta', viewWork: 'Ver capacidades', send: 'Enviar' },
     hero: {
       badge: 'Moderno · Confiable · Global',
@@ -635,6 +682,15 @@ const MESSAGES: Record<LocaleCode, Messages> = {
       step3: { title: 'Construir', desc: 'Stack moderno, código limpio, tests y rendimiento.' },
       step4: { title: 'Lanzar', desc: 'Entrega, monitoreo y mejora continua.' },
     },
+    pricing: {
+      localLabel: 'Etiopía · Local',
+      internationalLabel: 'Internacional',
+      rangeCaption: 'Rango orientativo; el precio final depende del alcance.',
+      currencyNote:
+        'Los precios en ETB corresponden a proyectos en Etiopía. Los rangos en USD se fijan de forma independiente para proyectos internacionales; no son una conversión desde ETB. La cotización final depende del alcance, los entregables y la región del cliente.',
+      additionalCostsNote:
+        'Los costes de dominio y alojamiento son estimaciones, varían según el proveedor y el plan, y no son conversiones de moneda. Confirma los precios vigentes antes de comprar.',
+    },
     contact: {
       eyebrow: 'Contacto',
       title: 'Cuéntanos qué quieres construir',
@@ -645,8 +701,17 @@ const MESSAGES: Record<LocaleCode, Messages> = {
       namePlaceholder: 'Tu nombre completo',
       emailPlaceholder: 'nombre@ejemplo.com',
       briefPlaceholder: '¿Qué estás construyendo? ¿Qué resultados importan más?',
+      openEmail: 'Abrir borrador de correo',
+      packageInquiry:
+        'Me interesa el paquete {package}. Los rangos orientativos son {etb} ETB para Etiopía y {usd} para proyectos internacionales; son precios regionales independientes, no una conversión de divisas. Confirmen cuál corresponde a mi proyecto y conversemos sobre el alcance.',
+      errors: {
+        name: 'Ingresa tu nombre completo (al menos 2 caracteres).',
+        emailRequired: 'El correo electrónico es obligatorio.',
+        emailInvalid: 'Ingresa una dirección de correo electrónico válida.',
+        brief: 'Describe brevemente el proyecto (al menos 10 caracteres).',
+      },
       success:
-        '¡Gracias! Se abrirá tu app de correo para enviar el mensaje. Si no, escríbenos a sunshinetechsolution4@gmail.com.',
+        'Este sitio no ha recibido tu mensaje. Revisa y envía el borrador en tu aplicación de correo. Si no se abrió, escríbenos directamente:',
       info: {
         emailTitle: 'Email',
         phoneTitle: 'Teléfono',
@@ -672,6 +737,7 @@ const MESSAGES: Record<LocaleCode, Messages> = {
       home: 'Mana',
       services: 'Tajaajilawwan',
       projects: 'Projektoota',
+      pricing: 'Gatii',
       about: 'Waa’ee',
       contact: 'Nu quunnamaa',
     },
@@ -681,7 +747,7 @@ const MESSAGES: Record<LocaleCode, Messages> = {
       send: 'Ergi',
     },
     hero: {
-      badge: 'Guddina Addunyaa · Injinerii Haaraa · Waggoota 5+',
+      badge: 'Itoophiyaa keessatti hundaa’e · Hojii fagoo',
       title: 'Hiriyaa teeknoolojii keetiif web, ssoftweerii fi nageenya',
       subtitle:
         'Marsariitii, ijaarsa, fi nageenya oomisha dijitaalaa dhaabbilee addunyaa guutuu wajjin hojjennu — injinerii cimaa, qunnamtii ifaa, fi deeggarsa erga dhiheessine booda.',
@@ -777,25 +843,16 @@ const MESSAGES: Record<LocaleCode, Messages> = {
         subtitle: 'Fakkeenya hojii keenya sirna qulqullina addunyaa, injinerii, fi nageenya waliin.',
         viewAll: 'Projektoota hunda ilaali',
       },
-      dashboard: {
-        title: 'Daashibooridii projektii',
-        subtitle: 'Ilaalcha ariifachiisaa dandeettii fi raabsaa irratti.',
-        cards: {
-          one: { label: 'Maddaa raabsaa', value: 'Fageenyaan dursee' },
-          two: { label: 'Qulqullina', value: 'Design + injinerii' },
-          three: { label: 'Argamsiistuu', value: 'Afriikaa / Awrooppaa' },
-        },
-      },
       page: {
         eyebrow: 'Projektoota',
-        title: 'Projektoota fi muuxannoo',
-        subtitle: 'Projektoota heddummina qabu — UX idil-addunyaa, injinerii, fi nageenya waliin barreeffame.',
+        title: 'Fakkeenya yaada projektii',
+        subtitle: 'Fakkeenya akkaataa web, software, bu’uura IT, IoT, fi nageenya irratti hojjechuu dandeenyu.',
       },
       filterAll: 'Hundaa',
-      readCaseStudy: 'Barreeffama dhugaa dubbisi',
+      readCaseStudy: 'Yaada kana ilaali',
       caseStudy: 'Barreeffama dhugaa',
-      ctaTitle: 'Bu’aa akkanaa barbaaddaa?',
-      ctaSubtitle: 'Yaada gabaabaa nuuf ergi; tarkaanfii itti aanu murteessuuf.',
+      ctaTitle: 'Projektii tokko yaadaa jirtaa?',
+      ctaSubtitle: 'Waan karoorfattu nuuf himi; tarkaanfii itti aanu irratti ni mari’anna.',
       highlights: 'Ilaalcha',
       metrics: 'Meetriiksii',
       links: 'Liinkii',
@@ -900,6 +957,15 @@ const MESSAGES: Record<LocaleCode, Messages> = {
       step3: { title: 'Hojjechuu', desc: 'Stack haaraa, koodii qulqulluu, qoratamuu, fi saffisa.' },
       step4: { title: 'Gadi dhiisuu', desc: 'Raabsuu, hordoffii, fi fooyyeffama itti fufiinsa qabu.' },
     },
+    pricing: {
+      localLabel: 'Itoophiyaa · Naannoo',
+      internationalLabel: 'Idil-addunyaa',
+      rangeCaption: 'Gatii tilmaamaa; gatiin dhumaa bal’ina hojii irratti hundaa’a.',
+      currencyNote:
+        'Gatiin ETB pirojektoota Itoophiyaa keessatti hojjetamaniif qophaa’e. Gatiin USD hojii idil-addunyaatiif addaan murtaa’a; ETB irraa jijjiirama maallaqaa miti. Gatiin dhumaa bal’ina hojii, bu’aa dhiyaatuu fi naannoo maamilaa irratti hundaa’a.',
+      additionalCostsNote:
+        'Kaffaltiin domain fi hosting tilmaama qofa; dhiyeessaa fi karoora irratti hundaa’uun ni jijjiirama, jijjiirama maallaqaa miti. Odoo hin bitin dura gatii yeroo ammaa mirkaneessi.',
+    },
     contact: {
       eyebrow: 'Nu quunnamaa',
       title: 'Maaltu ijaarramuu akka barbaadde nuuf himi',
@@ -910,8 +976,17 @@ const MESSAGES: Record<LocaleCode, Messages> = {
       namePlaceholder: 'Maqaa guutuu keeti',
       emailPlaceholder: 'maqaa@example.com',
       briefPlaceholder: 'Maaltu ijaarramuu barbaadde? Bu’aa maaliin barbaadda?',
+      openEmail: 'Raftee imeeyilii bani',
+      packageInquiry:
+        'Paakeejii {package} irratti fedhii qaba. Gatiin tilmaamaa Itoophiyaaf {etb} ETB, hojii idil-addunyaatiif immoo {usd} dha; gatiiwwan naannoo irratti hundaa’an adda addaa malee jijjiirama maallaqaa miti. Mee isa pirojektii koo ilaallatu mirkaneessii bal’ina hojii irratti haa mari’annu.',
+      errors: {
+        name: 'Maaloo maqaa guutuu kee galchi (yoo xiqqaate qubee 2).',
+        emailRequired: 'Teessoon imeeyilii barbaachisa.',
+        emailInvalid: 'Maaloo teessoo imeeyilii sirrii galchi.',
+        brief: 'Maaloo ibsa gabaabaa kenni (yoo xiqqaate qubee 10).',
+      },
       success:
-        'Galatoomi! Appii imeeyilii kee ergaa akka ergu sirreessita. Yoo hin banne, sunshinetechsolution4@gmail.com dhaquu dandeessa.',
+        'Marsariitichi ergaa kee hin arganne. Raftee imeeyilii kee ilaaliitii ergi. Yoo hin banamne, kallattiin imeeyilii nuuf ergi:',
       info: {
         emailTitle: 'Imeeyilii',
         phoneTitle: 'Bilbila',
@@ -936,7 +1011,7 @@ const MESSAGES: Record<LocaleCode, Messages> = {
   },
   ar: {
     brand: { name: 'صن شاين تك سوليوشن', tagline: 'خدمات الويب والبرمجيات والأمن' },
-    nav: { home: 'الرئيسية', services: 'الخدمات', projects: 'المشاريع', about: 'من نحن', contact: 'تواصل' },
+    nav: { home: 'الرئيسية', services: 'الخدمات', projects: 'المشاريع', pricing: 'الأسعار', about: 'من نحن', contact: 'تواصل' },
     actions: { getQuote: 'اطلب عرضاً', viewWork: 'عرض القدرات', send: 'إرسال' },
     hero: {
       badge: 'حديث · موثوق · عالمي',
@@ -1008,6 +1083,15 @@ const MESSAGES: Record<LocaleCode, Messages> = {
       step3: { title: 'بناء', desc: 'تقنيات حديثة، كود نظيف، اختبارات، وأداء.' },
       step4: { title: 'إطلاق', desc: 'إصدار ومراقبة وتحسين مستمر.' },
     },
+    pricing: {
+      localLabel: 'إثيوبيا · محلي',
+      internationalLabel: 'دولي',
+      rangeCaption: 'نطاق تقديري؛ يعتمد السعر النهائي على نطاق العمل.',
+      currencyNote:
+        'أسعار ETB مخصصة للمشاريع المنفذة في إثيوبيا. أسعار USD محددة بشكل مستقل للعمل الدولي وليست تحويلاً من ETB. يعتمد العرض النهائي على النطاق والمخرجات ومنطقة العميل.',
+      additionalCostsNote:
+        'تكاليف النطاق والاستضافة تقديرية وتختلف حسب المزود والخطة، وليست تحويلات عملات. يرجى التحقق من أسعار المزود الحالية قبل الشراء.',
+    },
     contact: {
       eyebrow: 'تواصل',
       title: 'أخبرنا ماذا تريد أن تبني',
@@ -1018,8 +1102,17 @@ const MESSAGES: Record<LocaleCode, Messages> = {
       namePlaceholder: 'اسمك الكامل',
       emailPlaceholder: 'name@example.com',
       briefPlaceholder: 'ماذا تبني؟ ما النتائج الأكثر أهمية؟',
+      openEmail: 'فتح مسودة البريد',
+      packageInquiry:
+        'أرغب في معرفة المزيد عن باقة {package}. النطاقات التقديرية هي {etb} ETB للمشاريع في إثيوبيا و{usd} للعمل الدولي؛ هذه أسعار إقليمية مستقلة وليست تحويلاً للعملات. يرجى تأكيد السعر المناسب لمشروعي ومناقشة نطاق العمل.',
+      errors: {
+        name: 'يرجى إدخال الاسم الكامل (حرفان على الأقل).',
+        emailRequired: 'البريد الإلكتروني مطلوب.',
+        emailInvalid: 'يرجى إدخال عنوان بريد إلكتروني صالح.',
+        brief: 'يرجى تقديم وصف موجز للمشروع (10 أحرف على الأقل).',
+      },
       success:
-        'شكراً! من المفترض أن يفتح تطبيق البريد لإرسال الرسالة. إن لم يحدث، راسلنا على sunshinetechsolution4@gmail.com.',
+        'لم يستلم هذا الموقع رسالتك. راجع المسودة وأرسلها من تطبيق البريد. إذا لم يفتح التطبيق، راسلنا مباشرة:',
       info: {
         emailTitle: 'البريد الإلكتروني',
         phoneTitle: 'الهاتف',

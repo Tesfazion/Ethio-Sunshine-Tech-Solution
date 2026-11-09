@@ -1,19 +1,21 @@
 // Services page view
-// Highlights service offerings, key process steps, and featured case studies.
+// Highlights service offerings, illustrative project concepts, and process steps.
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { IconCheck } from '../components/icons';
+import { PROJECTS } from '../data/projects';
 import { useI18n } from '../i18n';
 import { cn } from '../lib/cn';
 
-import cyberSecurityImage from '../assets/images/cyber-security/cyber-security.jpeg';
-import iotImage from '../assets/images/iot/iot.jpeg';
-import infrastructureImage from '../assets/images/it-infrastructure/it-infrastructure.png';
-import softwareDevImage from '../assets/images/software-dev/software-development.jpeg';
-import webDesignImage from '../assets/images/web-designing/web-design-development.png';
-
-const HERO_BG = 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80';
-const PROCESS_BG = 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1920&q=80';
+const HERO_BG = 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=70';
+const PROCESS_BG = 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1600&q=70';
+const SERVICE_IMAGES = {
+  web: PROJECTS[0].coverImage,
+  software: PROJECTS[1].coverImage,
+  infrastructure: PROJECTS[3].coverImage,
+  iot: PROJECTS[5].coverImage,
+  security: PROJECTS[4].coverImage,
+};
 
 export default function ServicesPage() {
   const { t, formatNumber } = useI18n();
@@ -22,22 +24,22 @@ export default function ServicesPage() {
     () => [
       {
         key: 'web',
-        image: webDesignImage,
+        image: SERVICE_IMAGES.web,
         tag: '01',
         label: 'Web & Design',
         caseStudy: 'global-company-website',
         title: t('services.web.title'),
         description: t('services.web.description'),
         features: [
-          'Works perfectly on phones',
-          'Easy to find on Google',
-          'Loads in seconds',
+          'Responsive layouts for phones',
+          'Search-friendly setup',
+          'Performance-focused build',
           'Professional brand look',
         ],
       },
       {
         key: 'software',
-        image: softwareDevImage,
+        image: SERVICE_IMAGES.software,
         tag: '02',
         label: 'Software',
         caseStudy: 'customer-portal',
@@ -52,7 +54,7 @@ export default function ServicesPage() {
       },
       {
         key: 'infrastructure',
-        image: infrastructureImage,
+        image: SERVICE_IMAGES.infrastructure,
         tag: '03',
         label: 'Infrastructure',
         caseStudy: 'cloud-observability-foundation',
@@ -61,13 +63,13 @@ export default function ServicesPage() {
         features: [
           'Cloud setup & migration',
           'Reliable servers & networks',
-          'Keeps your systems running fast',
-          '24/7 monitoring & alerts',
+          'Reliability and performance planning',
+          'Monitoring and alerting setup',
         ],
       },
       {
         key: 'iot',
-        image: iotImage,
+        image: SERVICE_IMAGES.iot,
         tag: '04',
         label: 'IoT',
         caseStudy: 'smart-iot-dashboard',
@@ -82,7 +84,7 @@ export default function ServicesPage() {
       },
       {
         key: 'security',
-        image: cyberSecurityImage,
+        image: SERVICE_IMAGES.security,
         tag: '05',
         label: 'Security',
         caseStudy: 'security-hardening',
@@ -90,7 +92,7 @@ export default function ServicesPage() {
         description: t('services.security.description'),
         features: [
           'Find & fix weak spots',
-          'Protect customer data',
+          'Security controls scoped to your app',
           'Security testing & audits',
           'Compliance guidance',
         ],
@@ -155,7 +157,7 @@ export default function ServicesPage() {
               </Link>
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-brand-orange rounded-lg hover:bg-[#E66D00] hover:shadow-lg transition-all"
+                className="inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-brand-orange rounded-lg hover:bg-[#9A3412] hover:shadow-lg transition-all"
               >
                 {t('actions.getQuote')}
               </Link>
@@ -172,7 +174,7 @@ export default function ServicesPage() {
             <p className="text-sm font-bold text-brand-orange uppercase tracking-widest mb-3">What We Offer</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">Our Core Services</h2>
             <p className="text-lg text-slate-600 dark:text-slate-400">
-              Five focused solutions for Ethiopian businesses — each backed by real projects and clear ETB pricing.
+              Explore five service areas and illustrative project concepts. Website package ranges are listed separately.
             </p>
           </div>
 
@@ -199,6 +201,7 @@ export default function ServicesPage() {
                       alt={service.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       loading="lazy"
+                      decoding="async"
                     />
                     <div className="absolute inset-0 bg-slate-900/25" />
                     <span className="absolute top-3 start-3 text-xs font-black text-white bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-lg">
@@ -234,7 +237,7 @@ export default function ServicesPage() {
                         to={`/projects/${service.caseStudy}`}
                         className="text-xs font-semibold text-tech-blue dark:text-[#7FA8FF] hover:underline"
                       >
-                        See case study →
+                        Explore concept →
                       </Link>
                       <Link
                         to="/contact"
@@ -257,9 +260,9 @@ export default function ServicesPage() {
                 <h3 className="text-xl font-bold text-white mb-4">Three simple steps to your project</h3>
                 <ol className="grid sm:grid-cols-3 gap-4">
                   {[
-                    { step: '1', title: 'Free consultation', desc: 'Tell us your goals — no commitment' },
-                    { step: '2', title: 'Clear proposal', desc: 'Fixed ETB quote within 48 hours' },
-                    { step: '3', title: 'We build & support', desc: 'Delivery, training & ongoing help' },
+                    { step: '1', title: 'Discuss your needs', desc: 'Share your goals and constraints' },
+                    { step: '2', title: 'Agree on scope', desc: 'Review deliverables, timing, and estimate' },
+                    { step: '3', title: 'Build and hand over', desc: 'Delivery and any agreed support' },
                   ].map((item) => (
                     <li key={item.step} className="flex gap-3">
                       <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-brand-orange text-white text-sm font-black flex-shrink-0">
@@ -278,7 +281,7 @@ export default function ServicesPage() {
                   to="/contact"
                   className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-tech-blue bg-white rounded-xl hover:bg-slate-50 transition-all"
                 >
-                  Book free consultation
+                  Book a consultation
                 </Link>
                 <Link
                   to="/pricing"
@@ -307,7 +310,7 @@ export default function ServicesPage() {
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">{t('process.title')}</h2>
             <p className="text-lg text-white/70 max-w-2xl mx-auto">
-              Our proven methodology for delivering successful projects
+              A clear approach for planning and delivering project work
             </p>
           </div>
 
@@ -348,7 +351,7 @@ export default function ServicesPage() {
             <div className="space-y-6 animate-slide-in-left">
               <p className="text-sm font-semibold text-brand-orange uppercase tracking-wider">Why Choose Us</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
-                Leading Tech Solutions in Ethiopia
+                Technology services for organizations in Ethiopia and beyond
               </h2>
               <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
                 We combine global technology standards with deep understanding of the Ethiopian market to deliver
@@ -360,8 +363,8 @@ export default function ServicesPage() {
                   'Local Market Expertise',
                   'Affordable Ethiopian Pricing',
                   'Ongoing Support & Training',
-                  'Proven Track Record',
-                  'Latest Technologies',
+                  'Illustrative project concepts',
+                  'Tools selected for each project',
                   'Customer-Focused Approach',
                 ].map((item) => (
                   <li key={item} className="flex items-center gap-3">
@@ -386,10 +389,10 @@ export default function ServicesPage() {
             {/* Right — stat boxes */}
             <div className="grid grid-cols-2 gap-6 animate-slide-in-right">
               {[
-                { value: '30+', label: 'Projects Delivered' },
-                { value: '98%', label: 'Client Satisfaction' },
-                { value: '24/7', label: 'Support Available' },
-                { value: '5+', label: 'Years Experience' },
+                { value: 'Web', label: 'Design and development' },
+                { value: 'Software', label: 'Custom applications' },
+                { value: 'Infrastructure', label: 'Cloud and IT systems' },
+                { value: 'Security', label: 'Assessment and hardening' },
               ].map((stat, idx) => (
                 <div
                   key={stat.label}
@@ -419,13 +422,13 @@ export default function ServicesPage() {
                 to="/contact"
                 className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-brand-orange bg-white rounded-lg hover:bg-slate-50 hover:shadow-lg hover:-translate-y-0.5 transition-all"
               >
-                Get Free Consultation
+                Contact us
               </Link>
               <Link
                 to="/projects"
                 className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-transparent border-2 border-white rounded-lg hover:bg-white/10 hover:shadow-lg hover:-translate-y-0.5 transition-all"
               >
-                View Our Work
+                Explore project concepts
               </Link>
             </div>
           </div>

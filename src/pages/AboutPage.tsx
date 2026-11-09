@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import { IconCheck } from '../components/icons';
 import { useI18n } from '../i18n';
 
-const HERO_BG = 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1920&q=80';
-const STORY_BG = 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80';
+const HERO_BG = 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=70';
+const STORY_BG = 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=70';
 
 export default function AboutPage() {
   const { t } = useI18n();
@@ -33,7 +33,7 @@ export default function AboutPage() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   to="/contact"
-                  className="inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-brand-orange rounded-lg hover:bg-[#E66D00] transition-all"
+                  className="inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-brand-orange rounded-lg hover:bg-[#9A3412] transition-all"
                 >
                   {t('actions.getQuote')}
                 </Link>
@@ -48,38 +48,13 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Floating stat pills anchored to bottom of hero */}
-        <div className="absolute bottom-0 left-0 right-0 translate-y-1/2 z-20 px-4">
-          <div className="mx-auto max-w-4xl grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              { value: '30+', label: 'Projects Done' },
-              { value: '98%', label: 'Satisfaction' },
-              { value: '5+', label: 'Years' },
-              { value: '24/7', label: 'Support' },
-            ].map((stat, idx) => (
-              <div
-                key={stat.label}
-                className="bg-white dark:bg-slate-800 rounded-xl border-2 border-slate-200 dark:border-slate-700 p-4 text-center shadow-xl animate-scale-in"
-                style={{ animationDelay: `${idx * 80}ms` }}
-              >
-                <p className="text-3xl font-bold text-brand-orange">{stat.value}</p>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 font-semibold uppercase tracking-wider">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
-
-      {/* Spacer for floating stats */}
-      <div className="h-20 bg-slate-50 dark:bg-slate-900" />
 
       {/* Trust signals strip */}
       <section className="bg-tech-blue py-8 border-b-4 border-brand-orange">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-            <p className="text-white/80 text-sm font-semibold uppercase tracking-wider">Trusted by clients in</p>
+            <p className="text-white/80 text-sm font-semibold uppercase tracking-wider">Sector focus</p>
             <div className="flex flex-wrap items-center justify-center gap-3">
               {['Retail', 'Healthcare', 'Finance', 'Education', 'NGOs', 'E-commerce'].map((sector) => (
                 <span
@@ -150,7 +125,7 @@ export default function AboutPage() {
                 {[
                   'Modern Technology Solutions',
                   'Ethiopian Market Expertise',
-                  'Proven Track Record',
+                  'Project concepts across service areas',
                   'Customer-Focused Approach',
                 ].map((point) => (
                   <div key={point} className="flex items-center gap-3">
@@ -172,7 +147,7 @@ export default function AboutPage() {
               <p className="text-white/80 leading-relaxed mb-6">{t('about.founder.body')}</p>
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-brand-orange rounded-lg hover:bg-[#E66D00] transition-all"
+                className="inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-brand-orange rounded-lg hover:bg-[#9A3412] transition-all"
               >
                 {t('about.founder.cta')}
               </Link>
@@ -202,7 +177,7 @@ export default function AboutPage() {
               <div className="h-2 bg-gradient-to-r from-brand-orange to-[#FFB347]" />
               <div className="p-8">
                 <div className="flex items-center gap-5 mb-6">
-                  <div className="flex items-center justify-center h-20 w-20 rounded-2xl bg-gradient-to-br from-[#FF7A00] to-[#E66D00] text-white text-2xl font-black shadow-lg flex-shrink-0">
+                  <div className="flex items-center justify-center h-20 w-20 rounded-2xl bg-gradient-to-br from-[#C2410C] to-[#9A3412] text-white text-2xl font-black shadow-lg flex-shrink-0">
                     TM
                   </div>
                   <div>
@@ -218,7 +193,7 @@ export default function AboutPage() {
                 <div className="pt-4 border-t-2 border-slate-100 dark:border-slate-700">
                   <Link
                     to="/contact"
-                    className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-white bg-brand-orange rounded-lg hover:bg-[#E66D00] transition-all"
+                    className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-white bg-brand-orange rounded-lg hover:bg-[#9A3412] transition-all"
                   >
                     {t('about.founder.cta')}
                   </Link>

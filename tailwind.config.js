@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        'sunrise-orange': '#FF7A00',
+        'sunrise-orange': '#C2410C',
         'tech-blue': '#007ACC',
       },
       fontFamily: {
@@ -12,7 +12,7 @@ export default {
         body: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
-        glow: '0 20px 60px rgba(255,122,0,0.18)',
+        glow: '0 20px 60px rgba(194,65,12,0.18)',
       },
       keyframes: {
         float: {

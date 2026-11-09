@@ -2,13 +2,13 @@
 // Includes contact tiles, inquiry form validation, and direct email/phone links.
 import type { FormEvent } from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { IconClock, IconMail, IconMapPin, IconPhone } from '../components/icons';
 import { useI18n } from '../i18n';
 import { cn } from '../lib/cn';
 
-const CONTACT_BG = 'https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&w=1920&q=80';
-const WHY_BG = 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1920&q=80';
+const CONTACT_BG = 'https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&w=1600&q=70';
+const WHY_BG = 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=70';
 
 const PHONES = [
   { label: 'Consultation', number: '+251983708869' },
@@ -29,7 +29,11 @@ type FormErrors = {
 
 export default function ContactPage() {
   const { t } = useI18n();
-  const [formStatus, setFormStatus] = useState<'idle' | 'done'>('idle');
+  const [searchParams] = useSearchParams();
+  const packageName = searchParams.get('package');
+  const packageEtb = searchParams.get('etb');
+  const packageUsd = searchParams.get('usd');
+  const [formStatus, setFormStatus] = useState<'idle' | 'prepared'>('idle');
   const [errors, setErrors] = useState<FormErrors>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
 
@@ -40,17 +44,17 @@ export default function ContactPage() {
     const brief = String(formData.get('brief') ?? '').trim();
 
     if (!name || name.length < 2) {
-      errs.name = 'Please enter your full name (at least 2 characters)';
+      errs.name = t('contact.errors.name');
     }
 
     if (!email) {
-      errs.email = 'Email address is required';
+      errs.email = t('contact.errors.emailRequired');
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      errs.email = 'Please enter a valid email address';
+      errs.email = t('contact.errors.emailInvalid');
     }
 
     if (!brief || brief.length < 10) {
-      errs.brief = 'Please provide a brief description (at least 10 characters)';
+      errs.brief = t('contact.errors.brief');
     }
 
     return errs;
@@ -67,6 +71,10 @@ export default function ContactPage() {
     setTouched({ name: true, email: true, brief: true });
 
     if (Object.keys(validationErrors).length > 0) {
+      const firstInvalidField = (['name', 'email', 'brief'] as const).find((field) => validationErrors[field]);
+      if (firstInvalidField) {
+        form.querySelector<HTMLInputElement | HTMLTextAreaElement>(`[name="${firstInvalidField}"]`)?.focus();
+      }
       return;
     }
 
@@ -77,12 +85,8 @@ export default function ContactPage() {
     const subject = encodeURIComponent(`Project inquiry from ${name || 'Website visitor'}`);
     const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nProject brief:\n${brief}`);
     window.location.href = `mailto:${COMPANY_EMAIL}?subject=${subject}&body=${body}`;
-
-    setFormStatus('done');
+    setFormStatus('prepared');
     setErrors({});
-    setTouched({});
-    form.reset();
-    window.setTimeout(() => setFormStatus('idle'), 4500);
   }
 
   function handleBlur(fieldName: string) {
@@ -261,21 +265,28 @@ export default function ContactPage() {
               <div className="bg-white dark:bg-slate-800 rounded-2xl border-2 border-slate-200 dark:border-slate-700 p-8 shadow-xl">
                 <div className="mb-8">
                   <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Send Us a Message</h2>
-                  <p className="text-slate-500 dark:text-slate-400 text-sm">We'll get back to you within 24 hours.</p>
+                  <p className="text-slate-500 dark:text-slate-400 text-sm">
+                    Your email app will open with a draft. Review it and press Send to contact us.
+                  </p>
                 </div>
 
-                <form onSubmit={onSubmit} className="space-y-6">
+                <form onSubmit={onSubmit} className="space-y-6" noValidate>
                   {/* Name */}
                   <div>
-                    <label className="block text-sm font-semibold text-slate-900 dark:text-white mb-2">
+                    <label htmlFor="contact-name" className="block text-sm font-semibold text-slate-900 dark:text-white mb-2">
                       {t('contact.name')} <span className="text-red-500">*</span>
                     </label>
                     <input
+                      id="contact-name"
                       name="name"
                       type="text"
+                      autoComplete="name"
+                      minLength={2}
+                      maxLength={120}
                       required
                       aria-required="true"
                       aria-invalid={touched.name && errors.name ? 'true' : 'false'}
+                      aria-describedby={touched.name && errors.name ? 'contact-name-error' : undefined}
                       onBlur={() => handleBlur('name')}
                       className={cn(
                         'w-full px-4 py-3 rounded-lg border-2 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white transition-all focus:outline-none focus:ring-2 focus:ring-brand-orange',
@@ -283,24 +294,28 @@ export default function ContactPage() {
                           ? 'border-red-500 focus:border-red-500'
                           : 'border-slate-300 dark:border-slate-600 focus:border-brand-orange'
                       )}
-                      placeholder="John Doe"
+                      placeholder={t('contact.namePlaceholder')}
                     />
                     {touched.name && errors.name && (
-                      <p className="mt-2 text-sm text-red-500 animate-fade-in">{errors.name}</p>
+                      <p id="contact-name-error" role="alert" className="mt-2 text-sm text-red-700 dark:text-red-300 animate-fade-in">{errors.name}</p>
                     )}
                   </div>
 
                   {/* Email */}
                   <div>
-                    <label className="block text-sm font-semibold text-slate-900 dark:text-white mb-2">
+                    <label htmlFor="contact-email" className="block text-sm font-semibold text-slate-900 dark:text-white mb-2">
                       {t('contact.email')} <span className="text-red-500">*</span>
                     </label>
                     <input
+                      id="contact-email"
                       name="email"
                       type="email"
+                      autoComplete="email"
+                      maxLength={254}
                       required
                       aria-required="true"
                       aria-invalid={touched.email && errors.email ? 'true' : 'false'}
+                      aria-describedby={touched.email && errors.email ? 'contact-email-error' : undefined}
                       onBlur={() => handleBlur('email')}
                       className={cn(
                         'w-full px-4 py-3 rounded-lg border-2 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white transition-all focus:outline-none focus:ring-2 focus:ring-brand-orange',
@@ -308,25 +323,38 @@ export default function ContactPage() {
                           ? 'border-red-500 focus:border-red-500'
                           : 'border-slate-300 dark:border-slate-600 focus:border-brand-orange'
                       )}
-                      placeholder="john@example.com"
+                      placeholder={t('contact.emailPlaceholder')}
                     />
                     {touched.email && errors.email && (
-                      <p className="mt-2 text-sm text-red-500 animate-fade-in">{errors.email}</p>
+                      <p id="contact-email-error" role="alert" className="mt-2 text-sm text-red-700 dark:text-red-300 animate-fade-in">{errors.email}</p>
                     )}
                   </div>
 
                   {/* Brief */}
                   <div>
-                    <label className="block text-sm font-semibold text-slate-900 dark:text-white mb-2">
+                    <label htmlFor="contact-brief" className="block text-sm font-semibold text-slate-900 dark:text-white mb-2">
                       {t('contact.brief')} <span className="text-red-500">*</span>
                     </label>
                     <textarea
+                      id="contact-brief"
                       name="brief"
                       required
                       aria-required="true"
                       aria-invalid={touched.brief && errors.brief ? 'true' : 'false'}
+                      aria-describedby={touched.brief && errors.brief ? 'contact-brief-error' : undefined}
                       onBlur={() => handleBlur('brief')}
                       rows={6}
+                      maxLength={5000}
+                      defaultValue={
+                        packageName && packageEtb && packageUsd
+                          ? t('contact.packageInquiry')
+                              .replace('{package}', packageName)
+                              .replace('{etb}', packageEtb)
+                              .replace('{usd}', packageUsd)
+                          : packageName
+                            ? `I’m interested in the ${packageName} package. Please contact me to discuss the scope.`
+                          : undefined
+                      }
                       className={cn(
                         'w-full px-4 py-3 rounded-lg border-2 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white transition-all focus:outline-none focus:ring-2 focus:ring-brand-orange resize-none',
                         touched.brief && errors.brief
@@ -336,31 +364,26 @@ export default function ContactPage() {
                       placeholder={t('contact.briefPlaceholder')}
                     />
                     {touched.brief && errors.brief && (
-                      <p className="mt-2 text-sm text-red-500 animate-fade-in">{errors.brief}</p>
+                      <p id="contact-brief-error" role="alert" className="mt-2 text-sm text-red-700 dark:text-red-300 animate-fade-in">{errors.brief}</p>
                     )}
                   </div>
 
                   {/* Submit */}
                   <button
                     type="submit"
-                    className="w-full inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-brand-orange rounded-lg hover:bg-[#E66D00] hover:shadow-lg hover:-translate-y-0.5 transition-all"
+                    className="w-full inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-brand-orange rounded-lg hover:bg-[#9A3412] hover:shadow-lg hover:-translate-y-0.5 transition-all"
                   >
-                    {t('actions.send')}
+                    {t('contact.openEmail')}
                   </button>
 
-                  {/* Success message */}
-                  <div
-                    className={cn(
-                      'rounded-lg border-2 border-green-200 bg-green-50 px-4 py-3 text-center text-sm font-medium text-green-900 transition-all dark:border-green-500/30 dark:bg-green-500/10 dark:text-green-100',
-                      formStatus === 'done'
-                        ? 'opacity-100 translate-y-0'
-                        : 'pointer-events-none opacity-0 -translate-y-2'
-                    )}
-                    role="status"
-                    aria-live="polite"
-                  >
-                    {t('contact.success')}
-                  </div>
+                  {formStatus === 'prepared' && (
+                    <div className="rounded-lg border border-sky-200 bg-sky-50 px-4 py-3 text-sm text-sky-950 dark:border-sky-700 dark:bg-sky-950/40 dark:text-sky-100" role="status" aria-live="polite">
+                      <p>{t('contact.success')}</p>
+                      <a className="mt-2 inline-block font-semibold underline" href={`mailto:${COMPANY_EMAIL}`}>
+                        {COMPANY_EMAIL}
+                      </a>
+                    </div>
+                  )}
                 </form>
               </div>
             </div>
@@ -374,14 +397,14 @@ export default function ContactPage() {
         style={{ backgroundImage: `url(${WHY_BG})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
       >
         {/* Orange overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#FF7A00]/90 to-[#E66D00]/85" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#C2410C]/90 to-[#9A3412]/85" />
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Heading */}
           <div className="text-center mb-12 animate-fade-in-up">
             <h2 className="text-3xl font-bold text-white mb-4 sm:text-4xl">Why Work With Us?</h2>
             <p className="text-lg text-orange-100 max-w-2xl mx-auto">
-              We're committed to delivering excellence in every project
+              Share your goals so we can clarify the scope, estimate, and next steps.
             </p>
           </div>
 
@@ -389,34 +412,34 @@ export default function ContactPage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
               {
-                icon: '⚡',
-                title: 'Fast Response',
-                description: 'We respond to all inquiries within 24 hours',
+                icon: '🧭',
+                title: 'Clear next steps',
+                description: 'Discuss the project scope and agree on a proposal before work begins',
               },
               {
                 icon: '👥',
-                title: 'Expert Team',
-                description: 'Experienced professionals ready to help',
+                title: 'Design and engineering',
+                description: 'Discuss design, software, infrastructure, IoT, and security needs',
               },
               {
                 icon: '🇪🇹',
                 title: 'Local Support',
-                description: 'Based in Ethiopia, we understand your needs',
+                description: 'Based in Ethiopia and available for local collaboration',
               },
               {
                 icon: '💰',
-                title: 'Affordable Pricing',
-                description: 'Competitive rates for quality work',
+                title: 'Indicative ETB pricing',
+                description: 'Website project ranges are available for early planning',
               },
               {
                 icon: '✅',
-                title: 'Proven Results',
-                description: '30+ successful projects delivered',
+                title: 'Illustrative concepts',
+                description: 'Explore examples of possible approaches across our service areas',
               },
               {
                 icon: '🤝',
-                title: 'Ongoing Support',
-                description: 'We are here even after project completion',
+                title: 'Support options',
+                description: 'Available support periods and maintenance can be scoped for your project',
               },
             ].map((item, idx) => (
               <div

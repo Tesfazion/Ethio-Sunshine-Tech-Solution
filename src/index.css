@@ -19,7 +19,7 @@
     Arial,
     sans-serif;
   background-color: #ffffff;
-  --color-sunrise-orange: #ef842b;
+  --color-sunrise-orange: #c2410c;
   --color-tech-blue: #007acc;
 
   /* Section palette */
@@ -49,7 +49,7 @@ body {
   color-scheme: dark;
 }
 ::selection {
-  background: rgba(255, 122, 0, 0.22);
+  background: rgba(194, 65, 12, 0.22);
 }
 
 /* ── Base ──────────────────────────────────────────────────────────── */
@@ -85,19 +85,19 @@ body {
 
   /* brand colours */
   .text-brand-orange {
-    color: #ef842b;
+    color: #b45309;
   }
   .bg-brand-orange {
-    background-color: #ef842b;
+    background-color: #c2410c;
   }
   .bg-brand-orange-light {
     background-color: #fff3e6;
   }
   .border-brand-orange {
-    border-color: #ef842b;
+    border-color: #c2410c;
   }
   .ring-brand-orange {
-    --tw-ring-color: #ef842b;
+    --tw-ring-color: #c2410c;
   }
 
   .text-brand-blue {
@@ -130,13 +130,16 @@ body {
     color: #7fa8ff;
   }
   .dark .text-brand-orange {
-    color: #ffb366;
+    color: #fdba74;
   }
   .dark .bg-brand-orange-light {
-    background-color: rgba(255, 122, 0, 0.15);
+    background-color: rgba(194, 65, 12, 0.15);
   }
   .dark .hover\:border-brand-orange:hover {
-    border-color: #ffb366;
+    border-color: #fdba74;
+  }
+  .bg-brand-orange:hover {
+    background-color: #9a3412;
   }
 
   /* ── Light-mode section backgrounds (with texture) ── */
@@ -186,8 +189,8 @@ body {
     background: rgba(255, 255, 255, 0.75);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(255, 122, 0, 0.25);
-    border-inline-start: 3px solid #ff7a00;
+    border: 1px solid rgba(194, 65, 12, 0.25);
+    border-inline-start: 3px solid #c2410c;
     box-shadow: var(--shadow-card);
   }
 
@@ -210,8 +213,8 @@ body {
   }
   .dark .card-glass-orange {
     background: rgba(30, 41, 59, 0.8);
-    border-color: rgba(255, 122, 0, 0.25);
-    border-inline-start-color: #ff7a00;
+    border-color: rgba(194, 65, 12, 0.25);
+    border-inline-start-color: #c2410c;
     backdrop-filter: blur(14px);
   }
   .dark .card-glass-blue {
@@ -236,15 +239,15 @@ body {
 
   /* ── Gradient & divider ── */
   .gradient-brand {
-    background: linear-gradient(135deg, #ff7a00 0%, #007acc 100%);
+    background: linear-gradient(135deg, #c2410c 0%, #007acc 100%);
   }
   .divider-brand {
     height: 3px;
-    background: linear-gradient(to right, #ff7a00, #007acc);
+    background: linear-gradient(to right, #c2410c, #007acc);
     border-radius: 9999px;
   }
   .text-gradient-brand {
-    background: linear-gradient(135deg, #ff7a00 0%, #007acc 100%);
+    background: linear-gradient(135deg, #c2410c 0%, #007acc 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -252,7 +255,7 @@ body {
 
   /* ── Eyebrows ── */
   .eyebrow-orange {
-    color: #ff7a00;
+    color: #b45309;
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -301,10 +304,10 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
   .glass-orange {
-    background: rgba(255, 122, 0, 0.14);
+    background: rgba(194, 65, 12, 0.14);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 122, 0, 0.25);
+    border: 1px solid rgba(194, 65, 12, 0.25);
   }
 
   /* ── Animations ── */
@@ -360,10 +363,10 @@ body {
   @keyframes pulse-glow {
     0%,
     100% {
-      box-shadow: 0 0 0 0 rgba(255, 122, 0, 0.4);
+      box-shadow: 0 0 0 0 rgba(194, 65, 12, 0.4);
     }
     50% {
-      box-shadow: 0 0 0 10px rgba(255, 122, 0, 0);
+      box-shadow: 0 0 0 10px rgba(194, 65, 12, 0);
     }
   }
   @keyframes fade-in {
@@ -420,5 +423,16 @@ body {
   }
   .animate-chat-bounce {
     animation: chat-bounce 2.4s ease-in-out infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
